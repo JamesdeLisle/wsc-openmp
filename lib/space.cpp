@@ -61,8 +61,7 @@ void Space::run(std::string _data_folder) {
   std::cout << "Computing order: " << order << "..." << std::endl;
   for (i=0; i<lim.energyN; i++) {
     for (j=0; j<lim.kPolarN; j++) {
-      //this->progress(i, j);
-      std::cout << i << " " << j << std::endl;
+      this->progress(i, j);
       #pragma omp parallel for schedule(static)
       for (k=0; k<lim.kAzimuN; k++) {
 	int idxv[3] = {i, j, k};
