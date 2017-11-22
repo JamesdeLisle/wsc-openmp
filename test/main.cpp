@@ -44,8 +44,13 @@ int main() {
   L.load(data_folder);
   int order, max_order = 3;
   for (order=0; order<max_order; order++) {
-    Space S(L, _start_time, order);
-    S.run(data_folder);
+    if (order == 10) {
+      ;
+    }
+    else {
+      Space S(L, _start_time, order);
+      S.run(data_folder);
+    }
   }
   return 0;
 }
