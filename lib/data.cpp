@@ -135,7 +135,6 @@ void InData::dthetar0(int order) {
   Data D(lim);
   int i, j, k;
   mat up, down, cval;
-  deriv.push_back(D);
   for (i=0; i<lim.energyN; i++) {
     for (j=0; j<lim.kPolarN; j++) {
       for (k=0; k<lim.kAzimuN; k++) {
@@ -151,6 +150,7 @@ void InData::dthetar0(int order) {
       }
     }
   }
+  deriv.push_back(D);
   deriv_look[order] = &deriv.back();
 }
 

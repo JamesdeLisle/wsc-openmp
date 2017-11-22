@@ -15,12 +15,12 @@ int main() {
   std::string _start_time = getTime();
   LimitsBox l;
   l.spin = 0;
-  l.energyN = 100;
+  l.energyN = 2;
   l.kPolarN = 50;
   l.kAzimuN = 100;
   l.alphaN = 100;
-  l.energyMin = -1.0;
-  l.energyMax = 1.0;
+  l.energyMin = -0.1;
+  l.energyMax = 0.1;
   l.kPolarMin = 1e-6;
   l.kPolarMax = PI;
   l.kAzimuMin = 1e-6;
@@ -44,13 +44,8 @@ int main() {
   L.load(data_folder);
   int order, max_order = 3;
   for (order=0; order<max_order; order++) {
-    if (order == 1) {
-      ;
-    }
-    else {
-      Space S(L, _start_time, order);
-      S.run(data_folder);
-    }
+    Space S(L, _start_time, order);
+    S.run(data_folder);
   }
   return 0;
 }

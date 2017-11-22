@@ -23,6 +23,8 @@ Green Retarded::get() {
   else {
     sgn = -1.0;
   }
+  
+  //std::cout << dg0 << std::endl;
   rv.set(-0.5 * rv.get().inverse() * sgn * runVal.getlim()->magF * I * dg0);
   return rv;
 }
