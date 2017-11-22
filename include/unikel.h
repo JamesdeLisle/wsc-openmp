@@ -15,6 +15,7 @@ class UniKel
   UniKel(RunVal _runVal, mat _ret0);
   void setAlpha(double _alpha) {runVal.setAlpha(_alpha);}
   void setiAlpha(int i) {runVal.setiAlpha(i);}
+  double getAlpha() {return runVal.getAlpha();}
   Green get(Green funcVal);
   Green bound();
 };

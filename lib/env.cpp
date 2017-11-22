@@ -24,9 +24,9 @@ Environment::Environment(RunVal _runVal) : runVal(_runVal) {
   sigmaK = sigmaA;
   thermD = tanh(runVal.getE() / 2 * lim->temp);
   thermDG = -runVal.getE() * runVal.getZ() * lim->tempInc;
-  thermDG *= 2 * lim->temp * lim->temp;
-  thermDG *= cosh(runVal.getE() / (2 * lim->temp));
-  thermDG *= cosh(runVal.getE() / (2 * lim->temp));
+  thermDG /= (2 * lim->temp * lim->temp *
+	      cosh(runVal.getE() / (2 * lim->temp)) *
+	      cosh(runVal.getE() / (2 * lim->temp)));
 }
     
 Green Environment::hamR() {

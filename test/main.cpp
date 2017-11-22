@@ -21,12 +21,12 @@ int main() {
   l.alphaN = 100;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
-  l.kPolarMin = 0.0;
+  l.kPolarMin = 1e-6;
   l.kPolarMax = PI;
-  l.kAzimuMin = 0.0;
+  l.kAzimuMin = 1e-6;
   l.kAzimuMax = 2 * PI;
   l.alphaMin = -3.0;
-  l.alphaMax = 0.0;
+  l.alphaMax = -1e-6;
   l.temp = 0.01;
   l.tempCrit = 0.1;
   l.tempInc = 0.03;

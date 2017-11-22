@@ -31,7 +31,7 @@ template <class T> std::vector<double> Runge<T>::linspace(double min,
 							  int disc) {
   int i;
   std::vector<double> rv;
-  double step = (max - min) / (disc-1);
+  double step = (max - min) / disc;
   for (i=0; i<disc-1; i++) {
     rv.push_back(min + step * i);
   }
@@ -46,13 +46,13 @@ template <class T> Green Runge<T>::run() {
 					    runVal.getlim()->alphaN);
   std::vector<Green> kVals(4);
   for (i=0; i<runVal.getlim()->alphaN; i++) {
-    fClass.setAlpha(alph[i]);
+    fClass.setAlpha(alph.at(i));
     fClass.setiAlpha(i);
     kVals[0] = fClass.get(fVal);
-    fClass.setAlpha(alph[i] - runVal.getlim()->alphaD / 2.0);
+    fClass.setAlpha(alph.at(i) - runVal.getlim()->alphaD / 2.0);
     kVals[1] = fClass.get(fVal - kVals[0] * (runVal.getlim()->alphaD / 2.0));
     kVals[2] = fClass.get(fVal - kVals[1] * (runVal.getlim()->alphaD / 2.0));
-    fClass.setAlpha(alph[i] - runVal.getlim()->alphaD);
+    fClass.setAlpha(alph.at(i) - runVal.getlim()->alphaD);
     kVals[3] = fClass.get(fVal - kVals[2] * runVal.getlim()->alphaD);
     fVal = fVal - (kVals[0] + (kVals[1] + kVals[2]) * 2.0 + kVals[3]) * \
       (runVal.getlim()->alphaD / 6.0);

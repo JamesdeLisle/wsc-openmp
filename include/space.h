@@ -30,6 +30,7 @@ class RunVal
   double getTheta() {return Theta;}
   double getalpha() {return alpha;}
   void setAlpha(double _alpha) {alpha = _alpha;}
+  double getAlpha() {return alpha;}
   void setiAlpha(int _iAlpha) {iAlpha = _iAlpha;}
   void setXi(double _Xi) {Xi = _Xi;}
   double getZ() {return Z;}
