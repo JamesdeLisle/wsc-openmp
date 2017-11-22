@@ -15,12 +15,12 @@ int main() {
   std::string _start_time = getTime();
   LimitsBox l;
   l.spin = 0;
-  l.energyN = 2;
+  l.energyN = 100;
   l.kPolarN = 50;
   l.kAzimuN = 100;
   l.alphaN = 100;
-  l.energyMin = -0.1;
-  l.energyMax = 0.1;
+  l.energyMin = -1.0;
+  l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
   l.kPolarMax = PI;
   l.kAzimuMin = 1e-6;
