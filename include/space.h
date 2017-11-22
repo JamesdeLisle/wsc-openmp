@@ -15,6 +15,7 @@ class RunVal
   double alpha;
   std::vector<int> index;
   Limits lim;
+    int i = 0;
   double Z;
   int iAlpha;
 
@@ -49,8 +50,10 @@ class Space
   Data runData; 
   
  public:
+  Space();
   Space(Limits L, std::string _time, int _order);
   void run(std::string _data_folder);
+  void progress(int i, int j);
 };
 
 #endif

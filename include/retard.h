@@ -1,16 +1,16 @@
-#ifndef UNIRET_H
-#define UNIRET_H
+#ifndef RETARD_H
+#define RETARD_H
 #include "green.h"
 #include "space.h"
 
-class UniRet
+class Retarded
 {
  private:
-  Green value;
   RunVal runVal;
-
+  mat dg0;
+  
  public:
-  UniRet(RunVal _runVal);
+  Retarded(RunVal _runVal, mat dg0);
   Green get();
 };
 

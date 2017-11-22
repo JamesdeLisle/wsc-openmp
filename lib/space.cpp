@@ -4,9 +4,8 @@
 #include "../include/data.h"
 #include "../include/env.h"
 #include "../include/data.h"
-#include "../include/uniret.h"
-#include "../include/unikel.h"
-#include "../include/runge.h"
+
+#include "../include/kernel.h"
 #include <vector>
 #include <iostream>
 #include <string>
@@ -46,50 +45,32 @@ Space::Space(Limits L, std::string _time,
   kPolar = linspace(L.kPolarMin, L.kPolarMax, L.kPolarN);
   kAzimu = linspace(L.kAzimuMin, L.kAzimuMax, L.kAzimuN);
   runData = Data(lim, time, order);
-  
-  
+}
+
+void Space::progress(int i, int j) {
+  std::cout << "\r" << (int) (100.0 * (i * (lim.kPolarN - 2) + j))	\
+    / ((lim.energyN - 1) * (lim.kPolarN - 1)) << "%";
+  std::cout.flush();
 }
 
 void Space::run(std::string _data_folder) {
   int i, j, k;
-  double E, Xi, Theta;
-  if (order == 0) { 
-    for (i=0; i<lim.energyN; i++) {
-      for (j=0; j<lim.kPolarN; j++) {
-	for (k=0; k<lim.kAzimuN; k++) {
-	  E = energy.at(i);
-	  Xi = kPolar.at(j);
-	  Theta = kAzimu.at(k);
-	  int idxv[3] = {i, j, k};
-	  std::vector<int> idx(idxv,  idxv + sizeof(idxv) / sizeof(int));
-	  RunVal entry(E, Xi, Theta, idx, lim);
-	  UniRet F(entry);
-	  runData.set(i, j, k, F.get());
-	}
+  InData inData(_data_folder, order, lim);
+  int max_threads = omp_get_max_threads();
+  omp_set_num_threads(max_threads);
+  std::cout << "Computing order: " << order << "..." << std::endl;
+  for (i=0; i<lim.energyN; i++) {
+    for (j=0; j<lim.kPolarN; j++) {
+      this->progress(i, j);
+      //#pragma omp parallel for schedule(static)
+      for (k=0; k<lim.kAzimuN; k++) {
+	int idxv[3] = {i, j, k};
+	std::vector<int> idx(idxv,  idxv + sizeof(idxv) / sizeof(int));
+	RunVal entry(energy.at(i), kPolar.at(j), kAzimu.at(k), idx, lim);
+	kernel(i, j, k, order, entry, inData, runData);
       }
     }
   }
-  else if (order == 1) {
-    Data inData(lim, time, 0);
-    int max_threads = omp_get_max_threads();
-    omp_set_num_threads(max_threads);
-    for (i=0; i<lim.energyN; i++) {
-      for (j=0; j<lim.kPolarN; j++) {
-	std::cout << i << " " << j << std::endl;
-#pragma omp parallel for schedule(static)
-	for (k=0; k<lim.kAzimuN; k++) {
-	  E = energy.at(i);
-	  Xi = kPolar.at(j);
-	  Theta = kAzimu.at(k);
-	  int idxv[3] = {i, j, k};
-	  std::vector<int> idx(idxv,  idxv + sizeof(idxv) / sizeof(int));
-	  RunVal entry(E, Xi, Theta, idx, lim);
-	  UniKel F(entry, inData.get(i, j, k));
-	  Runge<UniKel> R(entry, F); 
-	  runData.set(i, j, k, R.run());
-	}
-      }
-    }
-  }
+  std::cout << std::endl;
   runData.write(_data_folder);
 }

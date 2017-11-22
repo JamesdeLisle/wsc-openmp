@@ -61,20 +61,19 @@ Data::Data(std::string data_folder, int _order) {
   for (i=0; i<lim.energyN; i++) {
     runData[i].resize(lim.kPolarN);
     for (j=0; j<lim.kPolarN; j++) {
-      runData[i][j].resize(lim.kPolarN, Green());
+      runData[i][j].resize(lim.kAzimuN, Green());
     }
   }
   for (i=0; i<lim.energyN; i++) {
     std::vector<std::vector<std::string> > lines;
     infile.open(data_folder + name.get(i, lim.start_time, order));
-    std::cout << name.get(i, lim.start_time, order) << std::endl;
     for (std::string LINE; getline(infile, LINE);) {
       split(LINE, line, ' ');
       lines.push_back(line);
     }
     for (j=0; j<lim.kPolarN; j++) {
       for (k=0; k<lim.kAzimuN; k++) {
-	m = j * lim.kAzimuN + k;
+	m = j * (lim.kAzimuN - 1) + k;
 	values[0] = ::atof(lines[m][0].c_str()) + ::atof(lines[m][1].c_str()) * I;
 	values[1] = ::atof(lines[m][2].c_str()) + ::atof(lines[m][3].c_str()) * I;
 	values[2] = ::atof(lines[m][4].c_str()) + ::atof(lines[m][5].c_str()) * I;
@@ -89,8 +88,24 @@ Data::Data(std::string data_folder, int _order) {
   }
 }
 
+Data::Data(Limits _lim) : lim(_lim) {
+  lim = _lim;
+  int i, j;
+  runData.resize(lim.energyN);
+  for (i=0; i<lim.energyN; i++) {
+    runData[i].resize(lim.kPolarN);
+    for (j=0; j<lim.kPolarN; j++) {
+      runData[i][j].resize(lim.kAzimuN, Green());
+    }
+  }
+}
+
 void Data::set(int i, int j, int k, Green value) {
   runData[i][j][k].set(value.get());
+}
+
+void Data::set(int i, int j, int k, mat value) {
+  runData[i][j][k].set(value);
 }
 
 void Data::write(std::string _data_folder) {
@@ -113,6 +128,47 @@ void Data::write(std::string _data_folder) {
       }
     }
     outfile.close();
+  }
+}
+
+void InData::dthetar0(int order) {
+  Data D(lim);
+  int i, j, k;
+  mat up, down, cval;
+  deriv.push_back(D);
+  for (i=0; i<lim.energyN; i++) {
+    for (j=0; j<lim.kPolarN; j++) {
+      for (k=0; k<lim.kAzimuN; k++) {
+	if (k < lim.kAzimuN - 1) {
+	  up = store_look[order]->get(i, j, k + 1);
+	}
+	else {
+	  up = store_look[order]->get(i, j, 0);
+	}
+	down = store_look[order]->get(i, j, k);
+	cval = (up - down) / lim.kAzimuD;
+	D.set(i, j, k, cval);
+      }
+    }
+  }
+  deriv_look[order] = &deriv.back();
+}
+
+InData::InData(std::string data_folder, int order, Limits _lim) : lim(_lim) {
+  lim = _lim;
+  if (order == 0) {
+    ;
+  }
+  else if (order == 1) {
+    Data r0(data_folder, 0);
+    store.push_back(r0);
+    store_look[0] = &store.back();
+  }
+  else if (order == 2) {
+    Data r0(data_folder, 0);
+    store.push_back(r0);
+    store_look[0] = &store.back();
+    this->dthetar0(0);
   }
 }
 

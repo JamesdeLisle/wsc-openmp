@@ -14,7 +14,7 @@ Green UniRet::get() {
   Environment E(runVal);
   rv = E.epsi() - E.hamR();
   rv = rv * (-1.0 / std::sqrt((runVal.getE() - E.getSigmaR()) *
-			      (runVal.getE() + E.getSigmaR()) -
+			      (runVal.getE() - E.getSigmaR()) -
 			      E.getDeltaR() * std::conj(E.getDeltaR())));
   return rv;
 }

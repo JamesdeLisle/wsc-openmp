@@ -30,10 +30,10 @@ int main() {
   l.temp = 0.01;
   l.tempCrit = 0.1;
   l.tempInc = 0.03;
-  l.a1 = 0.3;
-  l.a2 = 1.0;
-  l.a3 = 1.0;
-  l.a4 = 1.0;
+  l.a1 = 0.332;
+  l.a2 = 0.2314;
+  l.a3 = -0.7654;
+  l.a4 = 0.643;
   l.magF = 0.1;
   l.tau = 0.01;
   l.fermVU = 1.0;
@@ -42,11 +42,10 @@ int main() {
   Limits L(l);
   L.save(data_folder);
   L.load(data_folder);
-  int order = 0;
-  Space S(L, _start_time, order);
-  S.run(data_folder);
-  order = 1;
-  S = Space(L, _start_time, order);
-  S.run(data_folder);
+  int order, max_order = 3;
+  for (order=0; order<max_order; order++) {
+    Space S(L, _start_time, order);
+    S.run(data_folder);
+  }
   return 0;
 }

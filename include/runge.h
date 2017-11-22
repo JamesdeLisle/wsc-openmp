@@ -49,12 +49,12 @@ template <class T> Green Runge<T>::run() {
     fClass.setAlpha(alph[i]);
     fClass.setiAlpha(i);
     kVals[0] = fClass.get(fVal);
-    fClass.setAlpha(alph[i] + runVal.getlim()->alphaD / 2.0);
-    kVals[1] = fClass.get(fVal + kVals[0] * (runVal.getlim()->alphaD / 2.0));
-    kVals[2] = fClass.get(fVal + kVals[1] * (runVal.getlim()->alphaD / 2.0));
-    fClass.setAlpha(alph[i] + runVal.getlim()->alphaD);
-    kVals[3] = fClass.get(fVal + kVals[2] * runVal.getlim()->alphaD);
-    fVal = fVal + (kVals[0] + (kVals[1] + kVals[2]) * 2.0 + kVals[3]) * \
+    fClass.setAlpha(alph[i] - runVal.getlim()->alphaD / 2.0);
+    kVals[1] = fClass.get(fVal - kVals[0] * (runVal.getlim()->alphaD / 2.0));
+    kVals[2] = fClass.get(fVal - kVals[1] * (runVal.getlim()->alphaD / 2.0));
+    fClass.setAlpha(alph[i] - runVal.getlim()->alphaD);
+    kVals[3] = fClass.get(fVal - kVals[2] * runVal.getlim()->alphaD);
+    fVal = fVal - (kVals[0] + (kVals[1] + kVals[2]) * 2.0 + kVals[3]) * \
       (runVal.getlim()->alphaD / 6.0);
   }
   return fVal;
