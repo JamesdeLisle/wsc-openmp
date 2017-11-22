@@ -57,11 +57,12 @@ void Space::run(std::string _data_folder) {
   int i, j, k;
   InData inData(_data_folder, order, lim);
   int max_threads = omp_get_max_threads();
-  omp_set_num_threads(max_threads-3);
+  omp_set_num_threads(max_threads-2);
   std::cout << "Computing order: " << order << "..." << std::endl;
   for (i=0; i<lim.energyN; i++) {
     for (j=0; j<lim.kPolarN; j++) {
-      this->progress(i, j);
+      //this->progress(i, j);
+      std::cout << i << " " << j << std::endl;
       #pragma omp parallel for schedule(static)
       for (k=0; k<lim.kAzimuN; k++) {
 	int idxv[3] = {i, j, k};
