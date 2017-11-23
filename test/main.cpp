@@ -15,7 +15,7 @@ int main() {
   std::string _start_time = getTime();
   LimitsBox l;
   l.spin = 0;
-  l.energyN = 100;
+  l.energyN = 200;
   l.kPolarN = 50;
   l.kAzimuN = 100;
   l.alphaN = 100;
@@ -44,7 +44,7 @@ int main() {
   L.load(data_folder);
   int order, max_order = 3;
   for (order=0; order<max_order; order++) {
-    if (order == 10) {
+    if (order == 1) {
       ;
     }
     else {

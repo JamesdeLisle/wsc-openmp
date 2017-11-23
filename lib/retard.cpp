@@ -24,13 +24,6 @@ Green Retarded::get() {
     sgn = -1.0;
   }
   
-  //std::cout << dg0 << std::endl;
-  mat inv;
-  inv(0, 0) = rv.get(1, 1);
-  inv(0, 1) = -rv.get(1, 0);
-  inv(1, 0) = -rv.get(0, 1);
-  inv(1, 1) = rv.get(0, 0);
-  inv = inv * (1.0 / (rv.get(0, 0) * rv.get(1, 1) - rv.get(0, 1) * rv.get(1, 0)));
-  rv.set(-0.5 * inv * sgn * runVal.getlim()->magF * I * dg0);
+  rv.set(-0.5 * rv.get().inverse() * sgn * runVal.getlim()->magF * I * dg0);
   return rv;
 }

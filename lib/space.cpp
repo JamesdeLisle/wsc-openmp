@@ -48,7 +48,7 @@ Space::Space(Limits L, std::string _time,
 }
 
 void Space::progress(int i, int j) {
-  std::cout << "\r" << (int) (100.0 * (i * (lim.kPolarN - 2) + j))	\
+  std::cout << "\r" << (int) (100.0 * (i * (lim.kPolarN - 1) + j))	\
     / ((lim.energyN - 1) * (lim.kPolarN - 1)) << "%";
   std::cout.flush();
 }
@@ -67,7 +67,7 @@ void Space::run(std::string _data_folder) {
 	int idxv[3] = {i, j, k};
 	std::vector<int> idx(idxv,  idxv + sizeof(idxv) / sizeof(int));
 	RunVal entry(energy.at(i), kPolar.at(j), kAzimu.at(k), idx, lim);
-	kernel(i, j, k, order, entry, inData, runData);
+	kernel(i, j, k, order, entry, &inData, runData);
       }
     }
   }
