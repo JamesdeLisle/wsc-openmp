@@ -44,7 +44,7 @@ int main() {
   L.load(data_folder);
   int order, max_order = 3;
   for (order=0; order<max_order; order++) {
-    if (order == 1) {
+    if (order == 10) {
       ;
     }
     else {
