@@ -49,6 +49,7 @@ int main() {
   }
   l.spin = 1;
   L = Limits(l);
+  L.save(data_folder);
   for (order=0; order<max_order; order++) {
     Space S(L, _start_time, order);
     S.run(data_folder);

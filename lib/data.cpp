@@ -229,5 +229,15 @@ InData::InData(std::string data_folder, int order, Limits _lim) : lim(_lim) {
     store.push_back(r1);
     this->dpz(1);
   }
+  else if (order == 10) {
+    Data k0(data_folder, 1);
+    Data k1(data_folder, 3);
+    Data k2(data_folder, 4);
+    Data k3(data_folder, 5);
+    store.push_back(k0);
+    store.push_back(k1);
+    store.push_back(k2);
+    store.push_back(k3);
+  }
 }
 

@@ -1,6 +1,7 @@
 #ifndef LIMITS_H
 #define LIMITS_H
 #include <string>
+#include <vector>
 
 struct LimitsBox
 {
@@ -72,6 +73,7 @@ class Limits {
   Limits() {}
   void save(std::string data_folder);
   void load(std::string data_folder);
+  std::vector<double> space(int axis);
 };
   
 

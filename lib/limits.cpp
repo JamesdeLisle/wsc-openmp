@@ -137,3 +137,30 @@ void Limits::load(std::string data_folder) {
     fermV = fermVD;
   }
 }
+
+std::vector<double> Limits::space(int axis) {
+  double min, max;
+  int i, disc;
+  std::vector<double> rv;
+  if (axis == 0) {
+    min = energyMin;
+    max = energyMax;
+    disc = energyN;
+  }
+  else if (axis == 1) {
+    min = kPolarMin;
+    max = kPolarMax;
+    disc = kPolarN;
+  }
+  else if (axis == 2) {
+    min = kAzimuMin;
+    max = kAzimuMax;
+    disc = kAzimuN;
+  }
+  double step = (max - min) / disc;
+  for (i=0; i<disc-1; i++) {
+    rv.push_back(min + step * i);
+  }
+  rv.push_back(max);
+  return rv;
+}
