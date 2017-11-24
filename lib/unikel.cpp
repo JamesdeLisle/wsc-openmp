@@ -5,9 +5,8 @@
 #include <eigen3/Eigen/Dense>
 #include "../include/pauli.h"
 
-UniKel::UniKel(RunVal _runVal, mat _ret0) : runVal(_runVal), ret0(_ret0) {
-  runVal = _runVal;
-  ret0 = _ret0;
+UniKel::UniKel(RunVal _runVal, mat _ret0) : \
+  runVal(_runVal), ret0(_ret0) {
 }
 
 Green UniKel::get(Green funcVal) {

@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <iomanip>
+#include <typeinfo>
 
 unsigned int split(const std::string &txt, std::vector<std::string> &strs, char ch)
 {
@@ -67,6 +68,10 @@ Data::Data(std::string data_folder, int _order) {
   for (i=0; i<lim.energyN; i++) {
     std::vector<std::vector<std::string> > lines;
     infile.open(data_folder + name.get(i, lim.start_time, order));
+    std::cout << name.get(i, lim.start_time, order) << std::endl;
+    if (infile.fail()) {
+      std::cout << "FAILED" << std::endl;
+    }
     for (std::string LINE; getline(infile, LINE);) {
       split(LINE, line, ' ');
       lines.push_back(line);
@@ -131,7 +136,7 @@ void Data::write(std::string _data_folder) {
   }
 }
 
-void InData::dthetar0(int order) {
+void InData::dtheta(int order) {
   Data D(lim);
   int i, j, k;
   mat up, down, cval;
@@ -139,19 +144,54 @@ void InData::dthetar0(int order) {
     for (j=0; j<lim.kPolarN; j++) {
       for (k=0; k<lim.kAzimuN; k++) {
 	if (k < lim.kAzimuN - 1) {
-	  up = store_look[order]->get(i, j, k + 1);
+	  up = this->get(order, i, j, k + 1);
 	}
 	else {
-	  up = store_look[order]->get(i, j, 0);
+	  up = this->get(order, i, j, 0);
 	}
-	down = store_look[order]->get(i, j, k);
+	down = this->get(order, i, j, k);
 	cval = (up - down) / lim.kAzimuD;
 	D.set(i, j, k, cval);
       }
     }
   }
   deriv.push_back(D);
-  deriv_look[order] = &deriv.back();
+}
+
+std::vector<double> InData::linspace(double min, double max, int disc) {
+  int i;
+  std::vector<double> rv;
+  double step = (max - min) / disc;
+  for (i=0; i<disc-1; i++) {
+    rv.push_back(min + step * i);
+  }
+  rv.push_back(max);
+  return rv;
+}
+
+void InData::dpz(int order) {
+  Data D(lim);
+  int i, j, k;
+  mat up, down, cval;
+  std::vector<double> kPol = this->linspace(lim.kPolarMin,
+					    lim.kPolarMax,
+					    lim.kPolarN);
+  for (i=0; i<lim.energyN; i++) {
+    for (j=0; j<lim.kPolarN; j++) {
+      for (k=0; k<lim.kAzimuN; k++) {
+	if (j < lim.kPolarN - 1) {
+	  up = this->get(order, i, j + 1, k);
+	}
+	else {
+	  up = this->get(order, i, 0, k);
+	}
+	down = this->get(order, i, j, k);
+	cval = -sin(kPol[j]) * (up - down) / (lim.kPolarN * lim.fermV);
+	D.set(i, j, k, cval);
+      }
+    }
+  }
+  deriv.push_back(D);
 }
 
 InData::InData(std::string data_folder, int order, Limits _lim) : lim(_lim) {
@@ -162,13 +202,32 @@ InData::InData(std::string data_folder, int order, Limits _lim) : lim(_lim) {
   else if (order == 1) {
     Data r0(data_folder, 0);
     store.push_back(r0);
-    store_look[0] = &store.back();
   }
   else if (order == 2) {
     Data r0(data_folder, 0);
     store.push_back(r0);
-    store_look[0] = &store.back();
-    this->dthetar0(0);
+    this->dtheta(0);
+  }
+  else if (order == 3) {
+    Data r0(data_folder, 0);
+    Data k0(data_folder, 1);
+    Data r1(data_folder, 2);
+    store.push_back(r0);
+    store.push_back(k0);
+    store.push_back(r1);
+    this->dtheta(1);
+  }
+  else if (order == 4) {
+    Data r0(data_folder, 0);
+    store.push_back(r0);
+    this->dpz(0);
+  }
+  else if (order == 5) {
+    Data r0(data_folder, 0);
+    Data r1(data_folder, 2);
+    store.push_back(r0);
+    store.push_back(r1);
+    this->dpz(1);
   }
 }
 

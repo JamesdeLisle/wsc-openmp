@@ -34,14 +34,14 @@ class InData
  private:
   std::vector<Data> store;
   std::vector<Data> deriv;
-  std::map<int, Data *> store_look;
-  std::map<int, Data *> deriv_look;
   Limits lim;
  public:
   InData(std::string data_folder, int order, Limits _lim);
-  mat get(int index, int i, int j, int k) {return store_look[index]->get(i, j, k);}
-  mat getDir(int index, int i, int j, int k) {return deriv_look[index]->get(i, j, k);}
-  void dthetar0(int order);
+  mat get(int index, int i, int j, int k) {return store[index].get(i, j, k);}
+  mat getDir(int index, int i, int j, int k) {return deriv[index].get(i, j, k);}
+  void dtheta(int order);
+  void dpz(int order);
+  std::vector<double> linspace(double min, double max, int disc);
 };
 
 #endif

@@ -15,26 +15,26 @@ int main() {
   std::string _start_time = getTime();
   LimitsBox l;
   l.spin = 0;
-  l.energyN = 200;
+  l.energyN = 100;
   l.kPolarN = 50;
   l.kAzimuN = 100;
   l.alphaN = 100;
-  l.energyMin = -0.1;
-  l.energyMax = 0.1;
+  l.energyMin = -1.0;
+  l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
   l.kPolarMax = PI;
   l.kAzimuMin = 1e-6;
   l.kAzimuMax = 2 * PI;
   l.alphaMin = -3.0;
   l.alphaMax = -1e-6;
-  l.temp = 0.01;
+  l.temp = 0.02;
   l.tempCrit = 0.1;
   l.tempInc = 0.03;
-  l.a1 = 0.332;
-  l.a2 = 0.2314;
-  l.a3 = -0.7654;
-  l.a4 = 0.643;
-  l.magF = 0.1;
+  l.a1 = 0.135;
+  l.a2 = 0.22;
+  l.a3 = 0.48;
+  l.a4 = -0.242;
+  l.magF = 0.2;
   l.tau = 0.01;
   l.fermVU = 1.0;
   l.fermVD = 0.75;
@@ -42,7 +42,7 @@ int main() {
   Limits L(l);
   L.save(data_folder);
   L.load(data_folder);
-  int order, max_order = 3;
+  int order, max_order = 6;
   for (order=0; order<max_order; order++) {
     if (order == 10) {
       ;

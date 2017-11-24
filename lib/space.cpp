@@ -14,7 +14,7 @@
 std::vector<double> linspace(double min, double max, int disc) {
   int i;
   std::vector<double> rv;
-  double step = (max - min) / (disc-1);
+  double step = (max - min) / disc;
   for (i=0; i<disc-1; i++) {
     rv.push_back(min + step * i);
   }
@@ -57,7 +57,7 @@ void Space::run(std::string _data_folder) {
   int i, j, k;
   InData inData(_data_folder, order, lim);
   int max_threads = omp_get_max_threads();
-  omp_set_num_threads(max_threads-1);
+  omp_set_num_threads(max_threads - 1);
   std::cout << "Computing order: " << order << "..." << std::endl;
   for (i=0; i<lim.energyN; i++) {
     for (j=0; j<lim.kPolarN; j++) {
