@@ -67,7 +67,9 @@ Data::Data(std::string data_folder, int spin,  int _order) {
   }
   for (i=0; i<lim.energyN; i++) {
     std::vector<std::vector<std::string> > lines;
-    infile.open(data_folder + name.get(spin, i, lim.start_time, order));
+    infile.open((const char *) (data_folder +
+				name.get(spin, i,
+					 lim.start_time, order)).c_str());
     if (infile.fail()) {
       std::cout << "FAILED" << std::endl;
     }
@@ -117,7 +119,9 @@ void Data::write(std::string _data_folder) {
   Green G;
   std::ofstream outfile;
   for (i=0; i<lim.energyN; i++) {
-    outfile.open(_data_folder + name.get(lim.spin, i, time, order));
+    outfile.open((const char *) (_data_folder +
+				 name.get(lim.spin, i,
+					  time, order)).c_str());
     for (j=0; j<lim.kPolarN; j++) {
       for (k=0; k<lim.kAzimuN; k++) {
 	G = runData[i][j][k];

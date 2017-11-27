@@ -37,13 +37,13 @@ int main(int argc, char * argv[]) {
   std::ofstream TRACKD;
   std::ifstream CHECK;
 
-  std::vector<double> MFIELD = SPACE::linspace(0.0, 0.3, 10); 
-  std::vector<double> TEMPIN = SPACE::linspace(0.0, 0.03, 10); 
+  std::vector<double> MFIELD = SPACE::linspace(0.3, 0.0, 10); 
+  std::vector<double> TEMPIN = SPACE::linspace(0.03, 0.0, 10); 
   
   l.energyN = 100;
   l.kPolarN = 50;
   l.kAzimuN = 100;
-  l.alphaN = 100;
+  l.alphaN = 50;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
@@ -68,12 +68,12 @@ int main(int argc, char * argv[]) {
     for (j=0; j<10; j++) {
       if (l.spin) {
 	std::this_thread::sleep_for(std::chrono::seconds(5));
-	TRACKU.open(data_folder + "TRACKU");
+	TRACKU.open((const char *) (data_folder + "TRACKU").c_str());
 	TRACKU.close();
       }
       else {
 	std::this_thread::sleep_for(std::chrono::seconds(5));
-	TRACKD.open(data_folder + "TRACKD");
+	TRACKD.open((const char *) (data_folder + "TRACKD").c_str());
 	TRACKD.close();
       }
       l.magF = TEMPIN[j];
