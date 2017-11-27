@@ -109,6 +109,55 @@ Data::Data(Limits _lim) : lim(_lim) {
   }
 }
 
+Data::Data(std::string data_folder, int spin,  int _order, Limits _lim) : lim(_lim) {
+  std::ifstream infile;
+  std::complex<double> values[4], I(0.0, 1.0);
+  std::string LINE;
+  std::vector<std::string> line;
+  lim = _lim;
+  name = Name();
+  name.set(lim);
+  order = _order;
+  runData.resize(lim.energyN);
+  int i, j, k, m;
+  for (i=0; i<lim.energyN; i++) {
+    runData[i].resize(lim.kPolarN);
+    for (j=0; j<lim.kPolarN; j++) {
+      runData[i][j].resize(lim.kAzimuN, Green());
+    }
+  }
+  for (i=0; i<lim.energyN; i++) {
+    std::vector<std::vector<std::string> > lines;
+    infile.open((const char *) (data_folder +
+				name.get(spin, i,
+					 lim.start_time, order)).c_str());
+    if (infile.fail()) {
+      std::cout << (data_folder +
+				name.get(spin, i,
+					 lim.start_time, order)) << std::endl;
+      std::cout << "FAILED" << std::endl;
+    }
+    for (std::string LINE; getline(infile, LINE);) {
+      split(LINE, line, ' ');
+      lines.push_back(line);
+    }
+    for (j=0; j<lim.kPolarN; j++) {
+      for (k=0; k<lim.kAzimuN; k++) {
+	m = j * (lim.kAzimuN - 1) + k;
+	values[0] = ::atof(lines[m][0].c_str()) + ::atof(lines[m][1].c_str()) * I;
+	values[1] = ::atof(lines[m][2].c_str()) + ::atof(lines[m][3].c_str()) * I;
+	values[2] = ::atof(lines[m][4].c_str()) + ::atof(lines[m][5].c_str()) * I;
+	values[3] = ::atof(lines[m][6].c_str()) + ::atof(lines[m][7].c_str()) * I;
+	runData[i][j][k].set(0, 0, values[0]);
+	runData[i][j][k].set(0, 1, values[1]);
+	runData[i][j][k].set(1, 0, values[2]);
+	runData[i][j][k].set(1, 1, values[3]);
+      }
+    }
+    infile.close();
+  }
+}
+
 void Data::set(int i, int j, int k, Green value) {
   runData[i][j][k].set(value.get());
 }
@@ -206,43 +255,40 @@ InData::InData(std::string data_folder, int spin, int order, Limits _lim) : lim(
     ;
   }
   else if (order == 1) {
-    Data r0(data_folder, lim.spin, 0);
+    Data r0(data_folder, lim.spin, 0, lim);
     store.push_back(r0);
   }
   else if (order == 2) {
-    Data r0(data_folder, lim.spin, 0);
+    Data r0(data_folder, lim.spin, 0, lim);
     store.push_back(r0);
     this->dtheta(0);
   }
   else if (order == 3) {
-    Data r0(data_folder, lim.spin, 0);
-    std::cout << "Foo1" << std::endl;
-    Data k0(data_folder, lim.spin, 1);
-    std::cout << "Foo2" << std::endl;
-    Data r1(data_folder, lim.spin, 2);
-    std::cout << "Foo3" << std::endl;
+    Data r0(data_folder, lim.spin, 0, lim);
+    Data k0(data_folder, lim.spin, 1, lim);
+    Data r1(data_folder, lim.spin, 2, lim);
     store.push_back(r0);
     store.push_back(k0);
     store.push_back(r1);
     this->dtheta(1);
   }
   else if (order == 4) {
-    Data r0(data_folder, lim.spin, 0);
+    Data r0(data_folder, lim.spin, 0, lim);
     store.push_back(r0);
     this->dpz(0);
   }
   else if (order == 5) {
-    Data r0(data_folder, lim.spin, 0);
-    Data r1(data_folder, lim.spin, 2);
+    Data r0(data_folder, lim.spin, 0, lim);
+    Data r1(data_folder, lim.spin, 2, lim);
     store.push_back(r0);
     store.push_back(r1);
     this->dpz(1);
   }
   else if (order == 10) {
-    Data k0(data_folder, lim.spin, 1);
-    Data k1(data_folder, lim.spin, 3);
-    Data k2(data_folder, lim.spin, 4);
-    Data k3(data_folder, lim.spin, 5);
+    Data k0(data_folder, lim.spin, 1, lim);
+    Data k1(data_folder, lim.spin, 3, lim);
+    Data k2(data_folder, lim.spin, 4, lim);
+    Data k3(data_folder, lim.spin, 5, lim);
     store.push_back(k0);
     store.push_back(k1);
     store.push_back(k2);

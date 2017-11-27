@@ -22,6 +22,7 @@ class Data
  public:
   Data(Limits _lim, std::string _time, int _order);
   Data(std::string data_folder, int spin, int _order);
+  Data(std::string data_folder, int spin, int _order, Limits _lim);
   Data(Limits _lim);
   void set(int i, int j, int k, Green value);
   void set(int i, int j, int k, mat value);
