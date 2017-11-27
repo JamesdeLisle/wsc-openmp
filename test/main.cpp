@@ -43,7 +43,7 @@ int main(int argc, char * argv[]) {
   l.energyN = 100;
   l.kPolarN = 50;
   l.kAzimuN = 100;
-  l.alphaN = 50;
+  l.alphaN = 100;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
