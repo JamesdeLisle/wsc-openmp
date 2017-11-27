@@ -208,6 +208,7 @@ InData::InData(std::string data_folder, int spin, int order, Limits _lim) : lim(
     this->dtheta(0);
   }
   else if (order == 3) {
+    std::cout << "Foo" << std::endl;
     Data r0(data_folder, lim.spin, 0);
     Data k0(data_folder, lim.spin, 1);
     Data r1(data_folder, lim.spin, 2);
