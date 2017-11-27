@@ -7,7 +7,8 @@
 class Magnetisation
 {
  private:
-  InData inData;
+  InData inDataU;
+  InData inDataD;
   Limits lim;
  public:
   Magnetisation(std::string data_folder, Limits _lim);

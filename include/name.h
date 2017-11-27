@@ -15,7 +15,7 @@ class Name
   Name(Limits _lim);
   Name() {}
   void set(Limits _lim) {lim = _lim;};
-  std::string get(int i, std::string time, int _order);
+  std::string get(int spin, int i, std::string time, int _order);
 };
 
 #endif

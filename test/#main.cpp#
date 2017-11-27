@@ -54,6 +54,8 @@ int main(int argc, char * argv[]) {
   l.alphaMax = -1e-6;
   l.temp = 0.02;
   l.tempCrit = 0.1;
+  l.tempInc = 0.03;
+  l.magF = 0.03;
   l.a1 = 0.135;
   l.a2 = 0.22;
   l.a3 = 0.48;
@@ -62,42 +64,47 @@ int main(int argc, char * argv[]) {
   l.fermVU = 1.0;
   l.fermVD = 0.75;
   l.start_time = _start_time;
-  int i, j, order, max_order = 6;
-  for (i=0; i<10; i++) {
-    l.tempInc = MFIELD[i];
-    for (j=0; j<10; j++) {
-      if (l.spin) {
-	std::this_thread::sleep_for(std::chrono::seconds(5));
-	TRACKU.open(data_folder + "TRACKU");
-	TRACKU.close();
-      }
-      else {
-	std::this_thread::sleep_for(std::chrono::seconds(5));
-	TRACKD.open(data_folder + "TRACKD");
-	TRACKD.close();
-      }
-      l.magF = TEMPIN[j];
-      Limits L(l);
-      L.save(data_folder);
-      std::cout << L.magF << " " << L.tempInc << std::endl;
-      for (order=0; order<max_order; order++) {
-	Space S(L, _start_time, order);
-	S.run(data_folder);
-      }
-      if (l.spin) {
-	std::remove("data/TRACKU");
-	while (std::ifstream(data_folder + "TRACKD")) {
-	  std::this_thread::sleep_for(std::chrono::seconds(2));
+  if (true) {
+    int i, j, order, max_order = 6;
+    for (i=0; i<10; i++) {
+      l.magF = MFIELD[i];
+      for (j=0; j<10; j++) {
+	if (l.spin) {
+	  std::this_thread::sleep_for(std::chrono::seconds(5));
+	  TRACKU.open(data_folder + "TRACKU");
+	  TRACKU.close();
 	}
-      }
-      else {	
-        while (std::ifstream(data_folder + "TRACKU")) {
-	  std::this_thread::sleep_for(std::chrono::seconds(2));
+	else {
+	  std::this_thread::sleep_for(std::chrono::seconds(5));
+	  TRACKD.open(data_folder + "TRACKD");
+	  TRACKD.close();
 	}
-	ANA::analysis(data_folder);
-	std::remove("data/TRACKD");
+	l.tempInc = TEMPIN[j];
+	Limits L(l);
+	L.save(data_folder);
+	std::cout << L.magF << " " << L.tempInc << std::endl;
+	for (order=0; order<max_order; order++) {
+	  Space S(L, _start_time, order);
+	  S.run(data_folder);
+	}
+	if (l.spin) {
+	  std::remove("data/TRACKU");
+	  while (std::ifstream(data_folder + "TRACKD")) {
+	    std::this_thread::sleep_for(std::chrono::seconds(2));
+	  }
+	}
+	else {	
+	  while (std::ifstream(data_folder + "TRACKU")) {
+	    std::this_thread::sleep_for(std::chrono::seconds(2));
+	  }
+	  ANA::analysis(data_folder);
+	  std::remove("data/TRACKD");
+	}
       }
     }
+  }
+  else {
+    
   }
   return 0;
 }

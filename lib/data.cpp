@@ -47,7 +47,7 @@ Data::Data(Limits _lim, std::string _time,
   }
 }
 
-Data::Data(std::string data_folder, int _order) {
+Data::Data(std::string data_folder, int spin,  int _order) {
   std::ifstream infile;
   std::complex<double> values[4], I(0.0, 1.0);
   std::string LINE;
@@ -67,8 +67,7 @@ Data::Data(std::string data_folder, int _order) {
   }
   for (i=0; i<lim.energyN; i++) {
     std::vector<std::vector<std::string> > lines;
-    infile.open(data_folder + name.get(i, lim.start_time, order));
-    std::cout << name.get(i, lim.start_time, order) << std::endl;
+    infile.open(data_folder + name.get(spin, i, lim.start_time, order));
     if (infile.fail()) {
       std::cout << "FAILED" << std::endl;
     }
@@ -118,7 +117,7 @@ void Data::write(std::string _data_folder) {
   Green G;
   std::ofstream outfile;
   for (i=0; i<lim.energyN; i++) {
-    outfile.open(_data_folder + name.get(i, time, order));
+    outfile.open(_data_folder + name.get(lim.spin, i, time, order));
     for (j=0; j<lim.kPolarN; j++) {
       for (k=0; k<lim.kAzimuN; k++) {
 	G = runData[i][j][k];
@@ -194,46 +193,46 @@ void InData::dpz(int order) {
   deriv.push_back(D);
 }
 
-InData::InData(std::string data_folder, int order, Limits _lim) : lim(_lim) {
+InData::InData(std::string data_folder, int spin, int order, Limits _lim) : lim(_lim) {
   lim = _lim;
   if (order == 0) {
     ;
   }
   else if (order == 1) {
-    Data r0(data_folder, 0);
+    Data r0(data_folder, lim.spin, 0);
     store.push_back(r0);
   }
   else if (order == 2) {
-    Data r0(data_folder, 0);
+    Data r0(data_folder, lim.spin, 0);
     store.push_back(r0);
     this->dtheta(0);
   }
   else if (order == 3) {
-    Data r0(data_folder, 0);
-    Data k0(data_folder, 1);
-    Data r1(data_folder, 2);
+    Data r0(data_folder, lim.spin, 0);
+    Data k0(data_folder, lim.spin, 1);
+    Data r1(data_folder, lim.spin, 2);
     store.push_back(r0);
     store.push_back(k0);
     store.push_back(r1);
     this->dtheta(1);
   }
   else if (order == 4) {
-    Data r0(data_folder, 0);
+    Data r0(data_folder, lim.spin, 0);
     store.push_back(r0);
     this->dpz(0);
   }
   else if (order == 5) {
-    Data r0(data_folder, 0);
-    Data r1(data_folder, 2);
+    Data r0(data_folder, lim.spin, 0);
+    Data r1(data_folder, lim.spin, 2);
     store.push_back(r0);
     store.push_back(r1);
     this->dpz(1);
   }
   else if (order == 10) {
-    Data k0(data_folder, 1);
-    Data k1(data_folder, 3);
-    Data k2(data_folder, 4);
-    Data k3(data_folder, 5);
+    Data k0(data_folder, lim.spin, 1);
+    Data k1(data_folder, lim.spin, 3);
+    Data k2(data_folder, lim.spin, 4);
+    Data k3(data_folder, lim.spin, 5);
     store.push_back(k0);
     store.push_back(k1);
     store.push_back(k2);

@@ -57,4 +57,7 @@ class Space
   void progress(int i, int j);
 };
 
+namespace SPACE {
+  std::vector<double> linspace(double min, double max, int disc);
+}
 #endif

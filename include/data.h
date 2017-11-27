@@ -21,7 +21,7 @@ class Data
   
  public:
   Data(Limits _lim, std::string _time, int _order);
-  Data(std::string data_folder, int _order);
+  Data(std::string data_folder, int spin, int _order);
   Data(Limits _lim);
   void set(int i, int j, int k, Green value);
   void set(int i, int j, int k, mat value);
@@ -36,7 +36,7 @@ class InData
   std::vector<Data> deriv;
   Limits lim;
  public:
-  InData(std::string data_folder, int order, Limits _lim);
+  InData(std::string data_folder, int spin, int order, Limits _lim);
   mat get(int index, int i, int j, int k) {return store[index].get(i, j, k);}
   mat getDir(int index, int i, int j, int k) {return deriv[index].get(i, j, k);}
   void dtheta(int order);

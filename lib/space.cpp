@@ -11,15 +11,17 @@
 #include <string>
 #include "omp.h"
 
-std::vector<double> linspace(double min, double max, int disc) {
-  int i;
-  std::vector<double> rv;
-  double step = (max - min) / disc;
-  for (i=0; i<disc-1; i++) {
-    rv.push_back(min + step * i);
+namespace SPACE {
+  std::vector<double> linspace(double min, double max, int disc) {
+    int i;
+    std::vector<double> rv;
+    double step = (max - min) / disc;
+    for (i=0; i<disc-1; i++) {
+      rv.push_back(min + step * i);
+    }
+    rv.push_back(max);
+    return rv;
   }
-  rv.push_back(max);
-  return rv;
 }
 
 RunVal::RunVal(double energy,
@@ -41,9 +43,9 @@ Space::Space(Limits L, std::string _time,
   lim = L;
   time = _time;
   order = _order;
-  energy = linspace(L.energyMin, L.energyMax, L.energyN);
-  kPolar = linspace(L.kPolarMin, L.kPolarMax, L.kPolarN);
-  kAzimu = linspace(L.kAzimuMin, L.kAzimuMax, L.kAzimuN);
+  energy = SPACE::linspace(L.energyMin, L.energyMax, L.energyN);
+  kPolar = SPACE::linspace(L.kPolarMin, L.kPolarMax, L.kPolarN);
+  kAzimu = SPACE::linspace(L.kAzimuMin, L.kAzimuMax, L.kAzimuN);
   runData = Data(lim, time, order);
 }
 
@@ -55,9 +57,9 @@ void Space::progress(int i, int j) {
 
 void Space::run(std::string _data_folder) {
   int i, j, k;
-  InData inData(_data_folder, order, lim);
+  InData inData(_data_folder, lim.spin, order, lim);
   int max_threads = omp_get_max_threads();
-  omp_set_num_threads(24);
+  omp_set_num_threads(max_threads-2);
   std::cout << "Computing order: " << order << "..." << std::endl;
   for (i=0; i<lim.energyN; i++) {
     for (j=0; j<lim.kPolarN; j++) {
