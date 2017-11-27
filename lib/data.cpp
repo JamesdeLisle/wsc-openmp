@@ -213,11 +213,8 @@ InData::InData(std::string data_folder, int spin, int order, Limits _lim) : lim(
   }
   else if (order == 3) {
     Data r0(data_folder, lim.spin, 0);
-    std::cout << "Foo1" << std::endl;
     Data k0(data_folder, lim.spin, 1);
-    std::cout << "Foo2" << std::endl;
     Data r1(data_folder, lim.spin, 2);
-    std::cout << "Foo3" << std::endl;
     store.push_back(r0);
     store.push_back(k0);
     store.push_back(r1);
