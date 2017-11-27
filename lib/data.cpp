@@ -71,6 +71,9 @@ Data::Data(std::string data_folder, int spin,  int _order) {
 				name.get(spin, i,
 					 lim.start_time, order)).c_str());
     if (infile.fail()) {
+      std::cout << (data_folder +
+				name.get(spin, i,
+					 lim.start_time, order)) << std::endl;
       std::cout << "FAILED" << std::endl;
     }
     for (std::string LINE; getline(infile, LINE);) {
