@@ -50,8 +50,8 @@ Space::Space(Limits L, std::string _time,
 }
 
 void Space::progress(int i, int j) {
-  std::cout << "\r" << (int) (100.0 * (i * (lim.kPolarN - 1) + j))	\
-    / ((lim.energyN - 1) * (lim.kPolarN - 1)) << "%";
+  std::cout << "\r" << (int) ((100.0 * ((i + 1) * lim.kPolarN + j))
+			      / (lim.energyN * lim.kPolarN)) << "%";
   std::cout.flush();
 }
 
