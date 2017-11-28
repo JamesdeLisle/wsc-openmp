@@ -31,7 +31,9 @@ Green Quantum::get(Green funcVal) {
 }
 
 Green Quantum::bound() {
-  mat rvm = mat::Zero();
+  Environment E(runVal);
+  Pauli P;
+  mat rvm = (ret0 - P.get(3) * ret0.adjoint() * P.get(3)) * E.getThermDG();
   Green rv(rvm);
   return rv;
 }

@@ -31,7 +31,9 @@ Green Quantumb::get(Green funcVal) {
 }
 
 Green Quantumb::bound() {
-  mat rvm = mat::Zero();
+  Environment E(runVal);
+  Pauli P;
+  mat rvm = (ret0 - P.get(3) * ret0.adjoint() * P.get(3)) * E.getThermDG();
   Green rv(rvm);
   return rv;
 }

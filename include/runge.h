@@ -21,8 +21,6 @@ class Runge
 
 template <class T> Runge<T>::Runge(RunVal _runVal, T _fClass) \
   : runVal(_runVal), fClass(_fClass) {
-  runVal = _runVal;
-  fClass = _fClass;
   fVal = fClass.bound();
 }
 
