@@ -41,7 +41,7 @@ int main(int argc, char * argv[]) {
   std::vector<double> MFIELD = SPACE::linspace(0.3, 0.0, 10); 
   std::vector<double> TEMPIN = SPACE::linspace(0.03, 0.0, 10); 
   
-  l.energyN = 2;
+  l.energyN = 100;
   l.kPolarN = 50;
   l.kAzimuN = 100;
   l.alphaN = 100;
