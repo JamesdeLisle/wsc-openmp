@@ -152,6 +152,7 @@ Data::Data(std::string data_folder, int spin,  int _order, Limits _lim) : lim(_l
 	runData[i][j][k].set(0, 1, values[1]);
 	runData[i][j][k].set(1, 0, values[2]);
 	runData[i][j][k].set(1, 1, values[3]);
+	std::cout << runData[i][j][k].get() << std::endl;
       }
     }
     infile.close();
