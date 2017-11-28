@@ -18,6 +18,7 @@
 
 
 int main(int argc, char * argv[]) {
+  
   std::string data_folder = "data/";
   std::string _start_time = getTime();
   

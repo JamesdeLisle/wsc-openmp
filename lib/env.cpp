@@ -12,7 +12,7 @@ Environment::Environment(RunVal _runVal) : runVal(_runVal) {
   Limits * lim = runVal.getlim();
   runVal.comp();
   deltaR = 1.764 / (2.0 * PI);
-  deltaR *= tanh(lim->tempCrit / lim->temp - 1.0);
+  deltaR *= tanh(sqrt(lim->tempCrit / lim->temp - 1.0));
   deltaR *= sin(runVal.getXi());
   deltaR *= (lim->gamma1 * cos(runVal.getTheta()) \
     + I * lim->gamma2 * sin(runVal.getTheta()));
@@ -22,7 +22,7 @@ Environment::Environment(RunVal _runVal) : runVal(_runVal) {
   sigmaR = -I * lim->tau;
   sigmaA = std::conj(sigmaR);
   sigmaK = sigmaA;
-  thermD = tanh(runVal.getE() / 2 * lim->temp);
+  thermD = tanh(runVal.getE() / (2 * lim->temp));
   thermDG = -runVal.getE() * runVal.getZ() * lim->tempInc;
   thermDG /= (2 * lim->temp * lim->temp *
 	      cosh(runVal.getE() / (2 * lim->temp)) *
@@ -49,13 +49,13 @@ Green Environment::hamA() {
 
 Green Environment::hamK() {
   Green rv;
-  rv = (hamR() - hamA()) * thermD;
+  rv = (this->hamR() - this->hamA()) * thermD;
   return rv;
 }
 
 Green Environment::hamKG() {
   Green rv;
-  rv = (hamR() - hamA()) * thermDG;
+  rv = (this->hamR() - this->hamA()) * thermDG;
   return rv;
 }
  
