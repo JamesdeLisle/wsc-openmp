@@ -36,9 +36,9 @@ Limits::Limits(LimitsBox config)
   fermVD = config.fermVD;
   start_time = config.start_time;
   energyD = (energyMax - energyMin) / energyN;
-  kPolarD = (kPolarMin - kPolarMax) / kPolarN;
-  kAzimuD = (kAzimuMin - kAzimuMax) / kAzimuN;
-  alphaD = (alphaMin - alphaMax) / alphaN;
+  kPolarD = (kPolarMax - kPolarMin) / kPolarN;
+  kAzimuD = (kAzimuMax - kAzimuMin) / kAzimuN;
+  alphaD = (alphaMax - alphaMin) / alphaN;
   if (spin) {
     gamma1 = a1 - a4;
     gamma2 = a2 + a3;
@@ -123,9 +123,9 @@ void Limits::load(std::string data_folder) {
   fermVD = ::atof(values[23].c_str());
   start_time = values[24].c_str();
   energyD = (energyMax - energyMin) / energyN;
-  kPolarD = (kPolarMin - kPolarMax) / kPolarN;
-  kAzimuD = (kAzimuMin - kAzimuMax) / kAzimuN;
-  alphaD = (alphaMin - alphaMax) / alphaN;
+  kPolarD = (kPolarMax - kPolarMin) / kPolarN;
+  kAzimuD = (kAzimuMax - kAzimuMin) / kAzimuN;
+  alphaD = (alphaMax - alphaMin) / alphaN;
   if (spin) {
     gamma1 = a1 - a4;
     gamma2 = a2 + a3;

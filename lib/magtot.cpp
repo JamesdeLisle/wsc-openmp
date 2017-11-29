@@ -46,7 +46,7 @@ double Magnetisation::compute() {
 	G = mat::Zero();
 	for (l=0; l<4; l++) {
 	  G += inDataU.get(l, i, j, k);
-	  //G -= inDataD.get(l, i, j, k);
+	  G -= inDataD.get(l, i, j, k);
 	}
 	hTheta += (P.get(3) * G).trace();
 	hTheta /= (8 * M_PI * M_PI);
