@@ -52,7 +52,7 @@ int main(int argc, char * argv[]) {
   l.kAzimuMin = 1e-6;
   l.kAzimuMax = 2 * PI;
   l.alphaMin = -3.0;
-  l.alphaMax = -1e-6;
+  l.alphaMax = 0.0;
   l.temp = 0.02;
   l.tempCrit = 0.1;
   l.a1 = 0.135;
@@ -63,7 +63,7 @@ int main(int argc, char * argv[]) {
   l.fermVU = 1.0;
   l.fermVD = 0.75;
   l.start_time = _start_time;
-  int i, j, order, max_order = 6;
+  int i, j, order, max_order = 1;
   for (i=0; i<10; i++) {
     l.tempInc = MFIELD[i];
     for (j=0; j<10; j++) {
