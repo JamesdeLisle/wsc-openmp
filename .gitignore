@@ -2,6 +2,7 @@ data/
 obj/
 bin/
 *~
-
+MAGDATA
+DOSDATA
 *.ipynb
 .ipynb_checkpoints/

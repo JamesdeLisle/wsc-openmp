@@ -65,7 +65,7 @@ void Space::run(std::string _data_folder) {
   for (i=0; i<lim.energyN; i++) {
     for (j=0; j<lim.kPolarN; j++) {
       this->progress(i, j);
-      //#pragma omp parallel for schedule(static)
+      #pragma omp parallel for schedule(static)
       for (k=0; k<lim.kAzimuN; k++) {
 	int idxv[3] = {i, j, k};
 	std::vector<int> idx(idxv,  idxv + sizeof(idxv) / sizeof(int));
@@ -87,61 +87,5 @@ double Space::simpFac(int value, int max) {
   }
   else {
     return 2.0;
-  }
-}
-
-void Space::test(std::string _data_folder) {
-  int i, j, k, s;
-  InData inData(_data_folder, lim.spin, order, lim);
-  std::vector<Data> dat;
-  lim.spin = 0;
-  Data U(lim, time, 0);
-  lim.spin = 1;
-  Data D(lim, time, 0);
-  dat.push_back(U);
-  dat.push_back(D);
-  std::cout << "Computing order: " << order << "..." << std::endl;
-  for (s=0; s<2; s++) {
-    for (i=0; i<lim.energyN; i++) {
-      for (j=0; j<lim.kPolarN; j++) {
-	this->progress(i, j);
-	for (k=0; k<lim.kAzimuN; k++) {
-	  int idxv[3] = {i, j, k};
-	  std::vector<int> idx(idxv,  idxv + sizeof(idxv) / sizeof(int));
-	  RunVal entry(energy.at(i), kPolar.at(j), kAzimu.at(k), idx, lim);
-	  kernel(i, j, k, order, entry, &inData, dat[s]);
-	}
-      }
-    }
-  }
-  std::vector<double> \
-    ener = lim.space(0), \
-    kPol = lim.space(1), \
-    kAzi = lim.space(2);
-  int l;
-  std::complex<double> hTheta, I(0.0, 1.0);
-  double hE, hXi;
-  Pauli P;
-  mat G; 
-  std::vector<double> rv;
-  for (i=0; i<lim.energyN; i++) {
-    hE = 0.0;
-    for (j=0; j<lim.kPolarN; j++) {
-      hXi = 0.0;
-      for (k=0; k<lim.kAzimuN; k++) {
-	hTheta = 0.0;
-	G = mat::Zero();
-	G += dat[0].get(i, j, k);
-	hTheta += 1.0 * I / (4.0 * M_PI * M_PI);
-	hTheta *= 0.5 * (P.get(3) * G).trace();
-	hTheta *= lim.kAzimuD / 3.0;
-	hTheta *= simpFac(k, lim.kAzimuN);
-	hXi += hTheta.imag();
-      }
-      hXi *= sin(kPolar[j]) * lim.kPolarD / 3.0;
-      hXi *= simpFac(j, lim.kPolarN);
-      hE += hXi;
-    }
-    std::cout << hE << std::endl;
   }
 }
