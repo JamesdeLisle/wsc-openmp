@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <iomanip>
 
 namespace ANA {
   void Mag(std::string data_folder) {
@@ -30,7 +31,7 @@ namespace ANA {
     DOS D(data_folder, L);
     std::vector<double> data = D.compute(0);
     for (i=0; i<L.energyN; i++) {
-      ofile << data[i] << " " << ener[i] << std::endl;
+      ofile << std::set_precision(10) << data[i] << " " << ener[i] << std::endl;
     }
     ofile.close();
   }
