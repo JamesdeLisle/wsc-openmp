@@ -2,4 +2,6 @@ data/
 obj/
 bin/
 *~
+
 *.ipynb
+.ipynb_checkpoints/
