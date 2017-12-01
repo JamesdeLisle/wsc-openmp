@@ -5,12 +5,27 @@
 #include "../include/data.h"
 #include "../include/magtot.h"
 #include "../include/dos.h"
+#include "../include/hcond.h"
 #include <vector>
 #include <string>
 #include <fstream>
 #include <iomanip>
 
 namespace ANA {
+  void HCond(std::string data_folder) {
+    std::ofstream ofile;
+    ofile.open("HDATA", std::ios_base::app);
+    Limits L;
+    L.load(data_folder);
+    HeatCond H(data_folder, L);
+    std::vector<double> out = H.compute();
+    ofile << L.magF << " " \
+	  << L.tempInc << " " \
+	  << out[0] << " " \
+	  << out[1] << std::endl;
+    ofile.close();
+  }
+
   void Mag(std::string data_folder) {
     std::ofstream ofile;
     ofile.open("MAGDATA", std::ios_base::app);
@@ -36,9 +51,26 @@ namespace ANA {
     ofile.close();
   }
 
+  void HandM(std::string data_folder) {
+    std::ofstream ofile;
+    ofile.open("TDATA", std::ios_base::app);
+    Limits L;
+    L.load(data_folder);
+    HeatCond H(data_folder, L);
+    Magnetisation M(data_folder, L);
+    std::vector<double> out = H.compute();
+    ofile << std::setprecision(10) << L.magF << " " \
+	  << L.tempInc << " " \
+	  << M.compute() << " "			\
+	  << out[0] << " " \
+	  << out[1] << std::endl;
+    ofile.close();
+  }
+
   void analysis(std::string data_folder) {
-    Mag(data_folder);
+    //Mag(data_folder);
     //Dos(data_folder);
+    HandM(data_folder);
   }
 }
 #endif
