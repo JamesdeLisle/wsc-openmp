@@ -36,8 +36,8 @@ namespace ANA {
   }
 
   void analysis(std::string data_folder) {
-    //mag();
-    Dos(data_folder);
+    Mag(data_folder);
+    //Dos(data_folder);
   }
 }
 #endif
