@@ -67,7 +67,7 @@ int main(int argc, char * argv[]) {
   l.start_time = _start_time; 
   int i, j, order, max_order = 6;
   for (i=0; i<10; i++) {
-    l.tempInc = MFIELD[i];
+    l.tempInc = TEMPIN[i];
     for (j=0; j<10; j++) {
       if (l.spin) {
 	std::this_thread::sleep_for(std::chrono::seconds(5));
@@ -79,7 +79,7 @@ int main(int argc, char * argv[]) {
 	TRACKD.open((const char *) (data_folder + "TRACKD").c_str());
 	TRACKD.close();
       }
-      l.magF = TEMPIN[j];
+      l.magF = MFIELD[j];
       Limits L(l);
       L.save(data_folder);
       std::cout << L.magF << " " << L.tempInc << std::endl;
