@@ -177,9 +177,6 @@ void Data::write(std::string _data_folder) {
     for (j=0; j<lim.kPolarN; j++) {
       for (k=0; k<lim.kAzimuN; k++) {
 	G = runData[i][j][k];
-	if (i == 4 && j == 4 && k == 4) {
-	  std::cout << runData[i][j][k].get() << std::endl;
-	}
 	outfile << std::setprecision(10) << G.get(0, 0).real() << " ";
 	outfile << std::setprecision(10) << G.get(0, 0).imag() << " ";
 	outfile << std::setprecision(10) << G.get(0, 1).real() << " ";

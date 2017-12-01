@@ -74,7 +74,6 @@ void Space::run(std::string _data_folder) {
       }
     }
   }
-  std::cout << std::endl;
   runData.write(_data_folder);
 }
 

@@ -64,27 +64,8 @@ int main(int argc, char * argv[]) {
   l.fermVD = 0.75;
   l.tempInc = 0.03;
   l.magF = 0.3;
-  l.start_time = _start_time;
-  /*
-  Limits L(l);
-  L.save(data_folder);
-  Space S(L, _start_time, 0);
-  S.run(data_folder);
-  if (l.spin) {
-    std::remove("data/TRACKU");
-    while (std::ifstream(data_folder + "TRACKD")) {
-      std::this_thread::sleep_for(std::chrono::seconds(2));
-    }
-  }
-  else {	
-    while (std::ifstream(data_folder + "TRACKU")) {
-      std::this_thread::sleep_for(std::chrono::seconds(2));
-    }
-    ANA::analysis(data_folder);
-    std::remove("data/TRACKD");
-  }
-  */
-  int i, j, order, max_order = 1;
+  l.start_time = _start_time; 
+  int i, j, order, max_order = 6;
   for (i=0; i<10; i++) {
     l.tempInc = MFIELD[i];
     for (j=0; j<10; j++) {
