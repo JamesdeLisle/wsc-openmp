@@ -26,10 +26,11 @@ namespace ANA {
     ofile.open("DOSDATA", std::ios_base::app);
     Limits L;
     L.load(data_folder);
+    std::vector<double> ener = L.space(0);
     DOS D(data_folder, L);
     std::vector<double> data = D.compute(0);
     for (i=0; i<L.energyN; i++) {
-      ofile << data[i] << std::endl;
+      ofile << data[i] << " " << ener[i] << std::endl;
     }
     ofile.close();
   }

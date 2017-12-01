@@ -13,10 +13,18 @@ Pauli::Pauli() {
   }
   values[0](0, 0) = one;
   values[0](1, 1) = one;
+  values[0](0, 1) = 0.0;
+  values[0](1, 0) = 0.0;
   values[1](0, 1) = one;
   values[1](1, 0) = one;
+  values[1](0, 0) = 0.0;
+  values[1](1, 1) = 0.0;
   values[2](0, 1) = -I;
   values[2](1, 0) = I;
+  values[2](0, 0) = 0.0;
+  values[2](1, 1) = 0.0;
   values[3](0, 0) = one;
   values[3](1, 1) = -one;
+  values[3](0, 1) = 0.0;
+  values[3](1, 0) = 0.0;
 }
