@@ -31,7 +31,7 @@ namespace ANA {
     DOS D(data_folder, L);
     std::vector<double> data = D.compute(0);
     for (i=0; i<L.energyN; i++) {
-      ofile << std::set_precision(10) << data[i] << " " << ener[i] << std::endl;
+      ofile << std::setprecision(10) << data[i] << " " << ener[i] << std::endl;
     }
     ofile.close();
   }
