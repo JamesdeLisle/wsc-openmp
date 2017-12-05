@@ -40,7 +40,7 @@ int main(int argc, char * argv[]) {
 
   //std::vector<double> MFIELD = SPACE::linspace(0.3, 0.0, 10); 
   //std::vector<double> TEMPIN = SPACE::linspace(0.03, 0.0, 10); 
-  std::vector<double> ANIS = SPACE::linspace(0.5, 0.0, 10); 
+  std::vector<double> ANIS = SPACE::linspace(0.5, 0.0, 50); 
   
   l.energyN = 100;
   l.kPolarN = 50;
@@ -58,8 +58,8 @@ int main(int argc, char * argv[]) {
   l.tempCrit = 0.1;
   l.a1 = 0.0;
   l.a2 = 0.0;
-  l.a3 = 0.48;
-  l.a4 = -0.242;
+  l.a3 = 0.234;
+  l.a4 = -0.136;
   l.tau = 0.01;
   l.fermVU = 1.0;
   l.fermVD = 0.75;
@@ -67,6 +67,7 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = _start_time; 
   int i, j, order, max_order = 6;
+  /*
   for (i=0; i<10; i++) {
     l.a1 = ANIS[i];
     for (j=0; j<10; j++) {
@@ -101,6 +102,41 @@ int main(int argc, char * argv[]) {
 	ANA::analysis(data_folder);
 	std::remove("data/TRACKD");
       }
+    }
+  }
+  */
+  for (i=0; i<100; i++) {
+    l.a1 = ANIS[i];
+    l.a2 = ANIS[i];
+    if (l.spin) {
+      std::this_thread::sleep_for(std::chrono::seconds(5));
+      TRACKU.open((const char *) (data_folder + "TRACKU").c_str());
+      TRACKU.close();
+    }
+    else {
+      std::this_thread::sleep_for(std::chrono::seconds(5));
+      TRACKD.open((const char *) (data_folder + "TRACKD").c_str());
+      TRACKD.close();
+    }
+    Limits L(l);
+    L.save(data_folder);
+    std::cout << L.a1 << " " << L.a2 << std::endl;
+    for (order=0; order<max_order; order++) {
+      Space S(L, _start_time, order);
+      S.run(data_folder);
+    }
+    if (l.spin) {
+      std::remove("data/TRACKU");
+      while (std::ifstream(data_folder + "TRACKD")) {
+	std::this_thread::sleep_for(std::chrono::seconds(2));
+      }
+    }
+    else {	
+      while (std::ifstream(data_folder + "TRACKU")) {
+	std::this_thread::sleep_for(std::chrono::seconds(2));
+      }
+      ANA::analysis(data_folder);
+      std::remove("data/TRACKD");
     }
   }
   return 0;
