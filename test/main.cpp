@@ -14,6 +14,7 @@
 #include <vector>
 #include <chrono>
 #include <stdio.h>
+#include <time>
 #define PI 3.14159
 
 
@@ -71,6 +72,7 @@ int main(int argc, char * argv[]) {
   for (i=0; i<50; i++) {
     l.a1 = ANIS[i];
     for (j=0; j<50; j++) {
+      const clock_t t0 = clock();
       if (l.spin) {
 	std::this_thread::sleep_for(std::chrono::seconds(5));
 	TRACKU.open((const char *) (data_folder + "TRACKU").c_str());
