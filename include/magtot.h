@@ -12,7 +12,7 @@ class Magnetisation
   Limits lim;
  public:
   Magnetisation(std::string data_folder, Limits _lim);
-  double compute();
+  double compute(int order);
 };
 
 #endif

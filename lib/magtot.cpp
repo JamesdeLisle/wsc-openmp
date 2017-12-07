@@ -27,7 +27,7 @@ double simpFac(int value, int max) {
   }
 }
 
-double Magnetisation::compute() {
+double Magnetisation::compute(int order) {
   std::vector<double> \
     ener = lim.space(0), \
     kPol = lim.space(1), \
@@ -44,7 +44,7 @@ double Magnetisation::compute() {
       for (k=0; k<lim.kAzimuN; k++) {
 	hTheta = 0.0;
 	G = mat::Zero();
-	for (l=0; l<4; l++) {
+	for (l=0; l<order; l++) {
 	  G += inDataU.get(l, i, j, k);
 	  G -= inDataD.get(l, i, j, k);
 	}
