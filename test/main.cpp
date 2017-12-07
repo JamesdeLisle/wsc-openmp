@@ -57,7 +57,7 @@ int main(int argc, char * argv[]) {
   l.temp = 0.02;
   l.tempCrit = 0.1;
   l.a1 = 0.0;
-  l.a2 = 0.0;
+  l.a2 = 0.345;
   l.a3 = 0.234;
   l.a4 = -0.136;
   l.tau = 0.01;
@@ -105,9 +105,8 @@ int main(int argc, char * argv[]) {
     }
   }
   */
-  for (i=0; i<100; i++) {
+  for (i=0; i<50; i++) {
     l.a1 = ANIS[i];
-    l.a2 = ANIS[i];
     if (l.spin) {
       std::this_thread::sleep_for(std::chrono::seconds(5));
       TRACKU.open((const char *) (data_folder + "TRACKU").c_str());
