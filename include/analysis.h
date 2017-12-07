@@ -59,11 +59,13 @@ namespace ANA {
     HeatCond H(data_folder, L);
     Magnetisation M(data_folder, L);
     std::vector<double> out = H.compute();
+    double m = M.compute(1);
     ofile << std::setprecision(10) << L.a1 << " " \
 	  << L.a2 << " " \
-	  << M.compute(1) << " "			\
+	  << m << " "			\
 	  << out[0] << " " \
 	  << out[1] << std::endl;
+    std::cout << m << std::endl;
     ofile.close();
   }
 
