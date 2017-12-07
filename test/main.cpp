@@ -14,7 +14,6 @@
 #include <vector>
 #include <chrono>
 #include <stdio.h>
-#include <time>
 #define PI 3.14159
 
 
@@ -43,10 +42,10 @@ int main(int argc, char * argv[]) {
   //std::vector<double> TEMPIN = SPACE::linspace(0.03, 0.0, 10); 
   std::vector<double> ANIS = SPACE::linspace(0.5, 0.0, 50); 
   
-  l.energyN = 75;
+  l.energyN = 100;
   l.kPolarN = 50;
   l.kAzimuN = 100;
-  l.alphaN = 75;
+  l.alphaN = 100;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
@@ -67,7 +66,7 @@ int main(int argc, char * argv[]) {
   l.tempInc = 0.03;
   l.magF = 0.3;
   l.start_time = _start_time; 
-  int i, j, order, max_order = 6;
+  int i, j, order, max_order = 3;
 
   for (i=0; i<50; i++) {
     l.a1 = ANIS[i];
@@ -104,6 +103,7 @@ int main(int argc, char * argv[]) {
 	ANA::analysis(data_folder);
 	std::remove("data/TRACKD");
       }
+      std::cout << float(clock() - t0) / CLOCKS_PER_SEC << std::endl;
     }
   }
   

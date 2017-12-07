@@ -62,9 +62,6 @@ namespace ANA {
     ofile << std::setprecision(10) << L.a1 << " " \
 	  << L.a2 << " " \
 	  << M.compute(1) << " "			\
-	  << M.compute(2) << " "			\
-	  << M.compute(3) << " "			\
-	  << M.compute(4) << " "			\
 	  << out[0] << " " \
 	  << out[1] << std::endl;
     ofile.close();

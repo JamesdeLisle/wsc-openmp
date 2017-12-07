@@ -298,5 +298,9 @@ InData::InData(std::string data_folder, int spin, int order, Limits _lim) : lim(
     Data r0(data_folder, lim.spin, 0, lim);
     store.push_back(r0);
   }
+  else if (order == 12) {
+    Data k0(data_folder, lim.spin, 1, lim);
+    store.push_back(k0);
+  }
 }
 
