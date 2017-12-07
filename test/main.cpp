@@ -42,10 +42,10 @@ int main(int argc, char * argv[]) {
   //std::vector<double> TEMPIN = SPACE::linspace(0.03, 0.0, 10); 
   std::vector<double> ANIS = SPACE::linspace(0.5, 0.0, 50); 
   
-  l.energyN = 100;
+  l.energyN = 75;
   l.kPolarN = 50;
   l.kAzimuN = 100;
-  l.alphaN = 100;
+  l.alphaN = 75;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
@@ -67,10 +67,10 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = _start_time; 
   int i, j, order, max_order = 6;
-  /*
-  for (i=0; i<10; i++) {
+
+  for (i=0; i<50; i++) {
     l.a1 = ANIS[i];
-    for (j=0; j<10; j++) {
+    for (j=0; j<50; j++) {
       if (l.spin) {
 	std::this_thread::sleep_for(std::chrono::seconds(5));
 	TRACKU.open((const char *) (data_folder + "TRACKU").c_str());
@@ -104,7 +104,8 @@ int main(int argc, char * argv[]) {
       }
     }
   }
-  */
+  
+  /*
   for (i=0; i<50; i++) {
     l.a1 = ANIS[i];
     if (l.spin) {
@@ -138,5 +139,6 @@ int main(int argc, char * argv[]) {
       std::remove("data/TRACKD");
     }
   }
+  */
   return 0;
 }
