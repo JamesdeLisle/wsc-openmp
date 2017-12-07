@@ -66,7 +66,7 @@ int main(int argc, char * argv[]) {
   l.tempInc = 0.03;
   l.magF = 0.3;
   l.start_time = _start_time; 
-  int i, j, order, max_order = 6;
+  int i, j, order, max_order = 4;
 
   for (i=0; i<50; i++) {
     l.a1 = ANIS[i];
