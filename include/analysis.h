@@ -32,7 +32,7 @@ namespace ANA {
     Limits L;
     L.load(data_folder);
     Magnetisation M(data_folder, L);
-    ofile << L.magF << " " << L.tempInc << " " << M.compute() << std::endl;
+    ofile << L.magF << " " << L.tempInc << " " << M.compute(4) << std::endl;
     ofile.close();
   }
 
