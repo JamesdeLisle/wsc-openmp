@@ -6,13 +6,13 @@
 #include <cmath>
 
 Magnetisation::Magnetisation(std::string data_folder, Limits _lim) : \
-  inDataU(data_folder, 1, 12, _lim), \
-  inDataD(data_folder, 1, 12, _lim), \
+  inDataU(data_folder, 1, 10, _lim), \
+  inDataD(data_folder, 1, 10, _lim), \
   lim(_lim) {
   lim.spin = 1;
-  inDataU = InData(data_folder, 1, 12, lim);
+  inDataU = InData(data_folder, 1, 10, lim);
   lim.spin = 0;
-  inDataD = InData(data_folder, 0, 12, lim);
+  inDataD = InData(data_folder, 0, 10, lim);
 }
 
 double simpFac(int value, int max) {
@@ -44,7 +44,7 @@ double Magnetisation::compute(int order) {
       for (k=0; k<lim.kAzimuN; k++) {
 	hTheta = 0.0;
 	G = mat::Zero();
-	for (l=0; l<order; l++) {
+	for (l=0; l<4; l++) {
 	  G += inDataU.get(l, i, j, k);
 	  G -= inDataD.get(l, i, j, k);
 	}

@@ -6,13 +6,13 @@
 #include <cmath>
 
 HeatCond::HeatCond(std::string data_folder, Limits _lim) : \
-  inDataU(data_folder, 1, 12, _lim), \
-  inDataD(data_folder, 1, 12, _lim), \
+  inDataU(data_folder, 1, 10, _lim), \
+  inDataD(data_folder, 1, 10, _lim), \
   lim(_lim) {
   lim.spin = 1;
-  inDataU = InData(data_folder, 1, 12, lim);
+  inDataU = InData(data_folder, 1, 10, lim);
   lim.spin = 0;
-  inDataD = InData(data_folder, 0, 12, lim);
+  inDataD = InData(data_folder, 0, 10, lim);
 }
 
 double HeatCond::simpFac(int value, int max) {
@@ -50,7 +50,7 @@ std::vector<double> HeatCond::compute() {
 	hThetaD = 0.0;
 	GU = mat::Zero();
 	GD = mat::Zero();
-	for (l=0; l<1; l++) {
+	for (l=0; l<4; l++) {
 	  GU += inDataU.get(l, i, j, k);
 	  GD += inDataD.get(l, i, j, k);
 	}
