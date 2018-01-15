@@ -101,6 +101,7 @@ int main(int argc, char * argv[]) {
       Limits L(l);
       L.save(data_folder);
       std::cout << L.a1 << " " << L.a2 << std::endl;
+      std::cout << L.gamma1 << " " << L.gamma2 << std::endl;
       for (order=0; order<max_order; order++) {
 	Space S(L, _start_time, order);
 	S.run(data_folder);
