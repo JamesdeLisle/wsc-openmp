@@ -62,7 +62,7 @@ int main(int argc, char * argv[]) {
   l.a4 = 0.2;
   l.tau = 0.01;
   l.fermVU = 1.0;
-  l.fermVD = 1.0;
+  l.fermVD = 0.75;
   l.tempInc = 0.03;
   l.magF = 0.3;
   l.start_time = _start_time; 
