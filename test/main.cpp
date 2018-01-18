@@ -40,7 +40,7 @@ int main(int argc, char * argv[]) {
 
   //std::vector<double> MFIELD = SPACE::linspace(0.3, 0.0, 10); 
   //std::vector<double> TEMPIN = SPACE::linspace(0.03, 0.0, 10); 
-  std::vector<double> ANIS = SPACE::linspace(0.0, 0.5, 24); 
+  std::vector<double> ANIS = SPACE::linspace(-0.25, 0.75, 100); 
   
   l.energyN = 100;
   l.kPolarN = 50;
@@ -123,7 +123,7 @@ int main(int argc, char * argv[]) {
     }
   }
   */
-  for (i=0; i<50; i++) {
+  for (i=0; i<100; i++) {
     l.a1 = ANIS[i];
     if (l.spin) {
       std::this_thread::sleep_for(std::chrono::seconds(5));
