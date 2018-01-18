@@ -5,7 +5,6 @@
 #include "../include/env.h"
 #include "../include/data.h"
 #include "../include/pauli.h"
-
 #include "../include/kernel.h"
 #include <vector>
 #include <iostream>

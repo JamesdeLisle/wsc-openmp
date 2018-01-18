@@ -57,7 +57,7 @@ int main(int argc, char * argv[]) {
   l.temp = 0.02;
   l.tempCrit = 0.1;
   l.a1 = 0.0;
-  l.a2 = 0.0;
+  l.a2 = 0.43;
   l.a3 = 0.2232;
   l.a4 = -0.123;
   l.tau = 0.01;
@@ -82,7 +82,7 @@ int main(int argc, char * argv[]) {
     ANA::analysis(data_folder);
   }
   */
-  
+  /*
   for (i=0; i<24; i++) {
     l.a1 = ANIS[i];
     for (j=0; j<24; j++) {
@@ -122,7 +122,7 @@ int main(int argc, char * argv[]) {
       std::cout << float(clock() - t0) / CLOCKS_PER_SEC << std::endl;
     }
   }
-  /*
+  */
   for (i=0; i<50; i++) {
     l.a1 = ANIS[i];
     if (l.spin) {
@@ -156,6 +156,6 @@ int main(int argc, char * argv[]) {
       std::remove("data/TRACKD");
     }
   }
-  */
+  
   return 0;
 }
