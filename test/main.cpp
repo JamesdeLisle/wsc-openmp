@@ -1,7 +1,6 @@
 #include "../include/limits.h"
 #include "../include/mainfunc.h"
 #include "../include/time.h"
-#include "../include/analysis.h"
 #include <iostream>
 #include <complex>
 #include <ctime>
