@@ -18,6 +18,16 @@ int MainFunc::getSpin(char * arg) {
   }
 }
 
+bool MainFunc::condAnal(char * arg) {
+  if (std::strncmp(arg, "an", 2) == 0) {
+    ANA::analysis(folder);
+    return 1;
+  }
+  else {
+    return 0;
+  }
+}
+
 void MainFunc::run(LimitsBox l, int max_order) {
   int order;
   SCHED.sleep(5);

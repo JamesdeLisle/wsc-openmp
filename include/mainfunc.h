@@ -13,6 +13,7 @@ class MainFunc
  public:
   MainFunc(std::string _folder, std::string _time);
   int getSpin(char * arg);
+  bool condAnal(char * arg);
   void run(LimitsBox l, int max_order);
 };
 

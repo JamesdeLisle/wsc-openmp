@@ -1,6 +1,7 @@
 #include "../include/limits.h"
 #include "../include/mainfunc.h"
 #include "../include/time.h"
+#include "../include/analysis.h"
 #include <iostream>
 #include <complex>
 #include <ctime>
@@ -14,13 +15,16 @@
 
 
 int main(int argc, char * argv[]) {
-  
+
+    
   LimitsBox l;
   int max_order = 4;
   std::string folder = "data/";
   std::string time = getTime();
-  MainFunc ENG(folder, time);
-  
+  MainFunc ENG(folder, time); 
+
+  if (ENG.condAnal(argv[1])) {return 0;}
+    
   l.spin = ENG.getSpin(argv[1]);
   l.energyN = 100;
   l.kPolarN = 50;
