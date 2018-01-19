@@ -54,7 +54,6 @@ namespace ANA {
       for (i=0; i<L.energyN; i++) {
 	ofile << std::setprecision(10) << data[i] << " " << ener[i] << std::endl;
       }
-      plt.plot(y[0], x[0])
       ofile.close();
     }
    }
