@@ -249,7 +249,10 @@ void InData::dpz(int order) {
   deriv.push_back(D);
 }
 
-InData::InData(std::string data_folder, int spin, int order, Limits _lim) : lim(_lim) {
+InData::InData(std::string data_folder,
+	       int spin,
+	       int order,
+	       Limits _lim) : lim(_lim) {
   lim = _lim;
   if (order == 0) {
     ;
