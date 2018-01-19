@@ -50,9 +50,9 @@ int main(int argc, char * argv[]) {
   std::vector<double> ANIS = SPACE::linspace(-0.25, 0.75, 100); 
   int i;
 
-  for (i=0; i<100; i++) {
-    l.a1 = ANIS[i];
-    ENG.run(l, max_order);
-  }
+  //for (i=0; i<100; i++) {
+  //  l.a1 = ANIS[i];
+  ENG.run(l, max_order);
+    //}
   return 0;
 }
