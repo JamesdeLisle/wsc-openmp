@@ -8,7 +8,7 @@
 
 DOS::DOS(std::string data_folder, Limits _lim) :	\
   inDataU(data_folder, 1, 11, _lim), \
-  inDataD(data_folder, 1, 11, _lim), \
+  inDataD(data_folder, 0, 11, _lim), \
   lim(_lim) {
   lim.spin = 1;
   inDataU = InData(data_folder, 1, 11, lim);
@@ -48,14 +48,7 @@ std::vector<double> DOS::compute(int order) {
 	G = mat::Zero();
 	for (l=0; l<order+1; l++) {
 	  G += inDataU.get(l, i, j, k);
-	  //G -= inDataD.get(l, i, j, k);
 	}
-	/*std::cout << G << std::endl;
-	std::cout << "............" << std::endl;
-	std::cout << inDataU.get(0, i, j, k) << std::endl;
-	std::cout << "............" << std::endl;
-	std::cout << inDataD.get(0, i, j, k) << std::endl;
-	std::cout << "############" << std::endl;*/
 	hTheta += 1.0 * I / (4.0 * M_PI * M_PI);
 	hTheta *= 0.5 * (P.get(3) * G).trace();
 	hTheta *= lim.kAzimuD / 3.0;
