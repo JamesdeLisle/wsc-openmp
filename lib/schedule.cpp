@@ -17,7 +17,6 @@ void Schedule::start(int spin) {
 
 void Schedule::stop(int spin) {
   if (spin) {
-    std::cout << "d0" << std::endl;
     std::remove((const char *) (folder + "TRACKU").c_str());
   }
 }

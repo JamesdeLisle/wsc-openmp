@@ -7,11 +7,10 @@
 class DOS
 {
  private:
-  InData inDataU;
-  InData inDataD;
+  InData inData;
   Limits lim;
  public:
-  DOS(std::string data_folder, Limits _lim);
+  DOS(std::string data_folder, Limits _lim, int spin);
   std::vector<double> compute(int order);
   double simpFac(int value, int max);
 };

@@ -37,19 +37,26 @@ namespace ANA {
   }
 
   void Dos(std::string data_folder) {
-    int i;
+    int i, spin;
     std::ofstream ofile;
-    ofile.open("DOSDATA", std::ios_base::app);
-    Limits L;
-    L.load(data_folder);
-    std::vector<double> ener = L.space(0);
-    DOS D(data_folder, L);
-    std::vector<double> data = D.compute(0);
-    for (i=0; i<L.energyN; i++) {
-      ofile << std::setprecision(10) << data[i] << " " << ener[i] << std::endl;
+    for (spin=0; spin<2; i++) { 
+      if (spin==1) {
+	ofile.open("DOSDATAup", std::ios_base::app);
+      }
+      else {
+	ofile.open("DOSDATAdn", std::ios_base::app);
+      }
+      Limits L;
+      L.load(data_folder);
+      std::vector<double> ener = L.space(0);
+      DOS D(data_folder, L, spin);
+      std::vector<double> data = D.compute(0);
+      for (i=0; i<L.energyN; i++) {
+	ofile << std::setprecision(10) << data[i] << " " << ener[i] << std::endl;
+      }
+      ofile.close();
     }
-    ofile.close();
-  }
+   }
 
   void HandM(std::string data_folder) {
     std::ofstream ofile;
