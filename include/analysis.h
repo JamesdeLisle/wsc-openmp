@@ -39,7 +39,7 @@ namespace ANA {
   void Dos(std::string data_folder) {
     int i, spin;
     std::ofstream ofile;
-    for (spin=0; spin<2; i++) { 
+    for (spin=0; spin<2; spin++) { 
       if (spin==1) {
 	ofile.open("DOSDATAup", std::ios_base::app);
       }

@@ -36,6 +36,7 @@ std::vector<double> DOS::compute(int order) {
   Pauli P;
   mat G; 
   std::vector<double> rv;
+
   for (i=0; i<lim.energyN; i++) {
     hE = 0.0;
     for (j=0; j<lim.kPolarN; j++) {
