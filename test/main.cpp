@@ -26,9 +26,9 @@ int main(int argc, char * argv[]) {
     
   l.spin = ENG.getSpin(argv[1]);
   l.energyN = 100;
-  l.kPolarN = 50;
-  l.kAzimuN = 100;
-  l.alphaN = 100;
+  l.kPolarN = 5;
+  l.kAzimuN = 10;
+  l.alphaN = 10;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
@@ -39,8 +39,8 @@ int main(int argc, char * argv[]) {
   l.alphaMax = 0.0;
   l.temp = 0.02;
   l.tempCrit = 0.1;
-  l.a1 = 0.5;
-  l.a2 = 0.44;
+  l.a1 = 0.1;
+  l.a2 = 0.4;
   l.a3 = 0.234;
   l.a4 = -0.123;
   l.tau = 0.01;
@@ -55,7 +55,13 @@ int main(int argc, char * argv[]) {
 
   //for (i=0; i<100; i++) {
   //  l.a1 = ANIS[i];
+  
   ENG.run(l, max_order);
+  l.a1 = 0.34;
+  ENG.run(l, max_order);
+  l.a1 = 0.5;
+  ENG.run(l, max_order);
+  
   //}
   return 0;
 }

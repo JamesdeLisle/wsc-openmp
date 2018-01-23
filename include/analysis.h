@@ -77,10 +77,38 @@ namespace ANA {
     ofile.close();
   }
 
+  void MnD(std::string data_folder) {
+    int i, spin;
+    std::ofstream ofile;
+    for (spin=0; spin<2; spin++) { 
+      if (spin==1) {
+	ofile.open("end/HDDATAup", std::ios_base::app);
+      }
+      else {
+	ofile.open("end/HDDATAdn", std::ios_base::app);
+      }
+      Limits L;
+      L.load(data_folder);
+      std::vector<double> ener = L.space(0);
+      DOS D(data_folder, L, spin);
+      std::vector<double> data = D.compute(1);
+      Magnetisation M(data_folder, L);
+      ofile << std::setprecision(10) << L.a1 << " " << \
+	L.a2 << " " << L.a3 << " " << L.a4 << " " << "#" << " ";
+      ofile << M.compute(2) << " " << "#" << " ";
+      for (i=0; i<L.energyN; i++) {
+	ofile << std::setprecision(10) << data[i] << " " << ener[i] <<  "|";
+      }
+      ofile << std::endl;
+      ofile.close();
+    }
+   }
+
   void analysis(std::string data_folder) {
     //Mag(data_folder);
-    Dos(data_folder);
+    //Dos(data_folder);
     //HandM(data_folder);
+    MnD(data_folder);
   }
 }
 #endif
