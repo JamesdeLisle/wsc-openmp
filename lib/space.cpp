@@ -59,7 +59,7 @@ void Space::run(std::string _data_folder) {
   int i, j, k;
   InData inData(_data_folder, lim.spin, order, lim);
   int max_threads = omp_get_max_threads();
-  omp_set_num_threads(26);
+  omp_set_num_threads(22);
   std::cout << max_threads << std::endl;
   std::cout << "Computing order: " << order << "..." << std::endl;
   for (i=0; i<lim.energyN; i++) {
