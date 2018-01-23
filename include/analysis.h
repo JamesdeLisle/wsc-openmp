@@ -14,7 +14,7 @@
 namespace ANA {
   void HCond(std::string data_folder) {
     std::ofstream ofile;
-    ofile.open("HDATA", std::ios_base::app);
+    ofile.open("end/HDATA", std::ios_base::app);
     Limits L;
     L.load(data_folder);
     HeatCond H(data_folder, L);
@@ -28,7 +28,7 @@ namespace ANA {
 
   void Mag(std::string data_folder) {
     std::ofstream ofile;
-    ofile.open("MAGDATA", std::ios_base::app);
+    ofile.open("end/MAGDATA", std::ios_base::app);
     Limits L;
     L.load(data_folder);
     Magnetisation M(data_folder, L);
@@ -41,10 +41,10 @@ namespace ANA {
     std::ofstream ofile;
     for (spin=0; spin<2; spin++) { 
       if (spin==1) {
-	ofile.open("DOSDATAup", std::ios_base::app);
+	ofile.open("end/DOSDATAup", std::ios_base::app);
       }
       else {
-	ofile.open("DOSDATAdn", std::ios_base::app);
+	ofile.open("end/DOSDATAdn", std::ios_base::app);
       }
       Limits L;
       L.load(data_folder);
@@ -60,7 +60,7 @@ namespace ANA {
 
   void HandM(std::string data_folder) {
     std::ofstream ofile;
-    ofile.open("TDATA", std::ios_base::app);
+    ofile.open("end/TDATA", std::ios_base::app);
     Limits L;
     L.load(data_folder);
     HeatCond H(data_folder, L);

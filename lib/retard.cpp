@@ -18,7 +18,7 @@ Green Retarded::get() {
   Environment E(runVal);
   rv = E.epsi() - E.hamR();
   if (runVal.getXi() < pi / 2) {
-    sgn = 1.0;
+    sgn = -1.0;
   }
   else {
     sgn = 1.0;
