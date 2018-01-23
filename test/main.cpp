@@ -51,7 +51,7 @@ int main(int argc, char * argv[]) {
   l.start_time = time; 
 
   std::vector<double> ANIS = SPACE::linspace(-0.25, 0.75, 100); 
-  int i;
+  //int i;
 
   //for (i=0; i<100; i++) {
   //  l.a1 = ANIS[i];

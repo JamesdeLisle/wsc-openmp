@@ -1,7 +1,9 @@
 data/
 obj/
 bin/
+end/
 *~
+*DATA*
 MAGDATA
 DOSDATA
 *.ipynb
