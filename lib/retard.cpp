@@ -21,7 +21,7 @@ Green Retarded::get() {
     sgn = 1.0;
   }
   else {
-    sgn = -1.0;
+    sgn = 1.0;
   }
   
   rv.set(-0.5 * rv.get().inverse() * sgn * runVal.getlim()->magF * I * dg0);
