@@ -95,7 +95,7 @@ namespace ANA {
       Magnetisation M(data_folder, L);
       ofile << std::setprecision(10) << L.a1 << " " << \
 	L.a2 << " " << L.a3 << " " << L.a4 << " " << "#" << " ";
-      ofile << M.compute(2) << " " << "#" << " ";
+      ofile << M.compute(1) << " " << "#" << " ";
       for (i=0; i<L.energyN; i++) {
 	ofile << std::setprecision(10) << data[i] << " " << ener[i] <<  "|";
       }
