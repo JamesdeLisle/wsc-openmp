@@ -23,7 +23,7 @@ int main(int argc, char * argv[]) {
   MainFunc ENG(folder, time); 
 
   if (ENG.condAnal(argv[1])) {return 0;}
-    
+
   l.spin = ENG.getSpin(argv[1]);
   l.energyN = 300;
   l.kPolarN = 50;
@@ -39,22 +39,18 @@ int main(int argc, char * argv[]) {
   l.alphaMax = 0.0;
   l.temp = 0.02;
   l.tempCrit = 0.1;
-  l.a1 = 0.1;
+  l.a1 = 0.5;
   l.a2 = 0.4;
   l.a3 = 0.234;
   l.a4 = -0.123;
   l.tau = 0.01;
   l.fermVU = 1.0;
   l.fermVD = 0.75;
-  l.tempInc = 0.03;
+  l.tempInc = -0.03;
   l.magF = 0.3;
   l.start_time = time; 
 
   std::vector<double> ANIS = SPACE::linspace(-0.25, 0.75, 100); 
-  //int i;
-
-  //for (i=0; i<100; i++) {
-  //  l.a1 = ANIS[i];
 
   Timer T = Timer();
   
@@ -65,6 +61,6 @@ int main(int argc, char * argv[]) {
   ENG.run(l, max_order);
   
   T.stop();  
-  //}
+
   return 0;
 }

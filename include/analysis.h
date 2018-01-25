@@ -5,6 +5,7 @@
 #include "../include/data.h"
 #include "../include/magtot.h"
 #include "../include/dos.h"
+#include "../include/dosk.h"
 #include "../include/hcond.h"
 #include <vector>
 #include <string>
@@ -102,13 +103,42 @@ namespace ANA {
       ofile << std::endl;
       ofile.close();
     }
-   }
+  }
 
+  void MnDK(std::string data_folder) {
+    int i, spin;
+    std::ofstream ofile;
+    for (spin=0; spin<2; spin++) { 
+      if (spin==1) {
+	ofile.open("end/HDKDATAup", std::ios_base::app);
+      }
+      else {
+	ofile.open("end/HDKDATAdn", std::ios_base::app);
+      }
+      Limits L;
+      L.load(data_folder);
+      std::vector<double> ener = L.space(0);
+      DOSK D(data_folder, L, spin);
+      std::vector<double> data = D.compute(0);
+      Magnetisation M(data_folder, L);
+      ofile << std::setprecision(10) << L.a1 << " " << \
+	L.a2 << " " << L.a3 << " " << L.a4 << " " << "#" << " ";
+      ofile << M.compute(2) << " " << "#" << " ";
+      for (i=0; i<L.energyN; i++) {
+	ofile << std::setprecision(10) << data[i] << " " << ener[i] <<  "|";
+      }
+      ofile << std::endl;
+      ofile.close();
+    }
+  }
+  
   void analysis(std::string data_folder) {
     //Mag(data_folder);
     //Dos(data_folder);
     //HandM(data_folder);
-    MnD(data_folder);
+    //MnD(data_folder);
+    MnDK(data_folder);
   }
 }
+
 #endif
