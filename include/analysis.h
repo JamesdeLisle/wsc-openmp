@@ -91,11 +91,11 @@ namespace ANA {
       L.load(data_folder);
       std::vector<double> ener = L.space(0);
       DOS D(data_folder, L, spin);
-      std::vector<double> data = D.compute(1);
+      std::vector<double> data = D.compute(0);
       Magnetisation M(data_folder, L);
       ofile << std::setprecision(10) << L.a1 << " " << \
 	L.a2 << " " << L.a3 << " " << L.a4 << " " << "#" << " ";
-      ofile << M.compute(1) << " " << "#" << " ";
+      ofile << M.compute(2) << " " << "#" << " ";
       for (i=0; i<L.energyN; i++) {
 	ofile << std::setprecision(10) << data[i] << " " << ener[i] <<  "|";
       }
