@@ -15,7 +15,7 @@
 
 int main(int argc, char * argv[]) {
 
-    
+   
   LimitsBox l;
   int max_order = 4;
   std::string folder = "data/";
@@ -55,6 +55,8 @@ int main(int argc, char * argv[]) {
 
   //for (i=0; i<100; i++) {
   //  l.a1 = ANIS[i];
+
+  Timer T = Timer();
   
   ENG.run(l, max_order);
   l.a1 = 0.34;
@@ -62,6 +64,7 @@ int main(int argc, char * argv[]) {
   l.a1 = 0.5;
   ENG.run(l, max_order);
   
+  T.stop();  
   //}
   return 0;
 }

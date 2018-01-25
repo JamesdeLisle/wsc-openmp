@@ -15,4 +15,12 @@ std::string getTime() {
   return year + month + day + hour + min + sec;
 }
 
+class Timer
+{
+ private:
+  std::clock_t start;
+ public:
+  Timer() : start() {start = std::clock();}
+  void stop() {std::cout << ((std::clock() - start) / (double) CLOCKS_PER_SEC) / 60.0 << std::endl;}
+};  
 #endif
