@@ -119,7 +119,7 @@ namespace ANA {
       L.load(data_folder);
       std::vector<double> ener = L.space(0);
       DOSK D(data_folder, L, spin);
-      std::vector<double> data = D.compute(0);
+      std::vector<double> data = D.compute(1);
       Magnetisation M(data_folder, L);
       ofile << std::setprecision(10) << L.a1 << " " << \
 	L.a2 << " " << L.a3 << " " << L.a4 << " " << "#" << " ";

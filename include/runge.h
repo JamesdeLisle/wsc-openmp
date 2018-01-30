@@ -43,7 +43,7 @@ template <class T> Green Runge<T>::run() {
 					    runVal.getlim()->alphaMax,
 					    runVal.getlim()->alphaN);
   std::vector<Green> kVals(4);
-  for (i=0; i<runVal.getlim()->alphaN; i++) {
+  for (i=0; i<runVal.getlim()->alphaN-1; i++) {
     fClass.setAlpha(alph.at(i));
     fClass.setiAlpha(i);
     kVals[0] = fClass.get(fVal);

@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 
+
 class RunVal
 {
  private:
@@ -15,7 +16,7 @@ class RunVal
   double alpha;
   std::vector<int> index;
   Limits lim;
-    int i = 0;
+  int i = 0;
   double Z;
   int iAlpha;
 
@@ -36,7 +37,7 @@ class RunVal
   double getZ() {return Z;}
   std::vector<int> getindex() {return index;}
   Limits * getlim() {return &lim;}
-  void comp() {Z = alpha * cos(Xi);}
+  void comp() {Z = -alpha * cos(Xi);}
 };
 
 class Space
