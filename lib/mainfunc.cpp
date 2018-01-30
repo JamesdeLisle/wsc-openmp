@@ -1,5 +1,6 @@
 #include "../include/mainfunc.h"
 #include "../include/analysis.h"
+#include "omp.h"
 
 MainFunc::MainFunc(std::string _folder, std::string _time) :
   folder(_folder), time(_time), SCHED(folder) {
@@ -42,4 +43,9 @@ void MainFunc::run(LimitsBox l, int max_order) {
   SCHED.pause(l.spin);
   if (!l.spin) {ANA::analysis(folder);}
   SCHED.clean(l.spin);
+}
+
+void MainFunc::setThreads() {
+  int max_threads = omp_get_max_threads();
+  omp_set_num_threads(max_threads - 2);
 }

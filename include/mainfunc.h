@@ -15,6 +15,7 @@ class MainFunc
   int getSpin(char * arg);
   bool condAnal(char * arg);
   void run(LimitsBox l, int max_order);
+  void setThreads();
 };
 
 

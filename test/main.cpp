@@ -50,9 +50,12 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = time; 
 
+  
   std::vector<double> ANIS = SPACE::linspace(-0.25, 0.75, 100); 
 
   Timer T = Timer();
+
+  ENG.setThreads();
   
   ENG.run(l, max_order);
   l.a1 = 0.34;
