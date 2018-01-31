@@ -58,11 +58,12 @@ int main(int argc, char * argv[]) {
   ENG.setThreads();
   
   ENG.run(l, max_order);
+  /*
   l.a1 = 0.34;
   ENG.run(l, max_order);
   l.a1 = 0.5;
   ENG.run(l, max_order);
-  
+  */
   T.stop();  
 
   return 0;
