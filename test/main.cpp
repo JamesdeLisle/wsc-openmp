@@ -55,7 +55,7 @@ int main(int argc, char * argv[]) {
 
   Timer T = Timer();
 
-  ENG.setThreads();
+  ENG.setThreads(22);
 
   int i;
   for (i=0; i<50; i++) {

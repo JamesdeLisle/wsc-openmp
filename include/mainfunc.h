@@ -16,6 +16,7 @@ class MainFunc
   bool condAnal(char * arg);
   void run(LimitsBox l, int max_order);
   void setThreads();
+  void setThreads(int max);
 };
 
 

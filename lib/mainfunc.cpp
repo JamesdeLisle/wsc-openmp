@@ -45,7 +45,11 @@ void MainFunc::run(LimitsBox l, int max_order) {
   SCHED.clean(l.spin);
 }
 
+void MainFunc::setThreads(int max) {
+  omp_set_num_threads(max);
+}
+
 void MainFunc::setThreads() {
   int max_threads = omp_get_max_threads();
-  omp_set_num_threads(22);
+  omp_set_num_threads(max_threads - 2);
 }
