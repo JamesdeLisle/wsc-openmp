@@ -25,12 +25,12 @@ int main(int argc, char * argv[]) {
   if (ENG.condAnal(argv[1])) {return 0;}
 
   l.spin = ENG.getSpin(argv[1]);
-  l.energyN = 1000;
+  l.energyN = 100;
   l.kPolarN = 50;
   l.kAzimuN = 100;
   l.alphaN = 100;
-  l.energyMin = -1.0;
-  l.energyMax = 1.0;
+  l.energyMin = -0.25;
+  l.energyMax = 0.25;
   l.kPolarMin = 1e-6;
   l.kPolarMax = PI;
   l.kAzimuMin = 1e-6;
@@ -51,13 +51,17 @@ int main(int argc, char * argv[]) {
   l.start_time = time; 
 
   
-  std::vector<double> ANIS = SPACE::linspace(-0.25, 0.75, 100); 
+  std::vector<double> ANIS = SPACE::linspace(0.0, 1.0, 25); 
 
   Timer T = Timer();
 
   ENG.setThreads();
-  
-  ENG.run(l, max_order);
+
+  int i;
+  for (i=0; i<50; i++) {
+    l.a1 = ANIS[i];
+    ENG.run(l, max_order);
+  }
   /*
   l.a1 = 0.34;
   ENG.run(l, max_order);
