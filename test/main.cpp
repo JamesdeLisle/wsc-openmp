@@ -29,7 +29,7 @@ int main(int argc, char * argv[]) {
   l.kPolarN = 50;
   l.kAzimuN = 100;
   l.alphaN = 100;
-  l.energyMin = -0.25;
+  l.energyMin = 0.0;
   l.energyMax = 0.25;
   l.kPolarMin = 1e-6;
   l.kPolarMax = PI;
@@ -51,7 +51,7 @@ int main(int argc, char * argv[]) {
   l.start_time = time; 
 
   
-  std::vector<double> ANIS = SPACE::linspace(0.0, 1.0, 25); 
+  std::vector<double> ANIS = SPACE::linspace(0.0, 1.0, 50); 
 
   Timer T = Timer();
 

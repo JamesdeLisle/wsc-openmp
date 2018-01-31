@@ -16,7 +16,6 @@ class RunVal
   double alpha;
   std::vector<int> index;
   Limits lim;
-  int i = 0;
   double Z;
   int iAlpha;
 

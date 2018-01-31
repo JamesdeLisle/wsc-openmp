@@ -18,6 +18,8 @@ class Data
   Name name;
   int order;
   std::string time;
+  void read(std::string folder, int spin);
+  void build();
   
  public:
   Data(Limits _lim, std::string _time, int _order);

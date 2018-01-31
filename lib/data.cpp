@@ -11,7 +11,11 @@
 #include <iomanip>
 #include <typeinfo>
 
-unsigned int split(const std::string &txt, std::vector<std::string> &strs, char ch)
+using namespace std;
+
+unsigned int split(const string &txt,
+		   vector<string> &strs,
+		   char ch)
 {
   unsigned int pos = txt.find(ch);
   unsigned int initialPos = 0;
@@ -26,17 +30,12 @@ unsigned int split(const std::string &txt, std::vector<std::string> &strs, char 
     count += 1;
   }
   // Add the last one
-  strs.push_back( txt.substr( initialPos, std::min( pos, (unsigned int) txt.size() ) - initialPos + 1 ) );
+  strs.push_back( txt.substr( initialPos, min( pos, (unsigned int) txt.size() ) - initialPos + 1 ) );
   
   return strs.size();
 }
 
-Data::Data(Limits _lim, std::string _time,
-	   int _order) : lim(_lim), name(Name(_lim)) {
-  lim = _lim;
-  name = Name(lim);
-  time = _time;
-  order = _order;
+void Data::build() {
   int i, j;
   runData.resize(lim.energyN);
   for (i=0; i<lim.energyN; i++) {
@@ -47,36 +46,51 @@ Data::Data(Limits _lim, std::string _time,
   }
 }
 
-Data::Data(std::string data_folder, int spin,  int _order) {
-  std::ifstream infile;
-  std::complex<double> values[4], I(0.0, 1.0);
-  std::string LINE;
-  std::vector<std::string> line;
-  lim = Limits();
-  lim.load(data_folder);
-  name = Name();
-  name.set(lim);
-  order = _order;
-  runData.resize(lim.energyN);
-  int i, j, k, m;
+void Data::write(string _data_folder) {
+  int i, j, k;
+  Green G;
+  ofstream outfile;
   for (i=0; i<lim.energyN; i++) {
-    runData[i].resize(lim.kPolarN);
+    outfile.open((const char *) (_data_folder +
+				 name.get(lim.spin, i,
+					  time, order)).c_str());
     for (j=0; j<lim.kPolarN; j++) {
-      runData[i][j].resize(lim.kAzimuN, Green());
+      for (k=0; k<lim.kAzimuN; k++) {
+	G = runData[i][j][k];
+	outfile << setprecision(10) << G.get(0, 0).real() << " ";
+	outfile << setprecision(10) << G.get(0, 0).imag() << " ";
+	outfile << setprecision(10) << G.get(0, 1).real() << " ";
+	outfile << setprecision(10) << G.get(0, 1).imag() << " ";
+	outfile << setprecision(10) << G.get(1, 0).real() << " ";
+	outfile << setprecision(10) << G.get(1, 0).imag() << " ";
+	outfile << setprecision(10) << G.get(1, 1).real() << " ";
+	outfile << setprecision(10) << G.get(1, 1).imag() << endl;
+      }
     }
+    outfile.close();
   }
+}
+
+void Data::read(string data_folder,
+		int spin) {
+  ifstream infile;
+  complex<double> values[4], I(0.0, 1.0);
+  string LINE;
+  vector<string> line;
+
+  int i, j, k , m;
   for (i=0; i<lim.energyN; i++) {
-    std::vector<std::vector<std::string> > lines;
+    vector<vector<string> > lines;
     infile.open((const char *) (data_folder +
 				name.get(spin, i,
 					 lim.start_time, order)).c_str());
     if (infile.fail()) {
-      std::cout << (data_folder +
+      cout << (data_folder +
 				name.get(spin, i,
-					 lim.start_time, order)) << std::endl;
-      std::cout << "FAILED" << std::endl;
+					 lim.start_time, order)) << endl;
+      cout << "FAILED" << endl;
     }
-    for (std::string LINE; getline(infile, LINE);) {
+    for (string LINE; getline(infile, LINE);) {
       split(LINE, line, ' ');
       lines.push_back(line);
     }
@@ -99,96 +113,55 @@ Data::Data(std::string data_folder, int spin,  int _order) {
 
 Data::Data(Limits _lim) : lim(_lim) {
   lim = _lim;
-  int i, j;
-  runData.resize(lim.energyN);
-  for (i=0; i<lim.energyN; i++) {
-    runData[i].resize(lim.kPolarN);
-    for (j=0; j<lim.kPolarN; j++) {
-      runData[i][j].resize(lim.kAzimuN, Green());
-    }
-  }
+  this->build();
 }
 
-Data::Data(std::string data_folder, int spin,  int _order, Limits _lim) : lim(_lim) {
-  std::ifstream infile;
-  std::complex<double> values[4], I(0.0, 1.0);
-  std::string LINE;
-  std::vector<std::string> line;
+Data::Data(Limits _lim,
+	   string _time,
+	   int _order) : lim(_lim), name(Name(_lim)) {
+  lim = _lim;
+  name = Name(lim);
+  time = _time;
+  order = _order;
+  this->build();
+}
+
+Data::Data(string data_folder,
+	   int spin,
+	   int _order) {
+  lim = Limits();
+  lim.load(data_folder);
+  name = Name();
+  name.set(lim);
+  order = _order;
+  this->build();
+  this->read(data_folder, spin);
+}
+
+Data::Data(string data_folder,
+	   int spin,
+	   int _order,
+	   Limits _lim) : lim(_lim) {
   lim = _lim;
   name = Name();
   name.set(lim);
   order = _order;
-  runData.resize(lim.energyN);
-  int i, j, k, m;
-  for (i=0; i<lim.energyN; i++) {
-    runData[i].resize(lim.kPolarN);
-    for (j=0; j<lim.kPolarN; j++) {
-      runData[i][j].resize(lim.kAzimuN, Green());
-    }
-  }
-  for (i=0; i<lim.energyN; i++) {
-    std::vector<std::vector<std::string> > lines;
-    infile.open((const char *) (data_folder +
-				name.get(spin, i,
-					 lim.start_time, order)).c_str());
-    if (infile.fail()) {
-      std::cout << (data_folder +
-				name.get(spin, i,
-					 lim.start_time, order)) << std::endl;
-      std::cout << "FAILED" << std::endl;
-    }
-    for (std::string LINE; getline(infile, LINE);) {
-      split(LINE, line, ' ');
-      lines.push_back(line);
-    }
-    for (j=0; j<lim.kPolarN; j++) {
-      for (k=0; k<lim.kAzimuN; k++) {
-	m = j * (lim.kAzimuN - 1) + k;
-	values[0] = ::atof(lines[m][0].c_str()) + ::atof(lines[m][1].c_str()) * I;
-	values[1] = ::atof(lines[m][2].c_str()) + ::atof(lines[m][3].c_str()) * I;
-	values[2] = ::atof(lines[m][4].c_str()) + ::atof(lines[m][5].c_str()) * I;
-	values[3] = ::atof(lines[m][6].c_str()) + ::atof(lines[m][7].c_str()) * I;
-	runData[i][j][k].set(0, 0, values[0]);
-	runData[i][j][k].set(0, 1, values[1]);
-	runData[i][j][k].set(1, 0, values[2]);
-	runData[i][j][k].set(1, 1, values[3]);
-      }
-    }
-    infile.close();
-  }
+  this->build();
+  this->read(data_folder, spin);
 }
 
-void Data::set(int i, int j, int k, Green value) {
+void Data::set(int i,
+	       int j,
+	       int k,
+	       Green value) {
   runData[i][j][k].set(value.get());
 }
 
-void Data::set(int i, int j, int k, mat value) {
+void Data::set(int i,
+	       int j,
+	       int k,
+	       mat value) {
   runData[i][j][k].set(value);
-}
-
-void Data::write(std::string _data_folder) {
-  int i, j, k;
-  Green G;
-  std::ofstream outfile;
-  for (i=0; i<lim.energyN; i++) {
-    outfile.open((const char *) (_data_folder +
-				 name.get(lim.spin, i,
-					  time, order)).c_str());
-    for (j=0; j<lim.kPolarN; j++) {
-      for (k=0; k<lim.kAzimuN; k++) {
-	G = runData[i][j][k];
-	outfile << std::setprecision(10) << G.get(0, 0).real() << " ";
-	outfile << std::setprecision(10) << G.get(0, 0).imag() << " ";
-	outfile << std::setprecision(10) << G.get(0, 1).real() << " ";
-	outfile << std::setprecision(10) << G.get(0, 1).imag() << " ";
-	outfile << std::setprecision(10) << G.get(1, 0).real() << " ";
-	outfile << std::setprecision(10) << G.get(1, 0).imag() << " ";
-	outfile << std::setprecision(10) << G.get(1, 1).real() << " ";
-	outfile << std::setprecision(10) << G.get(1, 1).imag() << std::endl;
-      }
-    }
-    outfile.close();
-  }
 }
 
 void InData::dtheta(int order) {
@@ -213,9 +186,11 @@ void InData::dtheta(int order) {
   deriv.push_back(D);
 }
 
-std::vector<double> InData::linspace(double min, double max, int disc) {
+vector<double> InData::linspace(double min,
+				double max,
+				int disc) {
   int i;
-  std::vector<double> rv;
+  vector<double> rv;
   double step = (max - min) / disc;
   for (i=0; i<disc-1; i++) {
     rv.push_back(min + step * i);
@@ -228,7 +203,7 @@ void InData::dpz(int order) {
   Data D(lim);
   int i, j, k;
   mat up, down, cval;
-  std::vector<double> kPol = this->linspace(lim.kPolarMin,
+  vector<double> kPol = this->linspace(lim.kPolarMin,
 					    lim.kPolarMax,
 					    lim.kPolarN);
   for (i=0; i<lim.energyN; i++) {
@@ -249,7 +224,7 @@ void InData::dpz(int order) {
   deriv.push_back(D);
 }
 
-InData::InData(std::string data_folder,
+InData::InData(string data_folder,
 	       int spin,
 	       int order,
 	       Limits _lim) : lim(_lim) {
@@ -308,4 +283,3 @@ InData::InData(std::string data_folder,
     store.push_back(k1);
   }
 }
-
