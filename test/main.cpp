@@ -50,17 +50,21 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = time; 
 
+  int disc = 5;
   
-  std::vector<double> ANIS = SPACE::linspace(0.0, 1.0, 50); 
+  std::vector<double> ANIS = SPACE::linspace(0.0, 1.0, disc); 
 
   Timer T = Timer();
 
   ENG.setThreads(22);
 
-  int i;
-  for (i=0; i<50; i++) {
+  int i, j;
+  for (i=0; i<disc; i++) {
     l.a1 = ANIS[i];
-    ENG.run(l, max_order);
+    for (j=0; j<disc; j++) {
+      l.a2 = ANIS[j];
+      ENG.run(l, max_order);
+    }
   }
   /*
   l.a1 = 0.34;

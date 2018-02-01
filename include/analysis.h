@@ -135,7 +135,7 @@ namespace ANA {
   void analysis(std::string data_folder) {
     //Mag(data_folder);
     //Dos(data_folder);
-    //HandM(data_folder);
+    HandM(data_folder);
     //MnD(data_folder);
     MnDK(data_folder);
   }
