@@ -39,8 +39,8 @@ int main(int argc, char * argv[]) {
   l.alphaMax = 0.0;
   l.temp = 0.04;
   l.tempCrit = 0.1;
-  l.a1 = 0.0;
-  l.a2 = 0.4;
+  l.a1 = 0.2;
+  l.a2 = 0.6;
   l.a3 = 0.234;
   l.a4 = -0.123;
   l.tau = 0.01;

@@ -69,11 +69,12 @@ namespace ANA {
     std::vector<double> out = H.compute();
     double mout1 = M.compute(1); 
     double mout2 = M.compute(2); 
-    ofile << std::setprecision(10) << L.a1 << " " \
-	  << L.a2 << " " \
-	  << mout1 << " "			\
-	  << mout2 << " "			\
-	  << out[0] << " " \
+    ofile << std::setprecision(10)
+	  << L.a1 << " "
+	  << L.a2 << " " 
+	  << mout1 << " " 
+	  << mout2 << " "
+	  << out[0] << " "
 	  << out[1] << std::endl;
     ofile.close();
   }
@@ -94,11 +95,19 @@ namespace ANA {
       DOS D(data_folder, L, spin);
       std::vector<double> data = D.compute(0);
       Magnetisation M(data_folder, L);
-      ofile << std::setprecision(10) << L.a1 << " " << \
-	L.a2 << " " << L.a3 << " " << L.a4 << " " << "#" << " ";
-      ofile << M.compute(2) << " " << "#" << " ";
+      ofile << std::setprecision(10)
+	    << L.a1 << " "
+	    << L.a2 << " "
+	    << L.a3 << " "
+	    << L.a4 << " # "
+	    << M.compute(2)
+	    << " # ";
       for (i=0; i<L.energyN; i++) {
-	ofile << std::setprecision(10) << data[i] << " " << ener[i] <<  "|";
+	ofile << std::setprecision(10)
+	      << data[i]
+	      << " "
+	      << ener[i]
+	      <<  "|";
       }
       ofile << std::endl;
       ofile.close();
@@ -121,15 +130,69 @@ namespace ANA {
       DOSK D(data_folder, L, spin);
       std::vector<double> data = D.compute(1);
       Magnetisation M(data_folder, L);
-      ofile << std::setprecision(10) << L.a1 << " " << \
-	L.a2 << " " << L.a3 << " " << L.a4 << " " << "#" << " ";
-      ofile << M.compute(2) << " " << "#" << " ";
+      ofile << std::setprecision(10)
+	    << L.a1
+	    << " "
+	    << L.a2
+	    << " "
+	    << L.a3
+	    << " "
+	    << L.a4
+	    << " "
+	    << "#"
+	    << " "
+	    << M.compute(2)
+	    << " "
+	    << "#"
+	    << " ";
       for (i=0; i<L.energyN; i++) {
 	ofile << std::setprecision(10) << data[i] << " " << ener[i] <<  "|";
       }
       ofile << std::endl;
       ofile.close();
     }
+  }
+
+  void TOTAL(std::string data_folder) {
+    int i, spin;
+    std::ofstream ofile;
+    for (spin=0; spin<2; spin++) { 
+      if (spin==1) {
+	ofile.open("end/TOTALup", std::ios_base::app);
+      }
+      else {
+	ofile.open("end/TOTALdn", std::ios_base::app);
+      }
+      Limits L;
+      L.load(data_folder);
+      DOSK DK(data_folder, L, spin);
+      Magnetisation M(data_folder, L);
+      DOS D(data_folder, L, spin);
+      HeatCond H(data_folder, L);
+      std::vector<double> data0 = D.compute(0);
+      std::vector<double> dataK = DK.compute(1);
+      std::vector<double> ener = L.space(0);
+      ofile << std::setprecision(10)
+	    << L.a1 << " "
+	    << L.a2 << " "
+	    << L.a3 << " "
+	    << L.a4 << " # " 
+	    << M.compute(2) << " # "
+      for (i=0; i<L.energyN; i++) {
+	ofile << std::setprecision(10)
+	      << ener[i] << " "
+	      << data0[i] <<  " | ";
+      }
+      ofile << " # ";
+      for (i=0; i<L.energyN; i++) {
+	ofile << std::setprecision(10)
+	      << ener[i] << " "
+	      << dataK[i] <<  " | ";
+      }
+      ofile << " # "
+      ofile << std::endl;
+      ofile.close();
+
   }
   
   void analysis(std::string data_folder) {
