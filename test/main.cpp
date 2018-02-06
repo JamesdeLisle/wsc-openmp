@@ -25,12 +25,12 @@ int main(int argc, char * argv[]) {
   if (ENG.condAnal(argv[1])) {return 0;}
 
   l.spin = ENG.getSpin(argv[1]);
-  l.energyN = 100;
+  l.energyN = 500;
   l.kPolarN = 50;
   l.kAzimuN = 100;
   l.alphaN = 100;
-  l.energyMin = 0.0;
-  l.energyMax = 0.25;
+  l.energyMin = -1.0;
+  l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
   l.kPolarMax = PI;
   l.kAzimuMin = 1e-6;
