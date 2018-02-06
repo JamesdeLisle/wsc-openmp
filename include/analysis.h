@@ -177,7 +177,7 @@ namespace ANA {
 	    << L.a2 << " "
 	    << L.a3 << " "
 	    << L.a4 << " # " 
-	    << M.compute(2) << " # "
+	    << M.compute(2) << " # ";
       for (i=0; i<L.energyN; i++) {
 	ofile << std::setprecision(10)
 	      << ener[i] << " "
@@ -189,10 +189,10 @@ namespace ANA {
 	      << ener[i] << " "
 	      << dataK[i] <<  " | ";
       }
-      ofile << " # "
+      ofile << " # ";
       ofile << std::endl;
       ofile.close();
-
+    }
   }
   
   void analysis(std::string data_folder) {
