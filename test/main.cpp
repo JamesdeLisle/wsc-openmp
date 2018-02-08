@@ -25,7 +25,7 @@ int main(int argc, char * argv[]) {
   if (ENG.condAnal(argv[1])) {return 0;}
 
   l.spin = ENG.getSpin(argv[1]);
-  l.energyN = 500;
+  l.energyN = 200;
   l.kPolarN = 50;
   l.kAzimuN = 100;
   l.alphaN = 100;
@@ -58,12 +58,12 @@ int main(int argc, char * argv[]) {
 
   ENG.setThreads(22);
 
-  int i, j;
-  for (i=0; i<disc; i++) {
-    l.a1 = ANIS[i];
-    l.a2 = ANIS[i];
-    ENG.run(l, max_order);
-  }
+  //int i, j;
+  //for (i=0; i<disc; i++) {
+  //  l.a1 = ANIS[i];
+  // l.a2 = ANIS[i];
+  ENG.run(l, max_order);
+    //}
   T.stop();  
 
   return 0;
