@@ -52,7 +52,7 @@ int main(int argc, char * argv[]) {
 
   int disc = 25;
   
-  std::vector<double> ANIS = SPACE::linspace(0.0, 1.0, disc); 
+  std::vector<double> ANIS = SPACE::linspace(-1.0, 0.0, disc); 
 
   Timer T = Timer();
 
