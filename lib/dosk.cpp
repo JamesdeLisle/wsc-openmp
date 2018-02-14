@@ -8,7 +8,7 @@
 DOSK::DOSK(std::string data_folder, Limits _lim, int spin) :	\
   inData(data_folder, spin, 12, _lim), lim(_lim) {
   lim.spin = spin;
-  inData = InData(data_folder, spin, 12, lim);
+  inData = InData(data_folder, spin, 10, lim);
 }
 
 double DOSK::simpFac(int value, int max) {
@@ -24,7 +24,7 @@ double DOSK::simpFac(int value, int max) {
 }
 
 std::vector<double> DOSK::compute(int order) {
-  std::vector<double> \
+  std::vector<double>	 \
     ener = lim.space(0), \
     kPol = lim.space(1), \
     kAzi = lim.space(2);

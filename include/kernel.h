@@ -37,12 +37,17 @@ void kernel(int i, int j, int k,
     runData.set(i, j, k, R.run());
   }
   else if (order == 4) {
-    Quantum F(runVal, inData->get(0, i, j, k), inData->getDir(0, i, j, k));
+    Quantum F(runVal,
+	      inData->get(0, i, j, k),
+	      inData->getDir(0, i, j, k));
     Runge<Quantum> R(runVal, F);
     runData.set(i, j, k, R.run());
   }
   else if (order == 5) {
-    Quantumb F(runVal, inData->get(0, i, j, k), inData->getDir(0, i, j, k));
+    Quantumb F(runVal,
+	       inData->get(1, i, j, k),
+	       inData->getDir(0, i, j, k),
+	       inData->getDir(1, i, j, k));
     Runge<Quantumb> R(runVal, F);
     runData.set(i, j, k, R.run());
   }

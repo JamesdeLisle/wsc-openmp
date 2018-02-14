@@ -10,10 +10,11 @@ class Quantumb
 {
  private:
   RunVal runVal;
-  mat ret0;
+  mat ret1;
   mat dpzret1;
+  mat dthetakel2;
  public:
-  Quantumb(RunVal _runVal, mat _ret0, mat _dpzret1);
+  Quantumb(RunVal _runVal, mat _ret0, mat _dpzret1, mat _dthetakel2);
   void setAlpha(double _alpha) {runVal.setAlpha(_alpha);}
   void setiAlpha(int i) {runVal.setiAlpha(i);}
   double getAlpha() {return runVal.getAlpha();}

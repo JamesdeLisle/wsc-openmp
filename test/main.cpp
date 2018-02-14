@@ -17,7 +17,7 @@ int main(int argc, char * argv[]) {
 
    
   LimitsBox l;
-  int max_order = 4;
+  int max_order = 6;
   std::string folder = "data/";
   std::string time = getTime();
   MainFunc ENG(folder, time); 
@@ -52,18 +52,18 @@ int main(int argc, char * argv[]) {
 
   int disc = 25;
   
-  std::vector<double> ANIS = SPACE::linspace(-1.0, 0.0, disc); 
+  //std::vector<double> ANIS = SPACE::linspace(-1.0, 0.0, disc); 
 
   Timer T = Timer();
 
   ENG.setThreads(22);
 
-  int i, j;
-  for (i=0; i<disc; i++) {
-    l.a1 = ANIS[i];
-    l.a2 = ANIS[i];
-    ENG.run(l, max_order);
-  }
+  //int i, j;
+  //for (i=0; i<disc; i++) {
+  //  l.a1 = ANIS[i];
+  //  l.a2 = ANIS[i];
+  ENG.run(l, max_order);
+    //}
   T.stop();  
 
   return 0;

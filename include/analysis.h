@@ -170,14 +170,14 @@ namespace ANA {
       DOS D(data_folder, L, spin);
       HeatCond H(data_folder, L);
       std::vector<double> data0 = D.compute(0);
-      std::vector<double> dataK = DK.compute(1);
+      std::vector<double> dataK = DK.compute(4);
       std::vector<double> ener = L.space(0);
       ofile << std::setprecision(10)
 	    << L.a1 << " "
 	    << L.a2 << " "
 	    << L.a3 << " "
 	    << L.a4 << " # " 
-	    << M.compute(2) << " # ";
+	    << M.compute(4) << " # ";
       for (i=0; i<L.energyN; i++) {
 	ofile << std::setprecision(10)
 	      << ener[i] << " "

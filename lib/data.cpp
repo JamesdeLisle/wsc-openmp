@@ -258,9 +258,13 @@ InData::InData(string data_folder,
   else if (order == 5) {
     Data r0(data_folder, lim.spin, 0, lim);
     Data r1(data_folder, lim.spin, 2, lim);
+    Data k2(data_folder, lim.spin, 4, lim);
+    
     store.push_back(r0);
     store.push_back(r1);
+    store.push_back(k2);
     this->dpz(1);
+    this->dtheta(2);
   }
   else if (order == 10) {
     Data k0(data_folder, lim.spin, 1, lim);
