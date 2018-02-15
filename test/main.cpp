@@ -12,14 +12,15 @@
 #include <stdio.h>
 #define PI 3.14159
 
+using namespace std;
 
 int main(int argc, char * argv[]) {
 
    
   LimitsBox l;
   int max_order = 6;
-  std::string folder = "data/";
-  std::string time = getTime();
+  string folder = "data/";
+  string time = getTime();
   MainFunc ENG(folder, time); 
 
   if (ENG.condAnal(argv[1])) {return 0;}
@@ -50,10 +51,17 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = time; 
 
+  vector<double> A = SPACE::linspace(0.0, 1.0, 25);
+  
   int disc = 25;
   Timer T = Timer();
   ENG.setThreads(22);
-  ENG.run(l, max_order);
+  int i;
+  for (i=0; i<25; i++) {
+    l.a1 = A[i];
+    l.a2 = A[i];
+    ENG.run(l, max_order);
+  }
   T.stop();  
 
   return 0;
