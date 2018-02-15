@@ -17,7 +17,7 @@ int main(int argc, char * argv[]) {
 
    
   LimitsBox l;
-  int max_order = 6;
+  int max_order = 4;
   std::string folder = "data/";
   std::string time = getTime();
   MainFunc ENG(folder, time); 
@@ -25,7 +25,7 @@ int main(int argc, char * argv[]) {
   if (ENG.condAnal(argv[1])) {return 0;}
 
   l.spin = ENG.getSpin(argv[1]);
-  l.energyN = 1000;
+  l.energyN = 500;
   l.kPolarN = 50;
   l.kAzimuN = 100;
   l.alphaN = 100;
