@@ -17,7 +17,7 @@ int main(int argc, char * argv[]) {
 
    
   LimitsBox l;
-  int max_order = 6;
+  int max_order = 4;
   std::string folder = "data/";
   std::string time = getTime();
   MainFunc ENG(folder, time); 
