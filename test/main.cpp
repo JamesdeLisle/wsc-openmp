@@ -55,7 +55,7 @@ int main(int argc, char * argv[]) {
   
   //int disc = 25;
   Timer T = Timer();
-  ENG.setThreads(22);
+  ENG.setThreads(26);
   int i;
   //for (i=0; i<25; i++) {
   //  l.a1 = A[i];
