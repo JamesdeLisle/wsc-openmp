@@ -18,7 +18,7 @@ int main(int argc, char * argv[]) {
 
    
   LimitsBox l;
-  int max_order = 6;
+  int max_order = 4;
   string folder = "data/";
   string time = getTime();
   MainFunc ENG(folder, time); 
