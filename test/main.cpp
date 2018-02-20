@@ -41,7 +41,7 @@ int main(int argc, char * argv[]) {
   l.temp = 0.04;
   l.tempCrit = 0.1;
   l.a1 = 0.2;
-  l.a2 = 0.6;
+  l.a2 = 0.3;
   l.a3 = 0.234;
   l.a4 = -0.123;
   l.tau = 0.01;
@@ -51,17 +51,17 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = time; 
 
-  vector<double> A = SPACE::linspace(0.0, 1.0, 25);
+  //vector<double> A = SPACE::linspace(0.0, 1.0, 25);
   
-  int disc = 25;
+  //int disc = 25;
   Timer T = Timer();
   ENG.setThreads(22);
   int i;
-  for (i=0; i<25; i++) {
-    l.a1 = A[i];
-    l.a2 = A[i];
-    ENG.run(l, max_order);
-  }
+  //for (i=0; i<25; i++) {
+  //  l.a1 = A[i];
+  //  l.a2 = A[i];
+  ENG.run(l, max_order);
+  //}
   T.stop();  
 
   return 0;
