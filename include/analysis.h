@@ -177,7 +177,7 @@ namespace ANA {
 	    << L.a2 << " "
 	    << L.a3 << " "
 	    << L.a4 << " # " 
-	    << M.compute(1) << " # ";
+	    << M.compute(2) << " # ";
       for (i=0; i<L.energyN; i++) {
 	ofile << std::setprecision(10)
 	      << ener[i] << " "

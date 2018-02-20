@@ -44,7 +44,7 @@ int main(int argc, char * argv[]) {
   l.a2 = 0.3;
   l.a3 = 0.234;
   l.a4 = -0.123;
-  l.tau = 0.01;
+  l.tau = 0.001;
   l.fermVU = 1.0;
   l.fermVD = 0.75;
   l.tempInc = -0.03;
