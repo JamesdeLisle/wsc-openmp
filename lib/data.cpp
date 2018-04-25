@@ -82,13 +82,10 @@ void Data::read(string data_folder,
   for (i=0; i<lim.energyN; i++) {
     vector<vector<string> > lines;
     infile.open((const char *) (data_folder +
-				name.get(spin, i,
-					 lim.start_time, order)).c_str());
+				name.get(spin, i, lim.start_time, order)).c_str());
     if (infile.fail()) {
-      cout << (data_folder +
-				name.get(spin, i,
-					 lim.start_time, order)) << endl;
-      cout << "FAILED" << endl;
+      cout << (data_folder + name.get(spin, i, lim.start_time, order)) << endl;
+      cout << "FAILED TO LOAD DATA FILE" << endl;
     }
     for (string LINE; getline(infile, LINE);) {
       split(LINE, line, ' ');
@@ -278,7 +275,9 @@ InData::InData(string data_folder,
   }
   else if (order == 11) {
     Data r0(data_folder, lim.spin, 0, lim);
+    Data r1(data_folder, lim.spin, 2, lim);
     store.push_back(r0);
+    store.push_back(r1);
   }
   else if (order == 12) {
     Data k0(data_folder, lim.spin, 1, lim);
