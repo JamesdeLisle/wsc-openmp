@@ -27,7 +27,7 @@ int main(int argc, char * argv[]) {
   if (ENG.condAnal(argv[1])) {return 0;}
   
   l.spin = ENG.getSpin(argv[1]);
-  l.energyN = 500;
+  l.energyN = 200;
   l.kPolarN = 50;
   l.kAzimuN = 100;
   l.alphaN = 100;
@@ -41,10 +41,10 @@ int main(int argc, char * argv[]) {
   l.alphaMax = 0.0;
   l.temp = 0.04;
   l.tempCrit = 0.1;
-  l.a1 = 1.0;
-  l.a2 = 2.0;
-  l.a3 = 3.0;
-  l.a4 = 4.0;
+  l.a1 = 0.2;
+  l.a2 = 0.45;
+  l.a3 = 0.673;
+  l.a4 = -0.315;
   l.tau = 0.001;
   l.fermVU = 1.0;
   l.fermVD = 0.75;
