@@ -33,7 +33,7 @@ namespace ANA {
     Limits L;
     L.load(data_folder);
     Magnetisation M(data_folder, L);
-    ofile << L.magF << " " << L.tempInc << " " << M.compute(4) << std::endl;
+    ofile << L.magF << " " << L.tempInc << " " << M.compute(3) << std::endl;
     ofile.close();
   }
 
@@ -67,8 +67,8 @@ namespace ANA {
     HeatCond H(data_folder, L);
     Magnetisation M(data_folder, L);
     std::vector<double> out = H.compute();
-    double mout1 = M.compute(1); 
-    double mout2 = M.compute(2); 
+    double mout1 = M.compute(0); 
+    double mout2 = M.compute(1); 
     ofile << std::setprecision(10)
 	  << L.a1 << " "
 	  << L.a2 << " " 
@@ -100,7 +100,7 @@ namespace ANA {
 	    << L.a2 << " "
 	    << L.a3 << " "
 	    << L.a4 << " # "
-	    << M.compute(2)
+	    << M.compute(1)
 	    << " # ";
       for (i=0; i<L.energyN; i++) {
 	ofile << std::setprecision(10)
@@ -128,7 +128,7 @@ namespace ANA {
       L.load(data_folder);
       std::vector<double> ener = L.space(0);
       DOSK D(data_folder, L, spin);
-      std::vector<double> data = D.compute(1);
+      std::vector<double> data = D.compute(0);
       Magnetisation M(data_folder, L);
       ofile << std::setprecision(10)
 	    << L.a1
@@ -141,7 +141,7 @@ namespace ANA {
 	    << " "
 	    << "#"
 	    << " "
-	    << M.compute(2)
+	    << M.compute(1)
 	    << " "
 	    << "#"
 	    << " ";
@@ -170,14 +170,14 @@ namespace ANA {
       DOS D(data_folder, L, spin);
       HeatCond H(data_folder, L);
       std::vector<double> data0 = D.compute(0);
-      std::vector<double> dataK = DK.compute(2);
+      std::vector<double> dataK = DK.compute(1);
       std::vector<double> ener = L.space(0);
       ofile << std::setprecision(10)
 	    << L.a1 << " "
 	    << L.a2 << " "
 	    << L.a3 << " "
 	    << L.a4 << " # " 
-	    << M.compute(2) << " # ";
+	    << M.compute(1) << " # ";
       for (i=0; i<L.energyN; i++) {
 	ofile << std::setprecision(10)
 	      << ener[i] << " "

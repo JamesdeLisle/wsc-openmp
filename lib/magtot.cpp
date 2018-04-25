@@ -44,7 +44,7 @@ double Magnetisation::compute(int order) {
       for (k=0; k<lim.kAzimuN; k++) {
 	hTheta = 0.0;
 	G = mat::Zero();
-	for (l=0; l<order; l++) {
+	for (l=0; l<order+1; l++) {
 	  G += inDataU.get(l, i, j, k);
 	  G -= inDataD.get(l, i, j, k);
 	}

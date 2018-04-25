@@ -40,7 +40,7 @@ std::vector<double> DOSK::compute(int order) {
       for (k=0; k<lim.kAzimuN; k++) {
 	hTheta = 0.0;
 	G = mat::Zero();
-	for (l=0; l<order; l++) {
+	for (l=0; l<order+1; l++) {
 	  G += inData.get(l, i, j, k);
 	}
 	hTheta += (P.get(3) * G).trace();
