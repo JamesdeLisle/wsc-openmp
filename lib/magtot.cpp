@@ -10,9 +10,9 @@ Magnetisation::Magnetisation(std::string data_folder, Limits _lim) : \
   inDataD(data_folder, 1, 12, _lim), \
   lim(_lim) {
   lim.spin = 1;
-  inDataU = InData(data_folder, 1, 10, lim);
+  inDataU = InData(data_folder, 1, 12, lim);
   lim.spin = 0;
-  inDataD = InData(data_folder, 0, 10, lim);
+  inDataD = InData(data_folder, 0, 12, lim);
 }
 
 double simpFac(int value, int max) {
