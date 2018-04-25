@@ -266,6 +266,7 @@ InData::InData(string data_folder,
   else if (order == 10) {
     Data k0(data_folder, lim.spin, 1, lim);
     Data k1(data_folder, lim.spin, 3, lim);
+    std::cout << "PROBLEM" << std::endl;
     Data k2(data_folder, lim.spin, 4, lim);
     Data k3(data_folder, lim.spin, 5, lim);
     store.push_back(k0);
