@@ -205,12 +205,14 @@ namespace ANA {
   }
   
   void analysis(string data_folder) {
+    std::cout << "Computing analysis..." << std::endl;
     //Mag(data_folder);
     //Dos(data_folder);
     //HandM(data_folder);
     //MnD(data_folder);
     //MnDK(data_folder);
     TOTAL(data_folder);
+    std::cout << "Done." << std::endl;
   }
 }
 
