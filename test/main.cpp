@@ -22,17 +22,18 @@ int main(int argc, char * argv[]) {
   string folder = "data/";
   string time = getTime();
   MainFunc ENG(folder, time);
-  int n_threads = std::atoi(argv[2]);
 
   if (ENG.condAnal(argv[1])) {return 0;}
   
+  int n_threads = std::atoi(argv[2]);
+
   l.spin = ENG.getSpin(argv[1]);
-  l.energyN = 200;
+  l.energyN = 500;
   l.kPolarN = 50;
   l.kAzimuN = 100;
   l.alphaN = 100;
-  l.energyMin = -1.0;
-  l.energyMax = 1.0;
+  l.energyMin = -0.25;
+  l.energyMax = 0.25;
   l.kPolarMin = 1e-6;
   l.kPolarMax = PI;
   l.kAzimuMin = 1e-6;
