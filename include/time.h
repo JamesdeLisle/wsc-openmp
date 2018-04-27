@@ -21,6 +21,7 @@ class Timer
   std::clock_t start;
  public:
   Timer() : start() {start = std::clock();}
-  void stop() {std::cout << ((std::clock() - start) / (double) CLOCKS_PER_SEC) / 3600.0 << "mins" << std::endl;}
+  void stop() {std::cout << ((std::clock() - start) / (double) CLOCKS_PER_SEC) /
+      3600.0 << "mins" << std::endl;}
 };  
 #endif
