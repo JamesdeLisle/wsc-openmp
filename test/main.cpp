@@ -28,10 +28,10 @@ int main(int argc, char * argv[]) {
   int n_threads = std::atoi(argv[2]);
 
   l.spin = ENG.getSpin(argv[1]);
-  l.energyN = 500;
+  l.energyN = 200;
   l.kPolarN = 50;
   l.kAzimuN = 100;
-  l.alphaN = 100;
+  l.alphaN = 200;
   l.energyMin = -0.25;
   l.energyMax = 0.25;
   l.kPolarMin = 1e-6;
