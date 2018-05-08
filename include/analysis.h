@@ -181,7 +181,7 @@ namespace ANA {
 	    << L.a3 << " "
 	    << L.a4 << " # " 
 	    << L.temp << " # "
-	    << L.tmepCrit << " # "
+	    << L.tempCrit << " # "
 	    << L.tau << " # "
 	    << L.fermVU << " # "
 	    << L.fermVD << " # "
