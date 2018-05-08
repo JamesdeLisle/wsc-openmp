@@ -180,6 +180,13 @@ namespace ANA {
 	    << L.a2 << " "
 	    << L.a3 << " "
 	    << L.a4 << " # " 
+	    << L.temp << " # "
+	    << L.tmepCrit << " # "
+	    << L.tau << " # "
+	    << L.fermVU << " # "
+	    << L.fermVD << " # "
+	    << L.tmepInc << " # "
+	    << L.magF << " # "
 	    << M.compute(1) << " # ";
       for (i=0; i<L.energyN; i++) {
 	ofile << setprecision(10)

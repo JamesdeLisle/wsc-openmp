@@ -46,21 +46,21 @@ int main(int argc, char * argv[]) {
   l.a2 = 0.45;
   l.a3 = 0.673;
   l.a4 = -0.315;
-  l.tau = 0.1;
+  l.tau = 0.009;
   l.fermVU = 1.0;
   l.fermVD = 0.75;
   l.tempInc = 0.002;
   l.magF = 0.3;
   l.start_time = time; 
 
-  vector<double> A = SPACE::linspace(0.00001, 0.01, 20);
+  vector<double> A = SPACE::linspace(0.0, 0.03, 100);
   
   //int disc = 25;
   Timer T = Timer();
   ENG.setThreads(n_threads);
   int i;
   for (i=10; i<20; i++) {
-    l.tau = A[i];
+    l.tempInc = A[i];
     ENG.run(l, max_order);
   }
   T.stop();  
