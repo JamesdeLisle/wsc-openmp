@@ -185,7 +185,7 @@ namespace ANA {
 	    << L.tau << " # "
 	    << L.fermVU << " # "
 	    << L.fermVD << " # "
-	    << L.tmepInc << " # "
+	    << L.tempInc << " # "
 	    << L.magF << " # "
 	    << M.compute(1) << " # ";
       for (i=0; i<L.energyN; i++) {
