@@ -28,7 +28,7 @@ int main(int argc, char * argv[]) {
   int n_threads = std::atoi(argv[2]);
 
   l.spin = ENG.getSpin(argv[1]);
-  l.energyN = 2000;
+  l.energyN = 100;
   l.kPolarN = 50;
   l.kAzimuN = 100;
   l.alphaN = 100;
