@@ -53,13 +53,13 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = time; 
 
-  vector<double> A = SPACE::linspace(0.0, 0.03, 100);
+  int disc = 100;
+  vector<double> A = SPACE::linspace(0.0, 0.03, disc);
   
-  //int disc = 25;
   Timer T = Timer();
   ENG.setThreads(n_threads);
   int i;
-  for (i=10; i<20; i++) {
+  for (i=0; i<disc; i++) {
     l.tempInc = A[i];
     ENG.run(l, max_order);
   }
