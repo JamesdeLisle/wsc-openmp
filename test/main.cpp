@@ -53,16 +53,16 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = time; 
 
-  vector<double> A = SPACE::linspace(0.00001, 0.01, 10);
+  vector<double> A = SPACE::linspace(0.00001, 0.1, 20);
   
   //int disc = 25;
   Timer T = Timer();
   ENG.setThreads(n_threads);
-  //int i;
-  //for (i=0; i<10; i++) {
-  //  l.tau = A[i];
-  ENG.run(l, max_order);
-  //}
+  int i;
+  for (i=0; i<10; i++) {
+    l.tau = A[i];
+    ENG.run(l, max_order);
+  }
   T.stop();  
 
   return 0;
