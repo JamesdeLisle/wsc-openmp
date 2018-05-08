@@ -171,6 +171,7 @@ namespace ANA {
       Magnetisation M(data_folder, L);
       DOS D(data_folder, L, spin);
       HeatCond H(data_folder, L);
+      vector<double> heat = H.compute();
       vector<double> data0 = D.compute(0);
       vector<double> dataK = DK.compute(0);
       vector<double> dataK1 = DK.compute(1);
@@ -188,7 +189,7 @@ namespace ANA {
 	    << L.tempInc << " # "
 	    << L.magF << " # "
 	    << M.compute(1) << " # "
-	    << H.compute() << " # ";
+	    << heat[spin] << " # ";
       for (i=0; i<L.energyN; i++) {
 	ofile << setprecision(10)
 	      << ener[i] << " "

@@ -76,8 +76,8 @@ std::vector<double> HeatCond::compute() {
     hED *= lim.energyD * 3.0 / 8.0;
     hEU *= simpFac(i, lim.energyN);
     hED *= simpFac(i, lim.energyN);
-    rv[0] += hEU.imag();
-    rv[1] += hED.imag();
+    rv[1] += hEU.imag();
+    rv[0] += hED.imag();
   }
   return rv;
 }
