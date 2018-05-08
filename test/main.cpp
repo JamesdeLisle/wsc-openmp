@@ -59,7 +59,7 @@ int main(int argc, char * argv[]) {
   Timer T = Timer();
   ENG.setThreads(n_threads);
   int i;
-  for (i=0; i<10; i++) {
+  for (i=10; i<20; i++) {
     l.tau = A[i];
     ENG.run(l, max_order);
   }
