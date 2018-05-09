@@ -43,9 +43,9 @@ int main(int argc, char * argv[]) {
   l.temp = 0.05;
   l.tempCrit = 0.1;
   l.a1 = 0.0;
-  l.a2 = 0.45;
+  l.a2 = 0.0;
   l.a3 = 0.0;
-  l.a4 = 0.315;
+  l.a4 = 0.0;
   l.tau = 0.009;
   l.fermVU = 1.0;
   l.fermVD = 0.75;
@@ -58,7 +58,7 @@ int main(int argc, char * argv[]) {
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
-  int i;
+  //int i;
   //for (i=0; i<disc; i++) {
   //  l.tempInc = A[i];
   ENG.run(l, max_order);
