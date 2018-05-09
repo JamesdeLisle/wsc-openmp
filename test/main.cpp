@@ -70,6 +70,7 @@ int main(int argc, char * argv[]) {
   ENG.run(l, max_order);
   l.a3 = 0.0;
   l.a4 = 1.0;
+  ENG.run(l, max_order);
   //}
   T.stop();  
 
