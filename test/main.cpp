@@ -43,8 +43,8 @@ int main(int argc, char * argv[]) {
   l.temp = 0.05;
   l.tempCrit = 0.1;
   l.a1 = 1.0;
-  l.a2 = 1.0;
-  l.a3 = 0.0;
+  l.a2 = 0.0;
+  l.a3 = 1.0;
   l.a4 = 0.0;
   l.tau = 0.009;
   l.fermVU = 1.0;
