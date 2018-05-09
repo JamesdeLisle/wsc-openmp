@@ -42,7 +42,7 @@ int main(int argc, char * argv[]) {
   l.alphaMax = 0.0;
   l.temp = 0.05;
   l.tempCrit = 0.1;
-  l.a1 = 0.0;
+  l.a1 = 1.0;
   l.a2 = 0.0;
   l.a3 = 0.0;
   l.a4 = 0.0;
@@ -62,6 +62,14 @@ int main(int argc, char * argv[]) {
   //for (i=0; i<disc; i++) {
   //  l.tempInc = A[i];
   ENG.run(l, max_order);
+  l.a1 = 0.0;
+  l.a2 = 1.0;
+  ENG.run(l, max_order);
+  l.a2 = 0.0;
+  l.a3 = 1.0;
+  ENG.run(l, max_order);
+  l.a3 = 0.0;
+  l.a4 = 1.0;
   //}
   T.stop();  
 
