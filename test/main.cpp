@@ -31,14 +31,14 @@ int main(int argc, char * argv[]) {
   l.energyN = 100;
   l.kPolarN = 50;
   l.kAzimuN = 100;
-  l.alphaN = 400;
+  l.alphaN = 200;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
   l.kPolarMax = PI;
   l.kAzimuMin = 1e-6;
   l.kAzimuMax = 2 * PI;
-  l.alphaMin = -100.0;
+  l.alphaMin = -6.0;
   l.alphaMax = 0.0;
   l.temp = 0.05;
   l.tempCrit = 0.1;
@@ -54,15 +54,15 @@ int main(int argc, char * argv[]) {
   l.start_time = time; 
 
   int disc = 100;
-  vector<double> A = SPACE::linspace(0.0, 0.03, disc);
+  vector<double> A = SPACE::linspace(0.0, 12.0, disc);
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
-  //int i;
-  //for (i=0; i<disc; i++) {
-  //  l.tempInc = A[i];
-  ENG.run(l, max_order);
-  //}
+  int i;
+  for (i=0; i<disc; i++) {
+    l.alphaMax = -A[i];
+    ENG.run(l, max_order);
+  }
   T.stop();  
 
   return 0;
