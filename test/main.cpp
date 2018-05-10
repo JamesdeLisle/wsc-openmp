@@ -15,6 +15,7 @@
 using namespace std;
 
 int main(int argc, char * argv[]) {
+
    
   LimitsBox l;
   int max_order = 4;
@@ -41,36 +42,28 @@ int main(int argc, char * argv[]) {
   l.alphaMax = 0.0;
   l.temp = 0.05;
   l.tempCrit = 0.1;
-  l.a1 = 0.6;
-  l.a2 = 0.7;
-  l.a3 = 0.8;
-  l.a4 = 0.9;
-  l.tau = 0.005;
+  l.a1 = 0.2;
+  l.a2 = 0.5;
+  l.a3 = 0.6;
+  l.a4 = 0.3;
+  l.tau = 0.009;
   l.fermVU = 1.0;
   l.fermVD = 0.75;
   l.tempInc = 0.03;
   l.magF = 0.3;
   l.start_time = time; 
 
-  /*
-  int disc = 25;
-  vector<double> A = SPACE::linspace(0.0, 0.3, disc);
-  vector<double> B = SPACE::linspace(0.0, 0.03, disc);
+  int disc = 100;
+  vector<double> A = SPACE::linspace(0.0, 12.0, disc);
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
-  int i, j;
-  for (i=0; i<disc; i++) {
-    l.magF = A[i];
-    for (j=0; j<disc; j++) {
-      l.tempInc = B[j];
-      ENG.run(l, max_order);
-    }
-  }
-  T.stop();  
-  */
-  Timer T = Timer();
+  int i;
+  //for (i=0; i<disc; i++) {
+  //  l.alphaMax = -A[i];
   ENG.run(l, max_order);
+    //}
   T.stop();  
+
   return 0;
 }
