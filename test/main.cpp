@@ -31,7 +31,7 @@ int main(int argc, char * argv[]) {
   l.energyN = 100;
   l.kPolarN = 50;
   l.kAzimuN = 100;
-  l.alphaN = 200;
+  l.alphaN = 100;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
@@ -59,10 +59,10 @@ int main(int argc, char * argv[]) {
   Timer T = Timer();
   ENG.setThreads(n_threads);
   int i;
-  for (i=0; i<disc; i++) {
-    l.alphaMax = -A[i];
-    ENG.run(l, max_order);
-  }
+  //for (i=0; i<disc; i++) {
+  //  l.alphaMax = -A[i];
+  ENG.run(l, max_order);
+    //}
   T.stop();  
 
   return 0;
