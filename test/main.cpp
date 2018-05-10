@@ -31,14 +31,14 @@ int main(int argc, char * argv[]) {
   l.energyN = 100;
   l.kPolarN = 50;
   l.kAzimuN = 100;
-  l.alphaN = 100;
+  l.alphaN = 200;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
   l.kPolarMax = PI;
   l.kAzimuMin = 1e-6;
   l.kAzimuMax = 2 * PI;
-  l.alphaMin = -3.0;
+  l.alphaMin = -6.0;
   l.alphaMax = 0.0;
   l.temp = 0.05;
   l.tempCrit = 0.1;
