@@ -42,10 +42,10 @@ int main(int argc, char * argv[]) {
   l.alphaMax = 0.0;
   l.temp = 0.05;
   l.tempCrit = 0.1;
-  l.a1 = 0.4;
-  l.a2 = 0.5;
-  l.a3 = 0.6;
-  l.a4 = 0.3;
+  l.a1 = 0.5;
+  l.a2 = 0.6;
+  l.a3 = 0.7;
+  l.a4 = 0.8;
   l.tau = 0.009;
   l.fermVU = 1.0;
   l.fermVD = 0.75;
