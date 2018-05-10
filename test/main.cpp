@@ -41,17 +41,18 @@ int main(int argc, char * argv[]) {
   l.alphaMax = 0.0;
   l.temp = 0.05;
   l.tempCrit = 0.1;
-  l.a1 = 0.6;
-  l.a2 = 0.7;
+  l.a1 = 0.0;
+  l.a2 = 0.0;
   l.a3 = 0.8;
   l.a4 = 0.9;
-  l.tau = 0.001;
+  l.tau = 0.005;
   l.fermVU = 1.0;
   l.fermVD = 0.75;
   l.tempInc = 0.03;
   l.magF = 0.3;
   l.start_time = time; 
 
+  /*
   int disc = 25;
   vector<double> A = SPACE::linspace(0.0, 0.3, disc);
   vector<double> B = SPACE::linspace(0.0, 0.03, disc);
@@ -67,6 +68,9 @@ int main(int argc, char * argv[]) {
     }
   }
   T.stop();  
-
+  */
+  Timer T = Timer();
+  ENG.run(l, max_order);
+  T.stop();  
   return 0;
 }
