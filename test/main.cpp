@@ -42,7 +42,7 @@ int main(int argc, char * argv[]) {
   l.alphaMax = 0.0;
   l.temp = 0.05;
   l.tempCrit = 0.1;
-  l.a1 = 0.2;
+  l.a1 = 0.4;
   l.a2 = 0.5;
   l.a3 = 0.6;
   l.a4 = 0.3;
