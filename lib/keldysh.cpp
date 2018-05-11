@@ -31,7 +31,7 @@ Green Keldysh::get(Green funcVal) {
   
   rvm = (E.epsi().get() - E.hamR().get()) * funcVal.get() - \
     funcVal.get() * (E.epsi().get() - E.hamA().get()) + \
-    ret * E.hamKG().get() - E.hamKG().get() * adv + \
+    ret * E.hamK().get() - E.hamK().get() * adv + \
     sgn * I * runVal.getlim()->magF * dkel0;
 
   Green rv(-rvm / runVal.getlim()->fermV);
