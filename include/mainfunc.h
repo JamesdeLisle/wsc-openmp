@@ -19,5 +19,4 @@ class MainFunc
   void setThreads(int max);
 };
 
-
 #endif
