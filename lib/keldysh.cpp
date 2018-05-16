@@ -28,7 +28,7 @@ Green Keldysh::get(Green funcVal) {
   else {
     sgn = -1.0;
   }
-  
+ 
   rvm = (E.epsi().get() - E.hamR().get()) * funcVal.get() - \
     funcVal.get() * (E.epsi().get() - E.hamA().get()) + \
     ret * E.hamK().get() - E.hamK().get() * adv + \

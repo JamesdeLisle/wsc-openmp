@@ -7,10 +7,9 @@
 #include <stdlib.h>
 
 DOS::DOS(std::string data_folder, Limits _lim, int spin) :	\
-  inData(data_folder, 1, 11, _lim), \
+  inData(data_folder, spin, 11, _lim), \
   lim(_lim) {
   lim.spin = spin;
-  inData = InData(data_folder, spin, 11, lim);
 }
 
 double DOS::simpFac(int value, int max) {

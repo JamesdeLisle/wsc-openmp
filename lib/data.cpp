@@ -78,7 +78,7 @@ void Data::read(string data_folder,
   string LINE;
   vector<string> line;
 
-  int i, j, k , m;
+  int i, j, k, m;
   for (i=0; i<lim.energyN; i++) {
     vector<vector<string> > lines;
     infile.open((const char *) (data_folder +

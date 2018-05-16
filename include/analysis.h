@@ -172,7 +172,8 @@ namespace ANA {
       DOS D(data_folder, L, spin);
       HeatCond H(data_folder, L);
       vector<double> heat = H.compute();
-      vector<double> data0 = D.compute(0);
+      vector<double> data00 = D.compute(0);
+      vector<double> data01 = D.compute(1);
       vector<double> dataK = DK.compute(0);
       vector<double> dataK1 = DK.compute(1);
       vector<double> ener = L.space(0);
@@ -193,7 +194,13 @@ namespace ANA {
       for (i=0; i<L.energyN; i++) {
 	ofile << setprecision(10)
 	      << ener[i] << " "
-	      << data0[i] <<  " | ";
+	      << data00[i] <<  " | ";
+      }
+      ofile << " # ";
+      for (i=0; i<L.energyN; i++) {
+	ofile << setprecision(10)
+	      << ener[i] << " "
+	      << data01[i] <<  " | ";
       }
       ofile << " # ";
       for (i=0; i<L.energyN; i++) {
