@@ -36,7 +36,7 @@ class RunVal
   double getZ() {return Z;}
   std::vector<int> getindex() {return index;}
   Limits * getlim() {return &lim;}
-  void comp() {Z = -alpha * sin(Xi);}
+  void comp() {Z = -alpha * cos(Xi);}
 };
 
 class Space

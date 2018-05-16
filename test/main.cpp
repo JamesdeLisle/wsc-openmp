@@ -34,11 +34,11 @@ int main(int argc, char * argv[]) {
   l.alphaN = 100;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
-  l.kPolarMin = 1e-6;
-  l.kPolarMax = PI;
+  l.kPolarMin = -PI/2.0;
+  l.kPolarMax = PI/2.0;
   l.kAzimuMin = 1e-6;
   l.kAzimuMax = 2 * PI;
-  l.alphaMin = -3.0;
+  l.alphaMin = -6.0;
   l.alphaMax = 0.0;
   l.temp = 0.05;
   l.tempCrit = 0.1;
@@ -63,7 +63,7 @@ int main(int argc, char * argv[]) {
   //  l.alphaMax = -A[i];
   ENG.run(l, max_order);
     //}
-  T.stop();  
+  T.stop();
 
   return 0;
 }
