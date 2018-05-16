@@ -49,7 +49,7 @@ int main(int argc, char * argv[]) {
   l.tau = 0.009;
   l.fermVU = 1.0;
   l.fermVD = 1.0;
-  l.tempInc = 0.001;
+  l.tempInc = 0.005;
   l.magF = 0.3;
   l.start_time = time; 
 
