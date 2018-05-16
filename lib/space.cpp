@@ -63,7 +63,7 @@ void Space::run(std::string _data_folder) {
   for (i=0; i<lim.energyN; i++) {
     for (j=0; j<lim.kPolarN; j++) {
       this->progress(i, j);
-      //#pragma omp parallel for schedule(static)
+      #pragma omp parallel for schedule(static)
       for (k=0; k<lim.kAzimuN; k++) {
 	int idxv[3] = {i, j, k};
 	std::vector<int> idx(idxv,  idxv + sizeof(idxv) / sizeof(int));
