@@ -58,8 +58,7 @@ int main(int argc, char * argv[]) {
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
-  ENG.run(l, max_order);
-  /*
+  
   int i, j;
   for (i=0; i<disc; i++) {
     l.a2 = A[i];
@@ -68,7 +67,7 @@ int main(int argc, char * argv[]) {
       ENG.run(l, max_order);
     }
   }
-  */
+  
   T.stop();
 
   return 0;
