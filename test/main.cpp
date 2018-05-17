@@ -38,7 +38,7 @@ int main(int argc, char * argv[]) {
   l.kPolarMax = PI;
   l.kAzimuMin = 1e-6;
   l.kAzimuMax = 2 * PI;
-  l.alphaMin = -6.0;
+  l.alphaMin = -3.0;
   l.alphaMax = 0.0;
   l.temp = 0.06;
   l.tempCrit = 0.1;
