@@ -78,7 +78,7 @@ void Space::run(std::string _data_folder) {
 }
 
 double Space::getDelSq(std::string _data_folder) {
-  int i, j, k;
+  int j, k;
   double val, min = 10.0;
   for (j=0; j<lim.kPolarN; j++) {
     for (k=0; k<lim.kAzimuN; k++) {
