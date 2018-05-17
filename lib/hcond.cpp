@@ -56,17 +56,15 @@ std::vector<double> HeatCond::compute() {
 	}
 	hThetaU += (P.get(3) * GU).trace();
 	hThetaD += (P.get(3) * GU).trace();
-	hThetaU /= (8 * M_PI * M_PI);
-	hThetaD /= (8 * M_PI * M_PI);
 	hThetaU *= lim.kAzimuD;
 	hThetaD *= lim.kAzimuD;
 	hThetaU *= simpFac(k, lim.kAzimuN);
 	hThetaD *= simpFac(k, lim.kAzimuN);
-	hXiU += hThetaU/3.0;
-	hXiD += hThetaD/3.0;
+	hXiU += hThetaU;
+	hXiD += hThetaD;
       }
-      hXiU *= sin(2*kPol[j]) * lim.kPolarD * 3.0 / 10.0;
-      hXiD *= sin(2*kPol[j]) * lim.kPolarD * 3.0 / 10.0;
+      hXiU *= sin(kPol[j]) * cos(kPol[j]) * lim.kPolarD;
+      hXiD *= sin(kPol[j]) * cos(kPol[j]) * lim.kPolarD;
       hXiU *= simpFac(j, lim.kPolarN);
       hXiD *= simpFac(j, lim.kPolarN);
       hEU += hXiU;
@@ -76,7 +74,7 @@ std::vector<double> HeatCond::compute() {
     hED *= ener[i] * lim.energyD;
     hEU *= simpFac(i, lim.energyN);
     hED *= simpFac(i, lim.energyN);
-    rv[1] += hEU.imag();
+    rv[1] += hEU.imag() ;
     rv[0] += hED.imag();
   }
   return rv;
