@@ -38,11 +38,11 @@ int main(int argc, char * argv[]) {
   l.kPolarMax = PI;
   l.kAzimuMin = 1e-6;
   l.kAzimuMax = 2 * PI;
-  l.alphaMin = -3.0;
+  l.alphaMin = -6.0;
   l.alphaMax = 0.0;
   l.temp = 0.06;
   l.tempCrit = 0.1;
-  l.a1 = 0.0;
+  l.a1 = 0.5;
   l.a2 = 0.6;
   l.a3 = 0.7;
   l.a4 = 0.8;
@@ -53,20 +53,22 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = time; 
 
-  int disc = 100;
+  int disc = 25;
   vector<double> A = SPACE::linspace(0.0, 1.0, disc);
-  vector<double> B = SPACE::linspace(0.0, 1.0, disc);
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
+  ENG.run(l, max_order);
+  /*
   int i, j;
   for (i=0; i<disc; i++) {
     l.a2 = A[i];
     for (j=0; j<disc; j++) {
-      l.a2 = B[i];
+      l.a2 = A[j];
       ENG.run(l, max_order);
     }
   }
+  */
   T.stop();
 
   return 0;
