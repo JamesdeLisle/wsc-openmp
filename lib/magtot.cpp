@@ -54,11 +54,11 @@ double Magnetisation::compute(int order) {
 	hTheta *= simpFac(k, lim.kAzimuN);
 	hXi += hTheta;
       }
-      hXi *= sin(kPol[j]) * lim.kPolarD * 3.0 / 8.0;
+      hXi *= sin(kPol[j]) * lim.kPolarD;
       hXi *= simpFac(j, lim.kPolarN);
       hE += hXi;
     }
-    hE *= lim.energyD * 3.0 / 8.0;
+    hE *= lim.energyD;
     hE *= simpFac(i, lim.energyN);
     rv += hE;
   }
