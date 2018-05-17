@@ -52,7 +52,7 @@ std::vector<double> DOS::compute(int order) {
 	hTheta *= DOS::simpFac(k, lim.kAzimuN);
 	hXi += hTheta.imag();
       }
-      hXi *= sin(kPol[j]) * lim.kPolarD / 3.0;
+      hXi *= sin(kPol[j]) * lim.kPolarD * 3.0 / 10.0;
       hXi *= DOS::simpFac(j, lim.kPolarN);
       hE += hXi;
     }
