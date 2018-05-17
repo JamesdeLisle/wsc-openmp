@@ -9,6 +9,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <complex>
 #include "omp.h"
 
 namespace SPACE {
@@ -74,6 +75,24 @@ void Space::run(std::string _data_folder) {
   }
   std::cout << std::endl;
   runData.write(_data_folder);
+}
+
+double Space::getDelSq(std::string _data_folder) {
+  int i, j, k;
+  double val, min = 10.0;
+  for (j=0; j<lim.kPolarN; j++) {
+    for (k=0; k<lim.kAzimuN; k++) {
+      int idxv[3] = {0, j, k};
+      std::vector<int> idx(idxv,  idxv + sizeof(idxv) / sizeof(int));
+      RunVal entry(1.0, kPolar.at(j), kAzimu.at(k), idx, lim);
+      Environment E(entry);
+      val = abs(E.getDeltaR());
+      if (val < min) {
+	min = val;
+      }
+    }
+  }
+  return min;
 }
 
 double Space::simpFac(int value, int max) {

@@ -54,6 +54,7 @@ class Space
   Space();
   Space(Limits L, std::string _time, int _order);
   void run(std::string _data_folder);
+  double getDelSq(std::string _data_folder);
   void progress(int i, int j);
   void test(std::string _data_folder);
   double simpFac(int value, int max);
