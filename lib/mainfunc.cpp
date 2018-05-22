@@ -19,9 +19,9 @@ int MainFunc::getSpin(char * arg) {
   }
 }
 
-bool MainFunc::condAnal(char * arg) {
+bool MainFunc::condAnal(char * arg, string suffix) {
   if (std::strncmp(arg, "an", 2) == 0) {
-    ANA::analysis(folder);
+    ANA::analysis(folder, suffix);
     return 1;
   }
   else {
@@ -29,7 +29,7 @@ bool MainFunc::condAnal(char * arg) {
   }
 }
 
-void MainFunc::run(LimitsBox l, int max_order) {
+void MainFunc::run(LimitsBox l, int max_order, string suffix) {
   int order;
   SCHED.sleep(5);
   SCHED.start(l.spin);
@@ -41,7 +41,7 @@ void MainFunc::run(LimitsBox l, int max_order) {
   }
   SCHED.stop(l.spin);
   SCHED.pause(l.spin);
-  if (!l.spin) {ANA::analysis(folder);}
+  if (!l.spin) {ANA::analysis(folder, suffix);}
   SCHED.clean(l.spin);
 }
 

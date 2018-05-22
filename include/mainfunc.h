@@ -3,6 +3,7 @@
 #include "../include/schedule.h"
 #include "../include/space.h"
 #include "../include/limits.h"
+#include <string>
 
 class MainFunc
 {
@@ -13,8 +14,8 @@ class MainFunc
  public:
   MainFunc(std::string _folder, std::string _time);
   int getSpin(char * arg);
-  bool condAnal(char * arg);
-  void run(LimitsBox l, int max_order);
+  bool condAnal(char * arg, std::string suffix);
+  void run(LimitsBox l, int max_order, std::string suffix);
   void setThreads();
   void setThreads(int max);
 };

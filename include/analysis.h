@@ -155,15 +155,15 @@ namespace ANA {
     }
   }
 
-  void TOTAL(string data_folder) {
+  void TOTAL(string data_folder, string suffix) {
     int i, spin;
     ofstream ofile;
     for (spin=0; spin<2; spin++) { 
       if (spin==1) {
-	ofile.open("end/TOTALup-v", ios_base::app);
+	ofile.open("end/TOTALup" + suffix, ios_base::app);
       }
       else {
-	ofile.open("end/TOTALdn-v", ios_base::app);
+	ofile.open("end/TOTALdn" + suffix, ios_base::app);
       }
       Limits L;
       L.load(data_folder);
@@ -220,14 +220,14 @@ namespace ANA {
     }
   }
   
-  void analysis(string data_folder) {
+  void analysis(string data_folder, string suffix) {
     std::cout << "Computing analysis..." << std::endl;
     //Mag(data_folder);
     //Dos(data_folder);
     //HandM(data_folder);
     //MnD(data_folder);
     //MnDK(data_folder);
-    TOTAL(data_folder);
+    TOTAL(data_folder, suffix);
     std::cout << "Done." << std::endl;
   }
 }

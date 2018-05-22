@@ -19,13 +19,14 @@ int main(int argc, char * argv[]) {
    
   LimitsBox l;
   int max_order = 4;
-  string folder = "data/";
+  string folder(argv[2]);
+  string suffix(argv[3]);
   string time = getTime();
   MainFunc ENG(folder, time);
 
-  if (ENG.condAnal(argv[1])) {return 0;}
+  if (ENG.condAnal(argv[1], suffix)) {return 0;}
   
-  int n_threads = std::atoi(argv[2]);
+  int n_threads = std::atoi(argv[4]);
 
   l.spin = ENG.getSpin(argv[1]);
   l.energyN = 100;
@@ -65,7 +66,7 @@ int main(int argc, char * argv[]) {
     l.magF = A[i];
     for (j=0; j<disc; j++) {
       l.tempInc = B[j];
-      ENG.run(l, max_order);
+      ENG.run(l, max_order, suffix);
     }
   }
   
