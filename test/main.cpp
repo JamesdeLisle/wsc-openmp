@@ -61,7 +61,7 @@ int main(int argc, char * argv[]) {
   
   int i, j;
   for (i=0; i<disc; i++) {
-    l.a2 = A[i];
+    l.a1 = A[i];
     for (j=0; j<disc; j++) {
       l.a2 = A[j];
       ENG.run(l, max_order);
