@@ -160,10 +160,10 @@ namespace ANA {
     ofstream ofile;
     for (spin=0; spin<2; spin++) { 
       if (spin==1) {
-	ofile.open("end/TOTALup", ios_base::app);
+	ofile.open("end/TOTALup-v", ios_base::app);
       }
       else {
-	ofile.open("end/TOTALdn", ios_base::app);
+	ofile.open("end/TOTALdn-v", ios_base::app);
       }
       Limits L;
       L.load(data_folder);
