@@ -61,15 +61,14 @@ int main(int argc, char * argv[]) {
   Timer T = Timer();
   ENG.setThreads(n_threads);
   
-  ENG.run(l, max_order, suffix);
-  //int i, j;
-  //for (i=0; i<disc; i++) {
-  //  l.a1 = A[i];
-  //  for (j=0; j<disc; j++) {
-  //    l.a2 = B[j];
-  //    ENG.run(l, max_order, suffix);
-  //  }
-  //}
+  int i, j;
+  for (i=5; i<disc; i++) {
+    l.a1 = A[i];
+    for (j=15; j<disc; j++) {
+      l.a2 = B[j];
+      ENG.run(l, max_order, suffix);
+    }
+  }
   
   T.stop();
 
