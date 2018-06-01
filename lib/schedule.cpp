@@ -22,21 +22,23 @@ void Schedule::stop(int spin) {
 }
 
 void Schedule::pause(int spin) {
+  std::string fspec;
   if (spin) {
-    while (std::ifstream((const char *) (folder + "TRACKD").c_str())) {
-      std::this_thread::sleep_for(std::chrono::seconds(2));
-    }
+    fspec = "TRACKD";
   }
   else {
-    while (std::ifstream((const char *) (folder + "TRACKU").c_str())) {
-      std::this_thread::sleep_for(std::chrono::seconds(2));
-    }
+    fspec = "TRACKU";
+  }
+  std::string name = (folder + fspec);
+  std::ifstream f(name.c_str());
+  while (f.good()) {
+    std::this_thread::sleep_for(std::chrono::seconds(2));
   }
 }
 
 void Schedule::clean(int spin) {
-  if (spin) {}
-  else {
+  if (!spin) {
     std::remove((const char *) (folder + "TRACKD").c_str());
   }
 }
+
