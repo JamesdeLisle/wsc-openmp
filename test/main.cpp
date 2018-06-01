@@ -25,7 +25,6 @@ int main(int argc, char * argv[]) {
   MainFunc ENG(folder, time);
 
   if (ENG.condAnal(argv[1], suffix)) {return 0;}
-  
   int n_threads = std::atoi(argv[4]);
 
   l.spin = ENG.getSpin(argv[1]);
@@ -69,7 +68,6 @@ int main(int argc, char * argv[]) {
       ENG.run(l, max_order, suffix);
     }
   }
-  
   T.stop();
 
   return 0;
