@@ -11,7 +11,7 @@ def check(folder):
     t = int(os.popen(command).read().split(":")[0])
     tdiff = time.localtime().tm_hour - t
     if tdiff > 1:
-        os.remove("%sTRACKU" % folder)
+        os.remove("%sTRACKU" % fold)
     else:
         pass
 
