@@ -61,9 +61,9 @@ int main(int argc, char * argv[]) {
   ENG.setThreads(n_threads);
   
   int i, j;
-  for (i=5; i<disc; i++) {
+  for (i=0; i<disc; i++) {
     l.magF = A[i];
-    for (j=17; j<disc; j++) {
+    for (j=0; j<disc; j++) {
       l.tempInc = B[j];
       ENG.run(l, max_order, suffix);
     }
