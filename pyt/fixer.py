@@ -10,6 +10,7 @@ def check(folder):
     print "folder = %s" % fold
     command = "ls -l %s | grep TRACKU | cut -c46-50" % fold
     print "command = %s" % command
+    print os.popen(command).read().split(":")[0]
     t = int(os.popen(command).read().split(":")[0])
     tdiff = time.localtime().tm_hour - t
     if tdiff > 1:
