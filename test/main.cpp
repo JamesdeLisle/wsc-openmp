@@ -55,6 +55,7 @@ int main(int argc, char * argv[]) {
 
   int disc = 25;
   vector<double> A = SPACE::linspace(0.0, 0.3, disc);
+  vector<double> B = SPACE::linspace(0.0, 0.03, 5);
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
@@ -62,7 +63,9 @@ int main(int argc, char * argv[]) {
   int i, j;
   for (i=0; i<disc; i++) {
     l.magF = A[i];
-    ENG.run(l, max_order, suffix);
+    for (j=0; j<disc; j++) {
+      ENG.run(l, max_order, suffix);
+    }
   }
   T.stop();
 
