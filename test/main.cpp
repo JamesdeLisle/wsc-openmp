@@ -64,6 +64,7 @@ int main(int argc, char * argv[]) {
   for (i=0; i<disc; i++) {
     l.magF = A[i];
     for (j=0; j<disc; j++) {
+      l.tempInc = B[i];
       ENG.run(l, max_order, suffix);
     }
   }
