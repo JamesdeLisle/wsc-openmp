@@ -1,4 +1,4 @@
 #!/bin/bash
 
-qsub ./runup
-qsub ./rundn
+qsub ./run/runup
+qsub ./run/rundn
