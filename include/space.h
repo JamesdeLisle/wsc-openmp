@@ -5,6 +5,7 @@
 #include "../include/data.h"
 #include <vector>
 #include <string>
+#include <fstream>
 
 
 class RunVal
@@ -53,7 +54,7 @@ class Space
  public:
   Space();
   Space(Limits L, std::string _time, int _order);
-  void run(std::string _data_folder);
+  void run(std::string _data_folder, std::ofstream * flog);
   double getDelSq(std::string _data_folder);
   void progress(int i, int j);
   void test(std::string _data_folder);

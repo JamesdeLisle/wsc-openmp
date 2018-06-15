@@ -4,6 +4,7 @@
 #include "../include/space.h"
 #include "../include/limits.h"
 #include <string>
+#include <fstream>
 
 class MainFunc
 {
@@ -15,7 +16,7 @@ class MainFunc
   MainFunc(std::string _folder, std::string _time);
   int getSpin(char * arg);
   bool condAnal(char * arg, std::string suffix);
-  void run(LimitsBox l, int max_order, std::string suffix);
+  void run(LimitsBox l, int max_order, std::string suffix, std::ofstream * flog);
   void setThreads();
   void setThreads(int max);
 };

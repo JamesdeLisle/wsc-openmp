@@ -10,6 +10,7 @@
 #include <vector>
 #include <chrono>
 #include <stdio.h>
+#include <fstream>
 #define PI 3.14159
 
 using namespace std;
@@ -18,12 +19,16 @@ int main(int argc, char * argv[]) {
 
    
   LimitsBox l;
+  ofstream flog;
   int max_order = 4;
   string folder(argv[2]);
   string suffix(argv[3]);
   string time = getTime();
+  string logname = "/home/jdelisle/wsc-openmp/end/" + suffix + time; 
+  flog.open((const char *) logname.c_str());
+  ofstream * flogp = &flog;
   MainFunc ENG(folder, time);
-
+  
   if (ENG.condAnal(argv[1], suffix)) {return 0;}
   int n_threads = std::atoi(argv[4]);
 
@@ -65,7 +70,7 @@ int main(int argc, char * argv[]) {
     l.magF = A[i];
     for (j=0; j<disc; j++) {
       l.tempInc = B[i];
-      ENG.run(l, max_order, suffix);
+      ENG.run(l, max_order, suffix, flogp);
     }
   }
   T.stop();

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#$ -cwd
+#$ -V -S /bin/bash
+#$ -N  greenup
+#$ -pe smp 26
+#$ -q all.q@lambda7
+./bin/green dn data/ -bt2 26

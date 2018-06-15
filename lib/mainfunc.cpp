@@ -29,7 +29,7 @@ bool MainFunc::condAnal(char * arg, string suffix) {
   }
 }
 
-void MainFunc::run(LimitsBox l, int max_order, string suffix) {
+void MainFunc::run(LimitsBox l, int max_order, string suffix, std::ofstream * flog) {
   int order;
   SCHED.sleep(5);
   SCHED.start(l.spin);
@@ -37,7 +37,7 @@ void MainFunc::run(LimitsBox l, int max_order, string suffix) {
   L.save(folder);
   for (order=0; order<max_order; order++) {
     Space S(L, time, order);
-    S.run(folder);
+    S.run(folder, flog);
   }
   SCHED.stop(l.spin);
   SCHED.pause(l.spin);
