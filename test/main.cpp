@@ -24,7 +24,7 @@ int main(int argc, char * argv[]) {
   string folder(argv[2]);
   string suffix(argv[3]);
   string time = getTime();
-  string logname = "/home/jdelisle/wsc-openmp/end/" + suffix + time; 
+  string logname = "/home/james/Dropbox/work/active/wsc/numerics/cpp/end/" + suffix + (string) argv[1]; 
   flog.open((const char *) logname.c_str());
   ofstream * flogp = &flog;
   MainFunc ENG(folder, time);
