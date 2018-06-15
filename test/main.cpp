@@ -66,10 +66,14 @@ int main(int argc, char * argv[]) {
   ENG.setThreads(n_threads);
   
   int i, j;
+  for (i=0; i<5; i++) {
+    std::cout << B[i] << std::endl;
+  }
+
   for (i=0; i<disc; i++) {
     l.magF = A[i];
     for (j=0; j<disc; j++) {
-      l.tempInc = B[i];
+      l.tempInc = B[j];
       ENG.run(l, max_order, suffix, flogp);
     }
   }
