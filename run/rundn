@@ -3,6 +3,5 @@
 #$ -cwd
 #$ -V -S /bin/bash
 #$ -N  greendn
-#$ -pe smp 20
-#$ -q all.q@lambda7
-./bin/green dn data/ -bt2 20
+#$ -pe smp 25
+./bin/green dn data/ -bt2 25
