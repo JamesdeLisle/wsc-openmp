@@ -54,22 +54,22 @@ int main(int argc, char * argv[]) {
   l.tau = 0.01;
   l.fermVU = 1.25;
   l.fermVD = 1.0;
-  l.tempInc = 0.01;
+  l.tempInc = 0.015;
   l.magF = 0.3;
   l.start_time = time; 
 
   int disc = 25;
-  vector<double> A = SPACE::linspace(0.0, 0.3, disc);
-  vector<double> B = SPACE::linspace(0.0, 0.03, 5);
+  vector<double> A = SPACE::linspace(0.0, 0.5, disc);
+  vector<double> B = SPACE::linspace(0.0, 0.6, 5);
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
   
   int i, j;
   for (i=0; i<disc; i++) {
-    l.magF = A[i];
+    l.a1 = A[i];
     for (j=0; j<5; j++) {
-      l.tempInc = B[j];
+      l.a2 = B[j];
       ENG.run(l, max_order, suffix, flogp);
     }
   }
