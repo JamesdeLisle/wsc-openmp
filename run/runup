@@ -4,4 +4,4 @@
 #$ -V -S /bin/bash
 #$ -N  greenup
 #$ -pe smp 20
-./bin/green up data/ -a12minus 20
+./bin/green up data/ -a12minusm 20

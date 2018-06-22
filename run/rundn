@@ -4,4 +4,4 @@
 #$ -V -S /bin/bash
 #$ -N  greendn
 #$ -pe smp 20
-./bin/green dn data/ -a12minus 20
+./bin/green dn data/ -a12minusm 20
