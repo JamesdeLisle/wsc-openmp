@@ -24,7 +24,8 @@ int main(int argc, char * argv[]) {
   string folder(argv[2]);
   string suffix(argv[3]);
   string time = getTime();
-  string logname = "end/" + suffix + (string) argv[1] + ".log"; 
+  string logname = "end/log" + suffix + (string) argv[1]; 
+  remove((const char *) logname.c_str());
   flog.open((const char *) logname.c_str());
   ofstream * flogp = &flog;
   MainFunc ENG(folder, time);
@@ -50,7 +51,7 @@ int main(int argc, char * argv[]) {
   l.a1 = 0.5;
   l.a2 = 0.6;
   l.a3 = 0.7;
-  l.a4 = 0.8;
+  l.a4 = -0.8;
   l.tau = 0.01;
   l.fermVU = 1.25;
   l.fermVD = 1.0;
@@ -58,9 +59,9 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = time; 
 
-  int disc = 25;
+  int disc = 5;
   vector<double> A = SPACE::linspace(0.0, 0.5, disc);
-  vector<double> B = SPACE::linspace(0.0, 0.6, 5);
+  vector<double> B = SPACE::linspace(0.0, 0.6, disc);
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
@@ -68,7 +69,7 @@ int main(int argc, char * argv[]) {
   int i, j;
   for (i=0; i<disc; i++) {
     l.a1 = A[i];
-    for (j=0; j<5; j++) {
+    for (j=0; j<disc; j++) {
       l.a2 = B[j];
       ENG.run(l, max_order, suffix, flogp);
     }

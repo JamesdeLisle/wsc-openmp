@@ -60,14 +60,14 @@ void Space::progress(int i, int j) {
 void Space::run(std::string _data_folder, std::ofstream * flog) {
   int i, j, k;
   InData inData(_data_folder, lim.spin, order, lim);
-  *flog << "Computing order: " << order << "..." << std::endl;
-  *flog << "Thread count: " << omp_get_max_threads() << std::endl;
+  //*flog << "Computing order: " << order << "..." << std::endl;
+  //*flog << "Thread count: " << omp_get_max_threads() << std::endl;
   for (i=0; i<lim.energyN; i++) {
     for (j=0; j<lim.kPolarN; j++) {
-      this->progress(i, j);
+      //this->progress(i, j);
       #pragma omp parallel for schedule(static)
       for (k=0; k<lim.kAzimuN; k++) {
-	*flog << "(iE, iXi, iTheta): " << i << " " << j << " " << k << std::endl;
+	//*flog << "(iE, iXi, iTheta): " << i << " " << j << " " << k << std::endl;
 	int idxv[3] = {i, j, k};
 	std::vector<int> idx(idxv,  idxv + sizeof(idxv) / sizeof(int));
 	RunVal entry(energy.at(i), kPolar.at(j), kAzimu.at(k), idx, lim);
