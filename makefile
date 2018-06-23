@@ -11,7 +11,7 @@ SRCDIRS := $(shell find . -name '*.$(SRCEXT)' -exec dirname {} \; | uniq)
 OBJS    := $(patsubst %.$(SRCEXT),$(OBJDIR)/%.o,$(SRCS))
 
 DEBUG    = -g
-INCLUDES = -I/usr/local/lib/ -I~/
+INCLUDES = -I/usr/local/lib/ -I/home/jdelisle/eigen3/
 CFLAGS   = -Wall -pedantic -ansi -c $(DEBUG) -std=c++14 -fopenmp $(INCLUDES)
 LDFLAGS  = -fopenmp 
 
