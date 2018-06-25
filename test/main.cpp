@@ -59,9 +59,9 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = time; 
 
-  int disc = 5;
-  vector<double> A = SPACE::linspace(0.0, 0.5, disc);
-  vector<double> B = SPACE::linspace(0.0, 0.6, disc);
+  int disc = 10;
+  vector<double> A = SPACE::linspace(-0.5, 0.5, disc);
+  vector<double> B = SPACE::linspace(-0.6, 0.6, disc);
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
