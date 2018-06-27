@@ -17,7 +17,7 @@ Green Keldysh::get(Green funcVal) {
   std::complex<double> I(0.0, 1.0);
   double sgn, pi = M_PI;
   mat rvm;
-  mat ret = ret0 + ret1;
+  mat ret = ret1;
   mat adv = P.get(3) * ret.adjoint() * P.get(3);
   runVal.comp();
   Environment E(runVal);
@@ -29,12 +29,12 @@ Green Keldysh::get(Green funcVal) {
     sgn = -1.0;
   }
  
-  rvm = (E.epsi().get() - E.hamR().get()) * funcVal.get() - \
-    funcVal.get() * (E.epsi().get() - E.hamA().get()) + \
-    ret * E.hamKG().get() - E.hamKG().get() * adv + \
+  rvm = funcVal.get() * (E.epsi().get() - E.hamA().get()) -	\
+    (E.epsi().get() - E.hamR().get()) * funcVal.get() +		\
+    ret * E.hamKG().get() - E.hamKG().get() * adv -		\
     sgn * I * runVal.getlim()->magF * dkel0;
 
-  Green rv(-rvm / runVal.getlim()->fermV);
+  Green rv(-I * rvm / runVal.getlim()->fermV);
   return rv; 
 }
 
