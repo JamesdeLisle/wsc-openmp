@@ -179,6 +179,7 @@ namespace ANA {
       std::cout << "DK1" << std::endl;
       vector<double> dataK1 = DK.compute(1);
       vector<double> ener = L.space(0);
+      std::cout << "M" << std::endl;
       ofile << setprecision(10)
 	    << L.a1 << " "
 	    << L.a2 << " "

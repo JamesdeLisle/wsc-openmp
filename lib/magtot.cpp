@@ -58,7 +58,12 @@ double Magnetisation::compute(int order) {
       hXi *= sin(kPol[j]) * lim.kPolarD;
       hXi *= simpFac(j, lim.kPolarN);
       hE += hXi;
+      if (hXi.imag() > MAX) {
+	MAX = hXi.imag();
+      }
     }
+    std::cout << MAX << std::endl;
+    std::cout << hE.imag() << std::endl;
     hE *= lim.energyD;
     hE *= simpFac(i, lim.energyN);
     rv += hE;
