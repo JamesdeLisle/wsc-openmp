@@ -53,13 +53,8 @@ std::vector<double> DOSK::compute(int order) {
       hXi *= sin(kPol[j]) * lim.kPolarD * 3.0 / 10.0;
       hXi *= simpFac(j, lim.kPolarN);
       hE += hXi;
-      if (hXi.real() > MAX) {
-	MAX = hXi.imag();
-      }
     }
-    std::cout << MAX << std::endl;
-    std::cout << hE.real() << std::endl;
-    rv.push_back(hE.real());
+    rv.push_back(hE.imag());
   }
   return rv;
 }
