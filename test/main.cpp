@@ -50,7 +50,7 @@ int main(int argc, char * argv[]) {
   l.tempCrit = 0.1;
   l.a1 = 0.5;
   l.a2 = 0.6;
-  l.a3 = -0.7;
+  l.a3 = 0.7;
   l.a4 = 0.8;
   l.tau = 0.01;
   l.fermVU = 1.25;
@@ -65,9 +65,7 @@ int main(int argc, char * argv[]) {
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
-  ENG.run(l, max_order, suffix, flogp);
   
-  /*
   int i, j;
   for (i=0; i<disc; i++) {
     l.a1 = A[i];
@@ -76,7 +74,6 @@ int main(int argc, char * argv[]) {
       ENG.run(l, max_order, suffix, flogp);
     }
   }
-  */
   T.stop();
 
   return 0;
