@@ -12,6 +12,7 @@ class MagnetisationPart
  public:
   MagnetisationPart(std::string data_folder, Limits _lim, int spin);
   double compute(int order);
+  double simpFac(int value, int max);
 };
 
 #endif

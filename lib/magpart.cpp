@@ -13,7 +13,7 @@ MagnetisationPart::MagnetisationPart(std::string data_folder,
   inData = InData(data_folder, spin, 12, lim);
 }
 
-double simpFac(int value, int max) {
+double MagnetisationPart::simpFac(int value, int max) {
   if (value == 0 || value  == max - 1) {
     return 1.0;
   }
