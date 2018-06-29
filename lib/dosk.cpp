@@ -45,11 +45,11 @@ std::vector<double> DOSK::compute(int order) {
 	}
 	hTheta += (P.get(3) * G).trace();
 	hTheta /= (8 * M_PI * M_PI);
-	hTheta *= lim.kAzimuD / 3.0;
+	hTheta *= lim.kAzimuD;
 	hTheta *= simpFac(k, lim.kAzimuN);
 	hXi += hTheta;
       }
-      hXi *= sin(kPol[j]) * lim.kPolarD * 3.0 / 10.0;
+      hXi *= sin(kPol[j]) * lim.kPolarD;
       hXi *= simpFac(j, lim.kPolarN);
       hE += hXi;
     }
