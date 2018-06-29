@@ -46,7 +46,7 @@ double Magnetisation::compute(int order) {
 	hTheta = 0.0;
 	G = mat::Zero();
 	for (l=0; l<order+1; l++) {
-	  //G += inDataU.get(l, i, j, k);
+	  G += inDataU.get(l, i, j, k);
 	  G += inDataD.get(l, i, j, k);
 	}
 	hTheta += (P.get(3) * G).trace();
@@ -58,11 +58,7 @@ double Magnetisation::compute(int order) {
       hXi *= sin(kPol[j]) * lim.kPolarD;
       hXi *= simpFac(j, lim.kPolarN);
       hE += hXi;
-      if (hXi.imag() > MAX) {
-	MAX = hXi.imag();
-      }
     }
-    std::cout << MAX << std::endl;
     hE *= lim.energyD;
     hE *= simpFac(i, lim.energyN);
     rv += hE;
