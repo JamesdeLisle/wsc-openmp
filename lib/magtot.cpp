@@ -35,7 +35,8 @@ double Magnetisation::compute(int order) {
   int i, j, k, l;
   std::complex<double> hE, hXi, hTheta, rv;
   Pauli P;
-  mat G; 
+  mat G;
+  double MAX = 0.0;
   rv = 0.0;
   for (i=0; i<lim.energyN; i++) {
     hE = 0.0;
@@ -57,7 +58,11 @@ double Magnetisation::compute(int order) {
       hXi *= sin(kPol[j]) * lim.kPolarD;
       hXi *= simpFac(j, lim.kPolarN);
       hE += hXi;
+      if (hXi.imag() > MAX) {
+	MAX = hXi.imag();
+      }
     }
+    std::cout << MAX << std::endl;
     hE *= lim.energyD;
     hE *= simpFac(i, lim.energyN);
     rv += hE;

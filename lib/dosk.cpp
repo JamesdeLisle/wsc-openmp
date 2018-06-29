@@ -33,6 +33,7 @@ std::vector<double> DOSK::compute(int order) {
   Pauli P;
   mat G; 
   std::vector<double> rv;
+  double MAX = 0.0;
   for (i=0; i<lim.energyN; i++) {
     hE = 0.0;
     for (j=0; j<lim.kPolarN; j++) {
@@ -45,14 +46,18 @@ std::vector<double> DOSK::compute(int order) {
 	}
 	hTheta += (P.get(3) * G).trace();
 	hTheta /= (8 * M_PI * M_PI);
-	hTheta *= lim.kAzimuD;
+	hTheta *= lim.kAzimuD / 3.0;
 	hTheta *= simpFac(k, lim.kAzimuN);
 	hXi += hTheta;
       }
-      hXi *= sin(kPol[j]) * lim.kPolarD;
+      hXi *= sin(kPol[j]) * lim.kPolarD * 3.0 / 10.0;
       hXi *= simpFac(j, lim.kPolarN);
       hE += hXi;
+      if (hXi.real() > MAX) {
+	MAX = hXi.imag();
+      }
     }
+    std::cout << MAX << std::endl;
     rv.push_back(hE.real());
   }
   return rv;
