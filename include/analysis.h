@@ -4,6 +4,7 @@
 #include "../include/green.h"
 #include "../include/data.h"
 #include "../include/magtot.h"
+#include "../include/magpart.h"
 #include "../include/dos.h"
 #include "../include/dosk.h"
 #include "../include/hcond.h"
@@ -169,6 +170,7 @@ namespace ANA {
       L.load(data_folder);
       DOSK DK(data_folder, L, spin);
       Magnetisation M(data_folder, L);
+      MagnetisationPart MPart(data_folder, L, spin);
       DOS D(data_folder, L, spin);
       HeatCond H(data_folder, L);
       vector<double> heat = H.compute();
@@ -189,6 +191,7 @@ namespace ANA {
 	    << L.fermVD << " # "
 	    << L.tempInc << " # "
 	    << L.magF << " # "
+	    << MPart.compute(1) << " # "
 	    << M.compute(1) << " # "
 	    << heat[spin] << " # ";
       for (i=0; i<L.energyN; i++) {
