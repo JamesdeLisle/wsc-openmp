@@ -33,7 +33,6 @@ std::vector<double> DOSK::compute(int order) {
   Pauli P;
   mat G; 
   std::vector<double> rv;
-  double MAX = 0.0;
   for (i=0; i<lim.energyN; i++) {
     hE = 0.0;
     for (j=0; j<lim.kPolarN; j++) {
