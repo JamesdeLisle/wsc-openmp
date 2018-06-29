@@ -58,7 +58,7 @@ std::vector<double> DOSK::compute(int order) {
       }
     }
     std::cout << MAX << std::endl;
-    std::cout << hE.real();
+    std::cout << hE.real() << std::endl;
     rv.push_back(hE.real());
   }
   return rv;
