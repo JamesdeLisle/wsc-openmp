@@ -174,7 +174,9 @@ namespace ANA {
       vector<double> heat = H.compute();
       vector<double> data00 = D.compute(0);
       vector<double> data01 = D.compute(1);
+      std::cout << "DK" << std::endl;
       vector<double> dataK = DK.compute(0);
+      std::cout << "DK1" << std::endl;
       vector<double> dataK1 = DK.compute(1);
       vector<double> ener = L.space(0);
       ofile << setprecision(10)
