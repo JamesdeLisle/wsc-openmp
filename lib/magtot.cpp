@@ -36,7 +36,6 @@ double Magnetisation::compute(int order) {
   std::complex<double> hE, hXi, hTheta, rv;
   Pauli P;
   mat G;
-  double MAX = 0.0;
   rv = 0.0;
   for (i=0; i<lim.energyN; i++) {
     hE = 0.0;
