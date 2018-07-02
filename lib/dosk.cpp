@@ -6,9 +6,13 @@
 #include <cmath>
 
 DOSK::DOSK(std::string data_folder, Limits _lim, int spin) :	\
-  inData(data_folder, spin, 12, _lim), lim(_lim) {
-  lim.spin = spin;
-  inData = InData(data_folder, spin, 12, lim);
+  inDataU(data_folder, 1, 12, _lim), \
+  inDataD(data_folder, 1, 12, _lim), \
+  lim(_lim) {
+  lim.spin = 1;
+  inDataU = InData(data_folder, 1, 12, lim);
+  lim.spin = 0;
+  inDataD = InData(data_folder, 0, 12, lim);
 }
 
 double DOSK::simpFac(int value, int max) {
@@ -41,7 +45,8 @@ std::vector<double> DOSK::compute(int order) {
 	hTheta = 0.0;
 	G = mat::Zero();
 	for (l=0; l<order+1; l++) {
-	  G += inData.get(l, i, j, k);
+	  G += inDataU.get(l, i, j, k);
+	  G -= inDataD.get(l, i, j, k);
 	}
 	hTheta += (P.get(3) * G).trace();
 	hTheta /= (8 * M_PI * M_PI);

@@ -7,7 +7,8 @@
 class DOSK
 {
  private:
-  InData inData;
+  InData inDataU;
+  InData inDataD;
   Limits lim;
  public:
   DOSK(std::string data_folder, Limits _lim, int spin);
