@@ -4,4 +4,4 @@
 #$ -V -S /bin/bash
 #$ -N  greendn
 #$ -pe smp 26
-./bin/green dn data/ -a12pmnew2 26
+./bin/green dn data/ -a12pmnew3 26
