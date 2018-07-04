@@ -52,7 +52,7 @@ int main(int argc, char * argv[]) {
   l.a2 = 0.6;
   l.a3 = 0.7;
   l.a4 = 0.8;
-  l.tau = 1.0;
+  l.tau = 0.01;
   l.fermVU = 1.25;
   l.fermVD = 1.0;
   l.tempInc = 0.015;
@@ -67,10 +67,10 @@ int main(int argc, char * argv[]) {
   ENG.setThreads(n_threads);
   
   int i, j;
-  //for (j=0; j<disc; j++) {
-  //  l.temp = B[j];
-  ENG.run(l, max_order, suffix, flogp);
-  //}
+  for (j=0; j<disc; j++) {
+    l.temp = B[j];
+    ENG.run(l, max_order, suffix, flogp);
+  }
   //for (i=0; i<disc; i++) {
   //  l.temp = A[i];
   //  for (j=0; j<disc; j++) {
