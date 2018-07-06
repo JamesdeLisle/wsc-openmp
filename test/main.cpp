@@ -70,8 +70,8 @@ int main(int argc, char * argv[]) {
   for (i=0; i<disc; i++) {
     l.temp = B[i];
     for (j=0; j<disc; j++) {
-      l.a1 = B[j];
-      l.a2 = B[j];
+      l.a1 = A[j];
+      l.a2 = A[j];
       ENG.run(l, max_order, suffix, flogp);
     }
   }
