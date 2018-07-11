@@ -81,7 +81,7 @@ int main(int argc, char * argv[]) {
       ENG.run(l, max_order, suffix, flogp);
     }
   }
-  T.stop();
   */
+  T.stop();
   return 0;
 }
