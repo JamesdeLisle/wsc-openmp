@@ -67,6 +67,12 @@ int main(int argc, char * argv[]) {
   ENG.setThreads(n_threads);
   
   int i, j;
+  for (j=0; j<disc; j++) {
+    l.a1 = A[j];
+    l.a2 = A[j];
+    ENG.run(l, max_order, suffix, flogp);
+  }
+  /*
   for (i=0; i<disc; i++) {
     l.temp = B[i];
     for (j=0; j<disc; j++) {
@@ -76,6 +82,6 @@ int main(int argc, char * argv[]) {
     }
   }
   T.stop();
-
+  */
   return 0;
 }
