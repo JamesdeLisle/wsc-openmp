@@ -4,4 +4,5 @@
 #$ -V -S /bin/bash
 #$ -N  greenup
 #$ -pe smp 20
+#$ -q all.q@lambda3
 ./bin/green up data/ -dxd 20

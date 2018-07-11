@@ -4,4 +4,5 @@
 #$ -V -S /bin/bash
 #$ -N  greendn
 #$ -pe smp 20
+#$ -q all.q@lambda4
 ./bin/green dn data/ -dxd 20
