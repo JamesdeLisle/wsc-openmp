@@ -2,6 +2,6 @@
 
 #$ -cwd
 #$ -V -S /bin/bash
-#$ -N  greendn
+#$ -N  greenup
 #$ -pe smp 26
-./bin/green dn data/ -dxdfv 26
+./bin/green up data/ -dxdfv 26
