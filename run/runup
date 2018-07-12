@@ -5,4 +5,4 @@
 #$ -N  greenup
 #$ -pe smp 20
 #$ -q all.q@lambda6
-./bin/green up data/ -dxd 20
+./bin/green up data/ -dxdeq 26
