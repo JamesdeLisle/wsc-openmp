@@ -4,4 +4,4 @@
 #$ -V -S /bin/bash
 #$ -N  greenup
 #$ -pe smp 26
-./bin/green up data/ -dxdfv 26
+./bin/green up data/ -Ta12minus 26
