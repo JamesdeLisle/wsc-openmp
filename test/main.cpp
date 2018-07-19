@@ -46,7 +46,7 @@ int main(int argc, char * argv[]) {
   l.kAzimuMax = 2 * PI;
   l.alphaMin = -3.0;
   l.alphaMax = 0.0;
-  l.temp = 0.06;
+  l.temp = 0.02;
   l.tempCrit = 0.1;
   l.a1 = 0.5;
   l.a2 = 0.6;
@@ -60,16 +60,17 @@ int main(int argc, char * argv[]) {
   l.start_time = time; 
 
   int disc = 10;
-  vector<double> A = SPACE::linspace(0.0, 1.0, disc);
-  vector<double> B = SPACE::linspace(0.01, 0.1, disc);
+  vector<double> A = SPACE::linspace(-0.5, 0.5, disc);
+  vector<double> B = SPACE::linspace(0.0, 0.7, disc);
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
   
   int i, j;
   for (i=0; i<disc; i++) {
-    l.temp = B[i];
+    l.a3 = B[i];
     for (j=0; j<disc; j++) {
+      l.a1 = A[j];
       l.a2 = A[j];
       ENG.run(l, max_order, suffix, flogp);
     }
