@@ -61,14 +61,14 @@ int main(int argc, char * argv[]) {
 
   int disc = 10;
   vector<double> A = SPACE::linspace(-0.5, 0.5, disc);
-  vector<double> B = SPACE::linspace(0.0, 0.7, disc);
+  vector<double> B = SPACE::linspace(0.0, 0.015, disc);
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
   
   int i, j;
   for (i=0; i<disc; i++) {
-    l.a3 = B[i];
+    l.tempInc = B[i];
     for (j=0; j<disc; j++) {
       l.a1 = A[j];
       l.a2 = A[j];
