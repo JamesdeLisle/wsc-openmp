@@ -51,7 +51,7 @@ int main(int argc, char * argv[]) {
   l.a1 = 0.5;
   l.a2 = 0.6;
   l.a3 = 0.7;
-  l.a4 = 0.8;
+  l.a4 = 0.7;
   l.tau = 0.01;
   l.fermVU = 1.1;
   l.fermVD = 1.0;
@@ -60,7 +60,7 @@ int main(int argc, char * argv[]) {
   l.start_time = time; 
 
   int disc = 10;
-  vector<double> A = SPACE::linspace(-0.5, 0.5, disc);
+  vector<double> A = SPACE::linspace(0.01, 0.1, disc);
   vector<double> B = SPACE::linspace(0.0, 0.7, disc);
   
   Timer T = Timer();
@@ -68,7 +68,7 @@ int main(int argc, char * argv[]) {
   
   int i, j;
   for (i=0; i<disc; i++) {
-    l.a3 = B[i];
+    l.temp = B[i];
     for (j=0; j<disc; j++) {
       l.a1 = A[j];
       l.a2 = A[j];
