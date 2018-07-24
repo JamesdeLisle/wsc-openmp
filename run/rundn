@@ -5,4 +5,3 @@
 #$ -N  greendn
 #$ -pe smp 26
 ./bin/green dn data/ -a12dT.34eq 26
-#
