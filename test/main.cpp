@@ -17,8 +17,6 @@ using namespace std;
 
 int main(int argc, char * argv[]) {
 
-
-   
   LimitsBox l;
   ofstream flog;
   int max_order = 4;
