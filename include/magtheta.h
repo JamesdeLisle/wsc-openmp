@@ -13,6 +13,7 @@ class MagTheta
  public:
   MagTheta(std::string data_folder, Limits _lim);
   std::vector<double> compute(int order);
+  double simpFac(int value, int max);
 };
 
 #endif

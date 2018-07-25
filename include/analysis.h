@@ -182,7 +182,7 @@ namespace ANA {
       vector<double> dataK1 = DK.compute(1);
       vector<double> mtheta = MT.compute(1);
       vector<double> ener = L.space(0);
-      vector<double> theta = L.space(2)
+      vector<double> theta = L.space(2);
       ofile << setprecision(10)
 	    << L.a1 << " "
 	    << L.a2 << " "

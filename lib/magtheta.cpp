@@ -15,7 +15,7 @@ MagTheta::MagTheta(std::string data_folder, Limits _lim) : \
   inDataD = InData(data_folder, 0, 12, lim);
 }
 
-double simpFac(int value, int max) {
+double MagTheta::simpFac(int value, int max) {
   if (value == 0 || value  == max - 1) {
     return 1.0;
   }
