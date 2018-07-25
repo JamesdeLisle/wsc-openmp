@@ -218,7 +218,7 @@ namespace ANA {
       ofile << " # ";
       for (i=0; i<L.energyN; i++) {
 	ofile << setprecision(10)
-	      << ener[i] << "  "
+	      << ener[i] << " "
 	      << dataK1[i] <<  " | ";
       }
       ofile << " # ";
