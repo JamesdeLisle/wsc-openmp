@@ -61,7 +61,7 @@ int main(int argc, char * argv[]) {
 
   int disc = 10;
   vector<double> A = SPACE::linspace(-1.0, 1.0, disc);
-  vector<double> B = SPACE::linspace(0.0, 0.7, disc);
+  vector<double> B = SPACE::linspace(0.0, 0.7, disc );
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
