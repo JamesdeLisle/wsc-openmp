@@ -65,6 +65,7 @@ int main(int argc, char * argv[]) {
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
+
   
   int i, j;
   for (i=0; i<disc; i++) {
