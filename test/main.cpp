@@ -51,7 +51,7 @@ int main(int argc, char * argv[]) {
   l.a1 = 0.5;
   l.a2 = 0.6;
   l.a3 = 0.0;
-  l.a4 = 1.5;
+  l.a4 = 0.2;
   l.tau = 0.01;
   l.fermVU = 1.1;
   l.fermVD = 1.0;
