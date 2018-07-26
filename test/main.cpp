@@ -51,7 +51,7 @@ int main(int argc, char * argv[]) {
   l.a1 = 0.5;
   l.a2 = 0.6;
   l.a3 = 0.2;
-  l.a4 = 1.0;
+  l.a4 = 0.2;
   l.tau = 0.01;
   l.fermVU = 1.1;
   l.fermVD = 1.0;
@@ -66,9 +66,6 @@ int main(int argc, char * argv[]) {
   Timer T = Timer();
   ENG.setThreads(n_threads);
 
-  
-  ENG.run(l, max_order, suffix, flogp);
-  /*
   int i, j;
   for (i=0; i<disc; i++) {
     l.a3 = B[i];
@@ -78,7 +75,6 @@ int main(int argc, char * argv[]) {
       ENG.run(l, max_order, suffix, flogp);
     }
   }
-  */
   T.stop();
   return 0;
 }
