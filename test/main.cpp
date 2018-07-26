@@ -34,7 +34,7 @@ int main(int argc, char * argv[]) {
   int n_threads = std::atoi(argv[4]);
 
   l.spin = ENG.getSpin(argv[1]);
-  l.energyN = 100;
+  l.energyN = 500;
   l.kPolarN = 50;
   l.kAzimuN = 100;
   l.alphaN = 100;
@@ -50,8 +50,8 @@ int main(int argc, char * argv[]) {
   l.tempCrit = 0.1;
   l.a1 = 0.5;
   l.a2 = 0.6;
-  l.a3 = 0.0;
-  l.a4 = 0.2;
+  l.a3 = 0.2;
+  l.a4 = 1.0;
   l.tau = 0.01;
   l.fermVU = 1.1;
   l.fermVD = 1.0;
@@ -67,6 +67,8 @@ int main(int argc, char * argv[]) {
   ENG.setThreads(n_threads);
 
   
+  ENG.run(l, max_order, suffix, flogp);
+  /*
   int i, j;
   for (i=0; i<disc; i++) {
     l.a3 = B[i];
@@ -76,6 +78,7 @@ int main(int argc, char * argv[]) {
       ENG.run(l, max_order, suffix, flogp);
     }
   }
+  */
   T.stop();
   return 0;
 }
