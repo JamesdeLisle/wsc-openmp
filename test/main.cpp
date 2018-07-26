@@ -60,7 +60,7 @@ int main(int argc, char * argv[]) {
   l.start_time = time; 
 
   int disc = 10;
-  vector<double> A = SPACE::linspace(-1.0, 1.0, disc);
+  vector<double> A = SPACE::linspace(-1.0, 1.0, disc) ;
   vector<double> B = SPACE::linspace(0.0, 0.7, disc);
   
   Timer T = Timer();
