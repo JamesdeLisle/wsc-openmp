@@ -49,7 +49,7 @@ int main(int argc, char * argv[]) {
   l.temp = 0.02;
   l.tempCrit = 0.1;
   l.a1 = 0.5;
-  l.a2 = 0.6;
+  l.a2 = 0.4;
   l.a3 = 0.2;
   l.a4 = 1.0;
   l.tau = 0.01;
@@ -61,23 +61,19 @@ int main(int argc, char * argv[]) {
 
   int disc = 10;
   vector<double> A = SPACE::linspace(-1.0, 1.0, disc);
-  vector<double> B = SPACE::linspace(0.0, 0.7, disc );
+  vector<double> B = SPACE::linspace(0.0, 0.1, disc );
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
 
-  ENG.run(l, max_order, suffix, flogp);
-  /*
   int i, j;
   for (i=0; i<disc; i++) {
-    l.a3 = B[i];
+    l.a1 = A[i];
     for (j=0; j<disc; j++) {
-      l.a1 = A[j];
       l.a2 = A[j];
       ENG.run(l, max_order, suffix, flogp);
     }
   }
-  */
   T.stop();
   return 0;
 }
