@@ -35,9 +35,9 @@ int main(int argc, char * argv[]) {
 
   l.spin = ENG.getSpin(argv[1]);
   l.energyN = 100;
-  l.kPolarN = 100;
-  l.kAzimuN = 200;
-  l.alphaN = 200;
+  l.kPolarN = 50;
+  l.kAzimuN = 100;
+  l.alphaN = 100;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
