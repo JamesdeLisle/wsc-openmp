@@ -5,6 +5,8 @@
 #include "../include/data.h"
 #include "../include/magtot.h"
 #include "../include/magtheta.h"
+#include "../include/magthetau.h"
+#include "../include/magthetad.h"
 #include "../include/magpart.h"
 #include "../include/dos.h"
 #include "../include/dosk.h"
@@ -175,12 +177,16 @@ namespace ANA {
       DOS D(data_folder, L, spin);
       HeatCond H(data_folder, L);
       MagTheta MT(data_folder, L);
+      MagThetaUp MTU(data_folder, L);
+      MagThetaDn MTD(data_folder, L);
       vector<double> heat = H.compute();
       vector<double> data00 = D.compute(0);
       vector<double> data01 = D.compute(1);
       vector<double> dataK = DK.compute(0);
       vector<double> dataK1 = DK.compute(1);
       vector<double> mtheta = MT.compute(1);
+      vector<double> mthetau = MTU.compute(1);
+      vector<double> mthetad = MTD.compute(1);
       vector<double> ener = L.space(0);
       vector<double> theta = L.space(2);
       ofile << setprecision(10)
@@ -226,6 +232,18 @@ namespace ANA {
 	ofile << setprecision(10)
 	      << theta[i] << " "
 	      << mtheta[i] <<  " | ";
+      }
+      ofile << " # ";
+      for (i=0; i<L.kAzimuN; i++) {
+	ofile << setprecision(10)
+	      << theta[i] << " "
+	      << mthetau[i] <<  " | ";
+      }
+      ofile << " # ";
+      for (i=0; i<L.kAzimuN; i++) {
+	ofile << setprecision(10)
+	      << theta[i] << " "
+	      << mthetad[i] <<  " | ";
       }
       ofile << " # ";
       ofile << endl;
