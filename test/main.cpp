@@ -66,7 +66,9 @@ int main(int argc, char * argv[]) {
   Timer T = Timer();
   ENG.setThreads(n_threads);
 
+  ENG.run(l, max_order, suffix, flogp);
   int i, j;
+  /*
   for (i=0; i<disc; i++) {
     l.a3 = B[i];
     for (j=0; j<disc; j++) {
@@ -76,5 +78,6 @@ int main(int argc, char * argv[]) {
     }
   }
   T.stop();
+  */
   return 0;
 }
