@@ -75,6 +75,7 @@ void Space::run(std::string _data_folder, std::ofstream * flog) {
   runData.write(_data_folder);
 }
 
+// Redundant function,
 double Space::getDelSq(std::string _data_folder) {
   int j, k;
   double val, min = 10.0;
