@@ -29,6 +29,7 @@ int main(int argc, char * argv[]) {
   flog.open((const char *) logname.c_str());
   ofstream * flogp = &flog;
   MainFunc ENG(folder, time);
+  double r;
   
   if (ENG.condAnal(argv[1], suffix)) {return 0;}
   int n_threads = std::atoi(argv[4]);
@@ -48,10 +49,10 @@ int main(int argc, char * argv[]) {
   l.alphaMax = 0.0;
   l.temp = 0.02;
   l.tempCrit = 0.1;
-  l.a1 = -0.9;
-  l.a2 = 1.3;
-  l.a3 = 0.3;
-  l.a4 = 1.6;
+  l.a1 = 1.0;
+  l.a2 = l.a1 * r;
+  l.a3 = r * l.a2;
+  l.a4 = l.a1 * r;
   l.tau = 0.01;
   l.fermVU = 1.1;
   l.fermVD = 1.0;
@@ -60,15 +61,23 @@ int main(int argc, char * argv[]) {
   l.start_time = time; 
 
   int disc = 10;
-  vector<double> B = SPACE::linspace(0.01, 0.1, disc );
+  
+  vector<double> A = SPACE::linspace(0.0, 1.0, disc);
+  vector<double> B = SPACE::linspace(0.01, 0.1, disc);
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
 
   int i, j;
   for (i=0; i<disc; i++) {
-    l.temp = B[i];
-    ENG.run(l, max_order, suffix, flogp);
+    r = A[i];
+    l.a2 = l.a1 * r;
+    l.a3 = r * l.a2;
+    l.a4 = l.a1 * r;
+    for (j=0; j<disc; i++) {
+      l.temp = B[j];
+      ENG.run(l, max_order, suffix, flogp);
+    }
   }
   T.stop();
   return 0;
