@@ -3,5 +3,5 @@
 #$ -cwd
 #$ -V -S /bin/bash
 #$ -N  greendn
-#$ -pe smp 20
-./bin/green dn data/ -tempdelta 20
+#$ -pe smp 15
+./bin/green dn data/ -tempdelta 15
