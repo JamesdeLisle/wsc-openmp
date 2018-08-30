@@ -29,7 +29,7 @@ int main(int argc, char * argv[]) {
   flog.open((const char *) logname.c_str());
   ofstream * flogp = &flog;
   MainFunc ENG(folder, time);
-  double r;
+  double r = 1.0;
   
   if (ENG.condAnal(argv[1], suffix)) {return 0;}
   int n_threads = std::atoi(argv[4]);
