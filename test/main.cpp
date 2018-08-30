@@ -48,10 +48,10 @@ int main(int argc, char * argv[]) {
   l.alphaMax = 0.0;
   l.temp = 0.02;
   l.tempCrit = 0.1;
-  l.a1 = 0.8;
-  l.a2 = 0.7;
-  l.a3 = 0.6;
-  l.a4 = 0.5;
+  l.a1 = -0.9;
+  l.a2 = 1.3;
+  l.a3 = 0.3;
+  l.a4 = 1.6;
   l.tau = 0.01;
   l.fermVU = 1.1;
   l.fermVD = 1.0;
@@ -59,25 +59,17 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = time; 
 
-  ENG.run(l, max_order, suffix, flogp);
-  /*
   int disc = 10;
-  vector<double> A = SPACE::linspace(-1.0, 1.0, disc);
-  vector<double> B = SPACE::linspace(0.0, 0.7, disc );
+  vector<double> B = SPACE::linspace(0.01, 0.1, disc );
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
 
   int i, j;
   for (i=0; i<disc; i++) {
-    l.a3 = B[i];
-    for (j=0; j<disc; j++) {
-      l.a1 = A[i];
-      l.a2 = A[j];
-      ENG.run(l, max_order, suffix, flogp);
-    }
+    l.temp = B[i];
+    ENG.run(l, max_order, suffix, flogp);
   }
   T.stop();
-  */
   return 0;
 }
