@@ -4,4 +4,5 @@
 #$ -V -S /bin/bash
 #$ -N  greendn
 #$ -pe smp 20
+
 ./bin/green dn data/ -tempdelta 20
