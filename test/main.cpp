@@ -74,7 +74,7 @@ int main(int argc, char * argv[]) {
     l.a2 = l.a1 * r;
     l.a3 = r * l.a2;
     l.a4 = l.a1 * r;
-    for (j=0; j<disc; i++) {
+    for (j=0; j<disc; j++) {
       l.temp = B[j];
       ENG.run(l, max_order, suffix, flogp);
     }
