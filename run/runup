@@ -4,4 +4,4 @@
 #$ -V -S /bin/bash
 #$ -N  greenup
 #$ -pe smp 27
-./bin/green up data/ -tempdelta 27
+./bin/green up data/ -tempdelta2 27
