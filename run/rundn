@@ -4,4 +4,4 @@
 #$ -V -S /bin/bash
 #$ -N  greendn
 #$ -pe smp 28
-./bin/green dn data/ -highresenergy 28
+./bin/green dn data/ -thetanotxi 28

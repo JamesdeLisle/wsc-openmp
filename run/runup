@@ -4,4 +4,4 @@
 #$ -V -S /bin/bash
 #$ -N  greenup
 #$ -pe smp 28
-./bin/green up data/ -highresenergy 28
+./bin/green up data/ -thetanotxi 28
