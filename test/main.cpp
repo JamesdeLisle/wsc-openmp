@@ -35,10 +35,10 @@ int main(int argc, char * argv[]) {
   int n_threads = std::atoi(argv[4]);
 
   l.spin = ENG.getSpin(argv[1]);
-  l.energyN = 100;
-  l.kPolarN = 50;
-  l.kAzimuN = 100;
-  l.alphaN = 100;
+  l.energyN = 1000;
+  l.kPolarN = 500;
+  l.kAzimuN = 1000;
+  l.alphaN = 1000;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
@@ -60,14 +60,15 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = time; 
 
-  int disc = 20;
-  
-  vector<double> A = SPACE::linspace(0.0, 1.0, disc);
-  vector<double> B = SPACE::linspace(0.01, 0.1, disc);
+  //int disc = 20;
+  //vector<double> A = SPACE::linspace(0.0, 1.0, disc);
+  //vector<double> B = SPACE::linspace(0.01, 0.1, disc);
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
+  ENG.run(l, max_order, suffix, flogp);
 
+  /*
   int i, j;
   for (i=0; i<disc; i++) {
     r = A[i];
@@ -79,6 +80,7 @@ int main(int argc, char * argv[]) {
       ENG.run(l, max_order, suffix, flogp);
     }
   }
+  */
   T.stop();
   return 0;
 }

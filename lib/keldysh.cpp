@@ -22,7 +22,7 @@ Green Keldysh::get(Green funcVal) {
   runVal.comp();
   Environment E(runVal);
   
-  if (runVal.getTheta() < pi) {
+  if (runVal.getXi() < pi / 2) {
     sgn = 1.0;
   }
   else {
