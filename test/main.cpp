@@ -56,7 +56,7 @@ int main(int argc, char * argv[]) {
   l.tau = 0.01;
   l.fermVU = 1.1;
   l.fermVD = 1.0;
-  l.tempInc = 0.01 / l.alphaMax;
+  l.tempInc = 0.01 / l.alphaMin;
   l.magF = 0.3;
   l.start_time = time; 
 
