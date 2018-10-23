@@ -29,23 +29,23 @@ int main(int argc, char * argv[]) {
   flog.open((const char *) logname.c_str());
   ofstream * flogp = &flog;
   MainFunc ENG(folder, time);
-  double r = 1.0;
+  double r = 0.3;
   
   if (ENG.condAnal(argv[1], suffix)) {return 0;}
   int n_threads = std::atoi(argv[4]);
 
   l.spin = ENG.getSpin(argv[1]);
-  l.energyN = 1000;
-  l.kPolarN = 500;
-  l.kAzimuN = 1000;
-  l.alphaN = 1000;
+  l.energyN = 100;
+  l.kPolarN = 50;
+  l.kAzimuN = 100;
+  l.alphaN = 300;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
   l.kPolarMax = PI;
   l.kAzimuMin = 1e-6;
   l.kAzimuMax = 2 * PI;
-  l.alphaMin = -3.0;
+  l.alphaMin = -100.0;
   l.alphaMax = 0.0;
   l.temp = 0.02;
   l.tempCrit = 0.1;
@@ -60,27 +60,23 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = time; 
 
-  //int disc = 20;
-  //vector<double> A = SPACE::linspace(0.0, 1.0, disc);
-  //vector<double> B = SPACE::linspace(0.01, 0.1, disc);
+  int disc = 20;
+  vector<double> B = SPACE::linspace(0.01, 0.1, disc);
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
-  ENG.run(l, max_order, suffix, flogp);
 
-  /*
   int i, j;
   for (i=0; i<disc; i++) {
-    r = A[i];
-    l.a2 = l.a1 * r;
-    l.a3 = r * l.a2;
-    l.a4 = l.a1 * r;
-    for (j=0; j<disc; j++) {
-      l.temp = B[j];
-      ENG.run(l, max_order, suffix, flogp);
-    }
+    l.temp = B[i];
+    //l.a2 = l.a1 * r;
+    //l.a3 = r * l.a2;
+    //l.a4 = l.a1 * r;
+    ENG.run(l, max_order, suffix, flogp);
+    //for (j=0; j<disc; j++) {
+    //  l.temp = B[j];
+      //}
   }
-  */
   T.stop();
   return 0;
 }

@@ -4,4 +4,4 @@
 #$ -V -S /bin/bash
 #$ -N  greenup
 #$ -pe smp 28
-./bin/green up data/ -high 28
+./bin/green up data/ -cohere 28
