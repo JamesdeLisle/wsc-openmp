@@ -38,7 +38,7 @@ int main(int argc, char * argv[]) {
   l.energyN = 100;
   l.kPolarN = 50;
   l.kAzimuN = 100;
-  l.alphaN = 300;
+  l.alphaN = 100;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
   l.kPolarMin = 1e-6;
@@ -61,6 +61,7 @@ int main(int argc, char * argv[]) {
   l.start_time = time; 
 
   int disc = 20;
+  vector<double> A = SPACE::linspace(3.0, 30.0, disc);
   vector<double> B = SPACE::linspace(0.01, 0.1, disc);
   
   Timer T = Timer();
@@ -68,7 +69,7 @@ int main(int argc, char * argv[]) {
 
   int i, j;
   for (i=0; i<disc; i++) {
-    l.temp = B[i];
+    l.alphaMin = A[i];
     //l.a2 = l.a1 * r;
     //l.a3 = r * l.a2;
     //l.a4 = l.a1 * r;
