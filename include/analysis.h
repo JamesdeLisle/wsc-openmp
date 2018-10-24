@@ -201,8 +201,8 @@ namespace ANA {
 	    << L.fermVD << " # "
 	    << L.tempInc << " # "
 	    << L.magF << " # "
-	    << MPart.compute(1) << " # "
-	    << M.compute(1) << " # "
+	    << MPart.compute(0) << " # "
+	    << M.compute(0) << " # "
 	    << heat[spin] << " # ";
       for (i=0; i<L.energyN; i++) {
 	ofile << setprecision(10)
