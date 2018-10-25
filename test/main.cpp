@@ -34,6 +34,7 @@ int main(int argc, char * argv[]) {
   if (ENG.condAnal(argv[1], suffix)) {return 0;}
   int n_threads = std::atoi(argv[4]);
 
+  double delta = 1e-6;
   l.spin = ENG.getSpin(argv[1]);
   l.energyN = 100;
   l.kPolarN = 50;
@@ -41,9 +42,9 @@ int main(int argc, char * argv[]) {
   l.alphaN = 100;
   l.energyMin = -1.0;
   l.energyMax = 1.0;
-  l.kPolarMin = 1e-6;
-  l.kPolarMax = PI;
-  l.kAzimuMin = 1e-6;
+  l.kPolarMin = delta;
+  l.kPolarMax = PI + delta;
+  l.kAzimuMin = 0.0;
   l.kAzimuMax = 2 * PI;
   l.alphaMin = -100.0;
   l.alphaMax = 0.0;
