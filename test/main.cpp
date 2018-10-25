@@ -45,7 +45,7 @@ int main(int argc, char * argv[]) {
   l.kPolarMax = PI;
   l.kAzimuMin = 1e-6;
   l.kAzimuMax = 2 * PI;
-  l.alphaMin = -30.0;
+  l.alphaMin = -100.0;
   l.alphaMax = 0.0;
   l.temp = 0.02;
   l.tempCrit = 0.1;
@@ -66,7 +66,7 @@ int main(int argc, char * argv[]) {
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
-  l.alphaN = 100;
+  l.alphaN = 300;
   ENG.run(l, max_order, suffix, flogp);
   //l.alphaN = 300;
   //ENG.run(l, max_order, suffix, flogp);
