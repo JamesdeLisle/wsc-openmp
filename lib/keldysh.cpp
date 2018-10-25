@@ -31,7 +31,7 @@ Green Keldysh::get(Green funcVal) {
  
   rvm = funcVal.get() * (E.epsi().get() - E.hamA().get()) -	\
     (E.epsi().get() - E.hamR().get()) * funcVal.get() +		\
-    ret * E.hamKG().get() - E.hamKG().get() * adv -		\
+    ret * E.hamK().get() - E.hamK().get() * adv -		\
     sgn * I * runVal.getlim()->magF * dkel0;
 
   Green rv(-I * rvm / runVal.getlim()->fermV);
@@ -43,7 +43,7 @@ Green Keldysh::bound() {
   Pauli P;
   runVal.comp();
   Environment E(runVal);
-  rvm = (ret0 - P.get(3) * ret0.adjoint() * P.get(3)) * E.getThermDG();
+  rvm = (ret0 - P.get(3) * ret0.adjoint() * P.get(3)) * E.getThermD();
   Green rv(rvm);
   return rv;
 }

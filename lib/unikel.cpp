@@ -19,8 +19,7 @@ Green UniKel::get(Green funcVal) {
   mat adv0 = P.get(3) * ret0.adjoint() * P.get(3);
   rvm = funcVal.get() * (E.epsi().get() - E.hamA().get()) -	\
     (E.epsi().get() - E.hamR().get()) * funcVal.get() +		\
-    ret0 * (E.hamKG().get() + E.hamK().get()) -			\
-    (E.hamKG().get() + E.hamK().get()) * adv0;
+    ret0 * E.hamK().get() - E.hamK().get() * adv0;
   Green rv(-I * rvm / runVal.getlim()->fermV);
   return rv; 
 }
@@ -30,7 +29,7 @@ Green UniKel::bound() {
   Pauli P;
   runVal.comp();
   Environment E(runVal);
-  rvm = (ret0 - P.get(3) * ret0.adjoint() * P.get(3)) * E.getThermDG();
+  rvm = (ret0 - P.get(3) * ret0.adjoint() * P.get(3)) * E.getThermD();
   //rvm = mat::Zero();
   Green rv(rvm);
   return rv;

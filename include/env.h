@@ -27,6 +27,7 @@ class Environment
   std::complex<double> getSigmaR() {return sigmaR;}
   std::complex<double> getDeltaR() {return deltaR;}
   double getThermDG() {return thermDG;}
+  double getThermD() {return thermD;}
 };
 
 #endif

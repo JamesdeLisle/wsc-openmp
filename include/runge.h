@@ -39,8 +39,8 @@ template <class T> std::vector<double> Runge<T>::linspace(double min,
 
 template <class T> Green Runge<T>::run() {
   int i;
-  std::vector<double> alph = this->linspace(runVal.getlim()->alphaMax,
-					    runVal.getlim()->alphaMin,
+  std::vector<double> alph = this->linspace(runVal.getlim()->alphaMin,
+					    runVal.getlim()->alphaMax,
 					    runVal.getlim()->alphaN);
   std::vector<Green> kVals(4);
   for (i=0; i<runVal.getlim()->alphaN-1; i++) {
