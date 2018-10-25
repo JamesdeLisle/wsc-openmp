@@ -61,7 +61,7 @@ int main(int argc, char * argv[]) {
   l.magF = 0.3;
   l.start_time = time; 
 
-  int disc = 20;
+  int disc = 10;
   vector<double> A = SPACE::linspace(30.0, 50.0, disc);
   vector<double> B = SPACE::linspace(0.01, 0.1, disc);
   
