@@ -68,8 +68,8 @@ int main(int argc, char * argv[]) {
   ENG.setThreads(n_threads);
   l.alphaN = 100;
   ENG.run(l, max_order, suffix, flogp);
-  l.alphaN = 300;
-  ENG.run(l, max_order, suffix, flogp);
+  //l.alphaN = 300;
+  //ENG.run(l, max_order, suffix, flogp);
   //int i, j;
   //for (i=0; i<disc; i++) {
   //  l.alphaMin = A[i];
