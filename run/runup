@@ -3,5 +3,4 @@
 #$ -cwd
 #$ -V -S /bin/bash
 #$ -N  greenup
-#$ -pe smp 24
-./bin/green up data/ -disctest 24
+./bin/green up data/ -disctest $1

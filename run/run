@@ -1,4 +1,5 @@
 #!/bin/bash
 
-qsub ./run/runup
-qsub ./run/rundn
+qsub -pe smp $1 ./run/runup -F $1
+
+qsub -pe smp $1 ./run/rundn -F $1
