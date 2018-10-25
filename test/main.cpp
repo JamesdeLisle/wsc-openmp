@@ -66,18 +66,20 @@ int main(int argc, char * argv[]) {
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
-
-  int i, j;
-  for (i=0; i<disc; i++) {
-    l.alphaMin = A[i];
+  l.alphaN = 100;
+  ENG.run(l, max_order, suffix, flogp);
+  l.alphaN = 300;
+  ENG.run(l, max_order, suffix, flogp);
+  //int i, j;
+  //for (i=0; i<disc; i++) {
+  //  l.alphaMin = A[i];
     //l.a2 = l.a1 * r;
     //l.a3 = r * l.a2;
     //l.a4 = l.a1 * r;
-    ENG.run(l, max_order, suffix, flogp);
     //for (j=0; j<disc; j++) {
     //  l.temp = B[j];
       //}
-  }
+    //}
   T.stop();
   return 0;
 }

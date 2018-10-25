@@ -4,4 +4,4 @@
 #$ -V -S /bin/bash
 #$ -N  greenup
 #$ -pe smp 24
-./bin/green up data/ -cohere 24
+./bin/green up data/ -disctest 24
