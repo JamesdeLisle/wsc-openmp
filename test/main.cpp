@@ -29,7 +29,7 @@ int main(int argc, char * argv[]) {
   flog.open((const char *) logname.c_str());
   ofstream * flogp = &flog;
   MainFunc ENG(folder, time);
-  double r = 0.3;
+  double r = 0.1;
   
   if (ENG.condAnal(argv[1], suffix)) {return 0;}
   int n_threads = std::atoi(argv[4]);
@@ -46,7 +46,7 @@ int main(int argc, char * argv[]) {
   l.kPolarMax = PI - delta;
   l.kAzimuMin = 0.0;
   l.kAzimuMax = 2 * PI;
-  l.alphaMin = -50.0;
+  l.alphaMin = -30.0;
   l.alphaMax = 0.0;
   l.temp = 0.02;
   l.tempCrit = 0.1;
