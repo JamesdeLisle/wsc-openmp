@@ -67,7 +67,7 @@ int main(int argc, char * argv[]) {
   
   Timer T = Timer();
   ENG.setThreads(n_threads);
-  l.alphaN = 500;
+  l.alphaN = 100;
   ENG.run(l, max_order, suffix, flogp);
 
   //l.alphaN = 300;
