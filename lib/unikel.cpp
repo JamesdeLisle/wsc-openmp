@@ -19,7 +19,7 @@ Green UniKel::get(Green funcVal) {
   mat adv0 = P.get(3) * ret0.adjoint() * P.get(3);
   rvm = funcVal.get() * (E.epsi().get() - E.hamA().get()) -	\
     (E.epsi().get() - E.hamR().get()) * funcVal.get() +		\
-    ret0 * E.hamK().get() - E.hamK().get() * adv0;
+    ret0 * E.hamKG().get() - E.hamKG().get() * adv0;
   Green rv(-I * rvm / runVal.getlim()->fermV);
   return rv; 
 }
