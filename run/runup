@@ -3,5 +3,5 @@
 #$ -cwd
 #$ -V -S /bin/bash
 #$ -N  greenup
-#$ -pe smp 22
-./bin/green up data/ -new 22
+#$ -pe smp 20
+./bin/green up data/ -new 20
