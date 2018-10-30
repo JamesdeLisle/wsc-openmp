@@ -43,7 +43,7 @@ Green Keldysh::bound() {
   Pauli P;
   runVal.comp();
   Environment E(runVal);
-  rvm = (ret0 - P.get(3) * ret0.adjoint() * P.get(3)) * E.getThermDG();
+  rvm = (ret0 - P.get(3) * ret0.adjoint() * P.get(3)) * E.getThermD();
   Green rv(rvm);
   return rv;
 }

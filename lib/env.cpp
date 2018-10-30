@@ -22,12 +22,14 @@ Environment::Environment(RunVal _runVal) : runVal(_runVal) {
   sigmaR = -I * lim->tau;
   sigmaA = std::conj(sigmaR);
   sigmaK = sigmaA;
-  thermD = tanh(runVal.getE() / (2 * lim->temp));
+  thermD = tanh(runVal.getE() / (2 * (lim->temp - runVal.getZ() * lim->tempInc)));
   
-  thermDG = -runVal.getE() * runVal.getZ() * lim->tempInc;
-  thermDG /= (2 * lim->temp * lim->temp *
-	      cosh(runVal.getE() / (2 * lim->temp)) *
-	      cosh(runVal.getE() / (2 * lim->temp)));
+  thermDG = -(runVal.getE() * runVal.getZ() *
+	      lim->tempInc * lim->tempInc * lim->alphaMin);
+  thermDG /= (2 * (lim->temp - runVal.getZ() * lim->tempInc) *
+	      (lim->temp - runVal.getZ() * lim->tempInc) *
+	      cosh(runVal.getE() / (2 * (lim->temp - runVal.getZ() * lim->tempInc))) *
+	      cosh(runVal.getE() / (2 * (lim->temp - runVal.getZ() * lim->tempInc))));
 }
     
 Green Environment::hamR() {
